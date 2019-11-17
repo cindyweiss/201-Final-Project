@@ -13,15 +13,10 @@
 */
 
 var SPRITE_SIZE = 32;
-var canvas = document.getElementById('gameScreen');
-var ctx = canvas.getContext('2d');
-canvas.width = 480;
-canvas.height = 640;
 
 var canvas = document.getElementById('gameScreen');
 var ctx = canvas.getContext('2d');
-canvas.width = 480;
-canvas.height = 640;
+
 
 
 
@@ -55,7 +50,7 @@ var CharAnimation = function (frameSet, delay) {
         this.frame = 0,
         this.frameIndex = 0,
 
-        this.change = function (frameSet, delay = 15) {
+        this.change = function (frameSet, delay) {
             if (this.frameSet != frameSet) {
 
                 this.count = 0;
@@ -93,17 +88,18 @@ var goodGuy = {
     animation: new CharAnimation(goodGuySpriteSheet.frameSet, 15),
     height:32,
     width: 32,
-    x:100, 
-    y:300
+    x:85, 
+    y:165
 
 };
 
 var loop = function(timeStamp) {
     // i think this is where we will put our big condition statement
+    goodGuy.animation.change(goodGuySpriteSheet.frameSet[2], 20);
+
     goodGuy.animation.update();
-
-    renderNewSprite(goodGuySpriteSheet.image, goodGuy.x, goodGuy.y);
-
+    ctx.drawImage(goodGuySpriteSheet.image, goodGuy.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuy.x), Math.floor(goodGuy.y), SPRITE_SIZE, SPRITE_SIZE);
+    
     window.requestAnimationFrame(loop);
 
 };
@@ -135,9 +131,9 @@ var Asset = function (image, x, y, velocity) {
 
 // creating all sprites
 
-var cloud1 = new Asset(cloudImage, 50, 50, 1);
-var cloud2 = new Asset(cloudImage2, 141, 72, 1);
-var cloud3 = new Asset(cloudImage3, 341, 22, 1);
+var cloud1 = new Asset(cloudImage, 5, 5, 1);
+var cloud2 = new Asset(cloudImage2, 140, 7, 1);
+var cloud3 = new Asset(cloudImage3, 50, -20, 1);
 var sword = new Asset(swordImg, 21, 432, 1);
 var shield = new Asset(shieldImg, 321, 462, 1);
 var spell = new Asset(spellImg, 151, 432, 1);
