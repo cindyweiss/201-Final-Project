@@ -11,40 +11,100 @@
 
 
 */
-var gameScreen = document.getElementById('gameScreen');
-gameScreen.width = 480;
-gameScreen.height = 640;
 
-var cloud1Image = new Image();
-cloud1Image.src = 'images/cloud1.png';
+var SPRITE_SIZE = 32;
+var canvas = document.getElementById('gameScreen');
+var ctx = canvas.getContext('2d');
+canvas.width = 480;
+canvas.height = 640;
 
-var name = 'isaac';
+var canvas = document.getElementById('gameScreen');
+var ctx = canvas.getContext('2d');
+canvas.width = 480;
+canvas.height = 640;
 
-var Sprite = function(context, width, height, image) {
-    this.context = context;
-    this.width = width;
-    this.height = height;
-    this.image = image;
 
-}
 
-var cloud1 = new Sprite(gameScreen.getContext('2d'), 83, 57, cloud1Image);
+//preloading all images
+var cloudImage = new Image();
+cloudImage.src = "images/cloud1.png"
 
-var spriteSize = 32;
+var cloudImage2 = new Image();
+cloudImage2.src = "images/cloud2.png"
 
-var spriteSheet = {
+var cloudImage3 = new Image();
+cloudImage3.src = "images/cloud3.png"
 
-    frameSets: [[/* idle */],
-    [/* gg Sword bg Sword */],
-    [/* gg Sword bg Spell */],
-    [/* gg Sword bg Shield */],
-    [/* gg Spell bg Sword */],
-    [/* gg Spell bg Spell */],
-    [/* gg Spell bg Shield */],
-    [/* gg Shield bg Sword */],
-    [/* gg Shield bg Spell */],
-    [/* gg Shield bg Shield */],],
+var backgroundImg = new Image();
+backgroundImg.src = "images/BG.png"
 
+var swordImg = new Image();
+swordImg.src = "images/swordSprite.png"
+
+var shieldImg = new Image();
+shieldImg.src = "images/shieldSprite.png"
+
+var spellImg = new Image();
+spellImg.src = "images/spellSprite.png"
+
+// //put this in the render at the end - to isaac
+
+var CharAnimation = function (frameSet, delay) {
+        this.count = 0,
+        this.delay = 20,
+        this.frame = 0,
+        this.frameIndex = 0,
+
+        this.change = function (frameSet, delay = 15) {
+            if (this.frameSet != frameSet) {
+
+                this.count = 0;
+                this.delay = delay;
+                this.frameIndex = 0;
+                this.frameSet = frameSet;
+                this.frame = frameSet[this.frameIndex];
+
+            }
+        },
+
+        this.update = function () {
+            this.count++;
+
+            if (this.count >= this.delay) {
+                this.count = 0;
+                if (this.frameIndex === this.frameSet.length - 1) {
+                    this.frameIndex = 0;
+                } else { this.frameIndex + 1; }
+            }
+            this.frame = this.frameSet[this.frameIndex];
+        }
+
+
+};
+
+var goodGuySpriteSheet = {
+    frameSet:[[0,1],[2,3],[4,5],[6, 7],[8,9]],
+    image: new Image()
+};
+
+goodGuySpriteSheet.image.src = "images/pallySheet.png";
+
+var goodGuy = {
+    animation: new CharAnimation(goodGuySpriteSheet.frameSet, 15),
+    height:32,
+    width: 32,
+    x:100, 
+    y:300
+
+};
+
+var loop = function(timeStamp) {
+    // i think this is where we will put our big condition statement
+    goodGuy.animation.update();
+
+    renderNewSprite(goodGuySpriteSheet.image, goodGuy.x, goodGuy.y);
+
+    window.requestAnimationFrame(loop);
 
 };
 
@@ -52,47 +112,150 @@ var spriteSheet = {
 
 
 
-
-
-//character animation functions
-function idle() {
-    //plays idle animation
-
-
+//the render function. we could probably put this in the constructor but it was working so i didnt touch it!
+function renderNewSprite(image, x, y) {
+    image.onload = function () {
+        ctx.drawImage(image, x, y);
+    };
 }
 
-function ggSwordbgSword() {
-    //plays animation
-}
+//the constructor for new sprites on the canvas
+var Asset = function (image, x, y, velocity) {
+    this.image = image;
+    this.x = x;
+    this.y = y;
+    this.velocity = velocity;
 
-function ggSwordbgSpell() {
-    //plays animation
-}
+    renderNewSprite(image, x, y);
 
-function ggSwordbgSheild() {
-    //plays animation
-}
+};
 
-function ggShieldbgSword() {
-    //plays animation
-}
 
-function ggShieldbgSpell() {
-    //plays animation
-}
 
-function ggShieldbgSheild() {
-    //plays animation
-}
 
-function ggSpellbgSword() {
-    //plays animation
-}
+// creating all sprites
 
-function ggSpellbgSpell() {
-    //plays animation
-}
+var cloud1 = new Asset(cloudImage, 50, 50, 1);
+var cloud2 = new Asset(cloudImage2, 141, 72, 1);
+var cloud3 = new Asset(cloudImage3, 341, 22, 1);
+var sword = new Asset(swordImg, 21, 432, 1);
+var shield = new Asset(shieldImg, 321, 462, 1);
+var spell = new Asset(spellImg, 151, 432, 1);
 
-function ggSpellbgSheild() {
-    //plays animation
-}
+
+
+
+
+
+
+// cloud2.tickCount = 0;
+// cloud2.ticksPerFrame = options.ticksPerFrame || 0;
+// cloud2.moveClouds = function (velocity) {
+//     tickCount += 1;
+//     while (this.x <= 500) {
+//         this.x += velocity;
+//         if (this.x > 500) {
+//             this.x = -50;
+//         }
+//     }
+// }
+
+// cloud2.moveClouds(1);
+
+
+
+// var spriteSize = 32;
+
+// var spriteSheet = {
+
+//     frameSets: [[/* idle */],
+//     [/* gg Sword bg Sword */],
+//     [/* gg Sword bg Spell */],
+//     [/* gg Sword bg Shield */],
+//     [/* gg Spell bg Sword */],
+//     [/* gg Spell bg Spell */],
+//     [/* gg Spell bg S+hield */],
+//     [/* gg Shield bg Sword */],
+//     [/* gg Shield bg Spell */],
+//     [/* gg Shield bg Shield */],],
+
+
+// };
+
+
+goodGuySpriteSheet.image.addEventListener("load", function(event){
+    window.requestAnimationFrame(loop);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //character animation functions
+// function idle() {
+//     //plays idle animation
+
+
+// }
+
+// function ggSwordbgSword() {
+//     //plays animation
+// }
+
+// function ggSwordbgSpell() {
+//     //plays animation
+// }
+
+// function ggSwordbgSheild() {
+//     //plays animation
+// }
+
+// function ggShieldbgSword() {
+//     //plays animation
+// }
+
+// function ggShieldbgSpell() {
+//     //plays animation
+// }
+
+// function ggShieldbgSheild() {
+//     //plays animation
+// }
+
+// function ggSpellbgSword() {
+//     //plays animation
+// }
+
+// function ggSpellbgSpell() {
+//     //plays animation
+// }
+
+// function ggSpellbgSheild() {
+//     //plays animation
+// }
