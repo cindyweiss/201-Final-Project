@@ -1,6 +1,5 @@
 'use strict';
 
-
 //Isaacs animation code - You guys can work above this
 
 /*to do list
@@ -15,29 +14,27 @@ var canvas = document.getElementById('gameScreen');
 var ctx = canvas.getContext('2d');
 
 
-
-
 //preloading all images
 var cloudImage = new Image();
-cloudImage.src = "images/cloud1.png"
+cloudImage.src = 'images/cloud1.png';
 
 var cloudImage2 = new Image();
-cloudImage2.src = "images/cloud2.png"
+cloudImage2.src = 'images/cloud2.png';
 
 var cloudImage3 = new Image();
-cloudImage3.src = "images/cloud3.png"
+cloudImage3.src = 'images/cloud3.png';
 
 var backgroundImg = new Image();
-backgroundImg.src = "images/BG.png"
+backgroundImg.src = 'images/BG.png';
 
 var swordImg = new Image();
-swordImg.src = "images/swordSprite.png"
+swordImg.src = 'images/swordSprite.png';
 
 var shieldImg = new Image();
-shieldImg.src = "images/shieldSprite.png"
+shieldImg.src = 'images/shieldSprite.png';
 
 var spellImg = new Image();
-spellImg.src = "images/spellSprite.png"
+spellImg.src = 'images/spellSprite.png';
 
 // //put this in the render at the end - to isaac
 //gif instead
@@ -57,7 +54,6 @@ var CharAnimation = function (frameSet) {
       this.frameIndex = 0;
       this.frameSet = frameSet;
       this.frame = frameSet[this.frameIndex];
-
     }
   },
 
@@ -72,18 +68,16 @@ var CharAnimation = function (frameSet) {
       } else { this.frameIndex += 1; }
     }
     this.frame = this.frameSet[this.frameIndex];
-
-  }
-
-
+  };
 };
 
 var goodGuySpriteSheet = {
   frameSet: [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],
   image: new Image()
+
 };
 
-goodGuySpriteSheet.image.src = "images/pallySheet.png";
+goodGuySpriteSheet.image.src = 'images/pallySheet.png';
 
 var goodGuy = {
   animation: new CharAnimation(goodGuySpriteSheet.frameSet),
@@ -108,15 +102,12 @@ var loop = function () {
 
 
 
-
-
 //the render function. we could probably put this in the constructor but it was working so i didnt touch it!
 function renderNewSprite(image, x, y) {
   image.onload = function () {
 
     ctx.drawImage(image, x, y);
   };
-
 }
 
 //the constructor for new sprites on the canvas
@@ -127,7 +118,6 @@ var Asset = function (image, x, y, velocity) {
   this.velocity = velocity;
 
   renderNewSprite(image, x, y);
-
 };
 
 
@@ -183,7 +173,7 @@ var spell = new Asset(spellImg, 151, 432, 1);
 // };
 
 
-goodGuySpriteSheet.image.addEventListener("load", function (event) {
+goodGuySpriteSheet.image.addEventListener('load', function (event) {
   window.requestAnimationFrame(loop);
 });
 
