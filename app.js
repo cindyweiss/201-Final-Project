@@ -13,15 +13,10 @@
 */
 
 var SPRITE_SIZE = 32;
-var canvas = document.getElementById('gameScreen');
-var ctx = canvas.getContext('2d');
-canvas.width = 480;
-canvas.height = 640;
 
 var canvas = document.getElementById('gameScreen');
 var ctx = canvas.getContext('2d');
-canvas.width = 480;
-canvas.height = 640;
+
 
 
 
@@ -48,14 +43,16 @@ var spellImg = new Image();
 spellImg.src = "images/spellSprite.png"
 
 // //put this in the render at the end - to isaac
+//gif instead
 
-var CharAnimation = function (frameSet, delay) {
+var CharAnimation = function (frameSet) {
         this.count = 0,
         this.delay = 20,
         this.frame = 0,
+        this.frameSet = frameSet,
         this.frameIndex = 0,
 
-        this.change = function (frameSet, delay = 15) {
+        this.change = function (frameSet, delay) {
             if (this.frameSet != frameSet) {
 
                 this.count = 0;
@@ -72,11 +69,13 @@ var CharAnimation = function (frameSet, delay) {
 
             if (this.count >= this.delay) {
                 this.count = 0;
-                if (this.frameIndex === this.frameSet.length - 1) {
+                //frame index is stuck at 0
+                if (this.frameIndex === 1) {
                     this.frameIndex = 0;
-                } else { this.frameIndex + 1; }
+                } else { this.frameIndex += 1; }
             }
             this.frame = this.frameSet[this.frameIndex];
+
         }
 
 
@@ -90,20 +89,22 @@ var goodGuySpriteSheet = {
 goodGuySpriteSheet.image.src = "images/pallySheet.png";
 
 var goodGuy = {
-    animation: new CharAnimation(goodGuySpriteSheet.frameSet, 15),
+    animation: new CharAnimation(goodGuySpriteSheet.frameSet),
     height:32,
     width: 32,
-    x:100, 
-    y:300
+    x:85, 
+    y:165
 
 };
 
-var loop = function(timeStamp) {
+var loop = function() {
     // i think this is where we will put our big condition statement
+    goodGuy.animation.change(goodGuySpriteSheet.frameSet[2], 20);
+
+    ctx.drawImage(backgroundImg, 0, 0);
     goodGuy.animation.update();
-
-    renderNewSprite(goodGuySpriteSheet.image, goodGuy.x, goodGuy.y);
-
+    ctx.drawImage(goodGuySpriteSheet.image, goodGuy.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuy.x), Math.floor(goodGuy.y), SPRITE_SIZE, SPRITE_SIZE);
+    
     window.requestAnimationFrame(loop);
 
 };
@@ -115,8 +116,10 @@ var loop = function(timeStamp) {
 //the render function. we could probably put this in the constructor but it was working so i didnt touch it!
 function renderNewSprite(image, x, y) {
     image.onload = function () {
+
         ctx.drawImage(image, x, y);
     };
+
 }
 
 //the constructor for new sprites on the canvas
@@ -135,9 +138,9 @@ var Asset = function (image, x, y, velocity) {
 
 // creating all sprites
 
-var cloud1 = new Asset(cloudImage, 50, 50, 1);
-var cloud2 = new Asset(cloudImage2, 141, 72, 1);
-var cloud3 = new Asset(cloudImage3, 341, 22, 1);
+var cloud1 = new Asset(cloudImage, 5, 5, 1);
+var cloud2 = new Asset(cloudImage2, 140, 7, 1);
+var cloud3 = new Asset(cloudImage3, 50, -20, 1);
 var sword = new Asset(swordImg, 21, 432, 1);
 var shield = new Asset(shieldImg, 321, 462, 1);
 var spell = new Asset(spellImg, 151, 432, 1);
