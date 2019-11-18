@@ -2,51 +2,66 @@
 
 var attackChoices = ['sword', 'spell', 'shield'];
 
-var goodGuyChoice = '';
+var currentUserChoice = '';
 
-var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+var badGuyChoice = '';
 
-var winFlag = false;
-
-var winCountingArray = [0, 0]; // [0] is goodGuy , [1] is badGuy
+var winCountingArray = [0, 0]; // [0] is currentUser , [1] is badGuy
 
 var turnCounter = 0;
 
+var userHistory = []; // LS later
+
+// Local storage into user vvv
+
+var User = function (name) {
+  this.name = name;
+  this.winLossHistory = [0, 0];
+};
+
+var newUser = prompt('INPUT NAME: ');
+
+var currentUser = new User(newUser); // test
+console.log(`currentUser: ${currentUser}`);
 
 // Evaluate Choices
 // sword beats spell, spell beats shield, shield beats sword
 
-function compare() {
-  while (winFlag !== true) {
-    goodGuyChoice = prompt('sword, spell, or shield: ');
-    while (goodGuyChoice === 'sword' || goodGuyChoice === 'spell' || goodGuyChoice === 'shield') {
-      if (goodGuyChoice === badGuyChoice) {
+function battleFunction() {
+  while (!winCountingArray.includes(5)) {
+    badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+    currentUserChoice = prompt('sword, spell, or shield: ');
+    while (currentUserChoice === 'sword' || currentUserChoice === 'spell' || currentUserChoice === 'shield') {
+      if (currentUserChoice === badGuyChoice) {
         alert('draw');
         turnCounter++;
-      } else if ((goodGuyChoice === 'sword' && badGuyChoice === 'spell') ||
-        (goodGuyChoice === 'spell' && badGuyChoice === 'shield') ||
-        (goodGuyChoice === 'shield' && badGuyChoice === 'sword')) {
+      } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+        (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+        (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
         winCountingArray[0]++;
         turnCounter++;
-        alert(`good point ${winCountingArray[0]}\n\ngood ${goodGuyChoice}| bad ${badGuyChoice}`);
+        alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
       } else {
         winCountingArray[1]++;
         turnCounter++;
-        alert(`bad point ${winCountingArray[1]}\n\ngood ${goodGuyChoice}| bad ${badGuyChoice}`);
+        alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
       }
-      if (winCountingArray.includes(5)) {
-        winFlag = true;
-      }
-      goodGuyChoice = '';
+      currentUserChoice = '';
     }
   }
+
   alert(`reached 5, compare time ${winCountingArray}`);
-  // check array for who wins here ( who has the 5 in the array )
+  if (winCountingArray[0] > winCountingArray[1]) {
+    currentUser.winLossHistory[0]++;
+    console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
+
+  } else if (winCountingArray[0] < winCountingArray[1]) {
+    currentUser.winLossHistory[1]++;
+    console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
+  } else {}
 }
 
-
-
-compare();
+battleFunction();
 
 // //Isaacs animation code - You guys can work above this
 
@@ -119,16 +134,16 @@ compare();
 //     };
 // };
 
-// var goodGuySpriteSheet = {
+// var currentUserSpriteSheet = {
 //   frameSet: [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],
 //   image: new Image()
 
 // };
 
-// goodGuySpriteSheet.image.src = 'images/pallySheet.png';
+// currentUserSpriteSheet.image.src = 'images/pallySheet.png';
 
-// var goodGuy = {
-//   animation: new CharAnimation(goodGuySpriteSheet.frameSet),
+// var currentUser = {
+//   animation: new CharAnimation(currentUserSpriteSheet.frameSet),
 //   height: 32,
 //   width: 32,
 //   x: 85,
@@ -138,11 +153,11 @@ compare();
 
 // var loop = function () {
 //   // i think this is where we will put our big condition statement
-//   goodGuy.animation.change(goodGuySpriteSheet.frameSet[2], 20);
+//   currentUser.animation.change(currentUserSpriteSheet.frameSet[2], 20);
 
 //   ctx.drawImage(backgroundImg, 0, 0);
-//   goodGuy.animation.update();
-//   ctx.drawImage(goodGuySpriteSheet.image, goodGuy.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuy.x), Math.floor(goodGuy.y), SPRITE_SIZE, SPRITE_SIZE);
+//   currentUser.animation.update();
+//   ctx.drawImage(currentUserSpriteSheet.image, currentUser.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(currentUser.x), Math.floor(currentUser.y), SPRITE_SIZE, SPRITE_SIZE);
 
 //   window.requestAnimationFrame(loop);
 
@@ -212,7 +227,7 @@ compare();
 // // };
 
 
-// goodGuySpriteSheet.image.addEventListener('load', function (event) {
+// currentUserSpriteSheet.image.addEventListener('load', function (event) {
 //   window.requestAnimationFrame(loop);
 // });
 
