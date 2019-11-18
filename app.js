@@ -46,7 +46,7 @@ spellImg.src = "images/spellSprite.png"
 //gif instead
 
 var CharAnimation = function (frameSet) {
-        this.count = 0,
+    this.count = 0,
         this.delay = 20,
         this.frame = 0,
         this.frameSet = frameSet,
@@ -82,7 +82,7 @@ var CharAnimation = function (frameSet) {
 };
 
 var goodGuySpriteSheet = {
-    frameSet:[[0,1],[2,3],[4,5],[6, 7],[8,9]],
+    frameSet: [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],
     image: new Image()
 };
 
@@ -90,21 +90,38 @@ goodGuySpriteSheet.image.src = "images/pallySheet.png";
 
 var goodGuy = {
     animation: new CharAnimation(goodGuySpriteSheet.frameSet),
-    height:32,
+    height: 32,
     width: 32,
-    x:85, 
-    y:165
+    x: 85,
+    y: 165
 
 };
 
-var loop = function() {
+var cloud1;
+var cloud1;
+var cloud2;
+var cloud3;
+var sword;
+var shield;
+var spell;
+
+var loop = function () {
     // i think this is where we will put our big condition statement
+
+
+
     goodGuy.animation.change(goodGuySpriteSheet.frameSet[2], 20);
 
     ctx.drawImage(backgroundImg, 0, 0);
+    cloud1 = new Asset(cloudImage, 5, 5, 1);
+    cloud2 = new Asset(cloudImage2, 140, 7, 1);
+    cloud3 = new Asset(cloudImage3, 50, -20, 1);
+    sword = new Asset(swordImg, 21, 432, 1);
+    shield = new Asset(shieldImg, 321, 462, 1);
+    spell = new Asset(spellImg, 151, 432, 1);
     goodGuy.animation.update();
     ctx.drawImage(goodGuySpriteSheet.image, goodGuy.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuy.x), Math.floor(goodGuy.y), SPRITE_SIZE, SPRITE_SIZE);
-    
+
     window.requestAnimationFrame(loop);
 
 };
@@ -138,12 +155,7 @@ var Asset = function (image, x, y, velocity) {
 
 // creating all sprites
 
-var cloud1 = new Asset(cloudImage, 5, 5, 1);
-var cloud2 = new Asset(cloudImage2, 140, 7, 1);
-var cloud3 = new Asset(cloudImage3, 50, -20, 1);
-var sword = new Asset(swordImg, 21, 432, 1);
-var shield = new Asset(shieldImg, 321, 462, 1);
-var spell = new Asset(spellImg, 151, 432, 1);
+
 
 
 
@@ -186,7 +198,7 @@ var spell = new Asset(spellImg, 151, 432, 1);
 // };
 
 
-goodGuySpriteSheet.image.addEventListener("load", function(event){
+goodGuySpriteSheet.image.addEventListener("load", function (event) {
     window.requestAnimationFrame(loop);
 });
 
