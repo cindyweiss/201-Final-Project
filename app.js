@@ -101,7 +101,6 @@ var loop = function () {
 };
 
 
-
 //the render function. we could probably put this in the constructor but it was working so i didnt touch it!
 function renderNewSprite(image, x, y) {
   image.onload = function () {
@@ -121,8 +120,6 @@ var Asset = function (image, x, y, velocity) {
 };
 
 
-
-
 // creating all sprites
 
 var cloud1 = new Asset(cloudImage, 5, 5, 1);
@@ -131,11 +128,6 @@ var cloud3 = new Asset(cloudImage3, 50, -20, 1);
 var sword = new Asset(swordImg, 21, 432, 1);
 var shield = new Asset(shieldImg, 321, 462, 1);
 var spell = new Asset(spellImg, 151, 432, 1);
-
-
-
-
-
 
 
 // cloud2.tickCount = 0;
@@ -151,7 +143,6 @@ var spell = new Asset(spellImg, 151, 432, 1);
 // }
 
 // cloud2.moveClouds(1);
-
 
 
 // var spriteSize = 32;
