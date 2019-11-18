@@ -1,4 +1,4 @@
-## Code Fellow 201 Final Project: Duel of Fate
+### Code Fellow 201 Final Project: Duel of Fate
 
 _Members:_ Cindy Weiss, Jerome Burns, Isaac Nelson, Peter Cole
 
