@@ -1,0 +1,17 @@
+canvas {
+    /* background-image: url(/images/BG.png); */
+    border: 2px black solid;
+    width: 960;
+    height: 1280;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+#cloud3 {
+    z-index: 1;
+    position: relative;
+    top: 50; left: 50;
+
+}
