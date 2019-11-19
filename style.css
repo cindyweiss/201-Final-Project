@@ -7,6 +7,11 @@ canvas {
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 400px;
+    display: block;
+    
 }
 #swordTarget {
     position: absolute;
@@ -34,3 +39,35 @@ canvas {
     width: 90px;
 
 }
+
+body {
+    background-image: url("../images/backgroundcastle.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    font-family: cursive;
+  }
+
+  .openingScroll {
+      background-image: url("../images/scroll.jpeg");
+      background-repeat: no-repeat;
+      padding: 50px;
+      color: black;
+      text-align: left;
+      background-size: 75%;
+      margin-top: 200px;
+      margin-left:250px;
+      font-style: oblique;
+      font-size: 40px;
+      border
+
+
+      
+
+  }
+
+  #name {
+      text-align: left;
+      margin: 30px;
+      padding: 30px;
+  }
