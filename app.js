@@ -61,7 +61,7 @@ function battleFunction() {
   } else {}
 }
 
-compare();
+
 
 //Isaacs animation code - You guys can work above this
 
