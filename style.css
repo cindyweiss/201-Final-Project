@@ -1,17 +1,36 @@
 canvas {
     /* background-image: url(/images/BG.png); */
     border: 2px black solid;
-    width: 960;
-    height: 1280;
+    width: 480px;
+    height: 640px;
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
+}
+#swordTarget {
+    position: absolute;
+    top: 450px;left: 20px;
+    width: 100px;
+    
+}
+#spellTarget {
+    position: absolute;
+    top: 450px;left: 180px;
+    width: 130px;
+    
+}
+#shieldTarget {
+    position: absolute;
+    top: 480px;left: 350px;
+    width: 130px;
+    
 }
 
 #cloud3 {
     z-index: 1;
     position: relative;
     top: 50; left: 50;
+    width: 90px;
 
 }
