@@ -15,6 +15,16 @@ var userHistory = []; // LS later
 var User = function (name) {
   this.name = name;
   this.winLossHistory = [0, 0];
+  this.render = function (domReferance) {
+    var tableContents = document.getElementById('scores');
+    var tr = document.createElement('tr');
+    var td = document.createElement('td');
+    td.textContent = this.name;
+    tr.append(td);
+
+
+
+    }
 };
 
 
@@ -83,33 +93,22 @@ function battleFunction() {
   var playAgain = confirm('Would you like to play again?');
   if (playAgain === true) {
     winCountingArray = [0, 0];
-
-  } else
+    
+  } else if (winCountingArray[0] < winCountingArray[1]) {
+         currentUser.winLossHistory[1]++;
+         console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
+       }
+       var playAgain = confirm('Would you like to play again?');
+       if (playAgain === true) {
+         winCountingArray = [0, 0];
+   
+   
+     }
+  } else {
     var newUser = prompt('INPUT NAME: ');
   var currentUser = new User(newUser);
-  var score = document.getElementById('score');
 
-  //// CINDY WORK HERE! probabllyy
-
-  this.render = function (domReferance) {
-    var tableContents = document.getElementById('scores');
-    var tr = document.createElement('tr');
-    var td = document.createElement('td');
-    td.textContent = this.name;
-    tr.append(td);
-
-
-
-    } else if (winCountingArray[0] < winCountingArray[1]) {
-      currentUser.winLossHistory[1]++;
-      console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
-    }
-    var playAgain = confirm('Would you like to play again?');
-    if (playAgain === true) {
-      winCountingArray = [0, 0];
-
-
-  }
+}
 }
 
 
