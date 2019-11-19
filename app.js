@@ -15,102 +15,99 @@ var userHistory = []; // LS later
 var User = function (name) {
   this.name = name;
   this.winLossHistory = [0, 0];
-};
-
-
-
-
-// Evaluate Choices
-// sword beats spell, spell beats shield, shield beats sword
-
-var swordTarget = document.getElementById('swordTarget');
-var spellTarget = document.getElementById('spellTarget');
-var shieldTarget = document.getElementById('shieldTarget');
-
-
-
-
-swordTarget.addEventListener('click', event => {
-  currentUserChoice = 'sword';
-  battleFunction();
-
-});
-spellTarget.addEventListener('click', event => {
-  currentUserChoice = 'spell';
-  battleFunction();
-
-});
-shieldTarget.addEventListener('click', event => {
-  currentUserChoice = 'shield';
-  battleFunction();
-
-});
-
-
-
-function battleFunction() {
-  if (!winCountingArray.includes(5)) {
-    var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-    // currentUserChoice = prompt('sword, spell, or shield: ');
-    if (currentUserChoice === badGuyChoice) {
-      alert('draw');
-      turnCounter++;
-      console.log(badGuyChoice);
-    } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-      (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-      (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-      winCountingArray[0]++;
-      turnCounter++;
-      console.log(badGuyChoice);
-      alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-    } else {
-      winCountingArray[1]++;
-      turnCounter++;
-      console.log(badGuyChoice);
-      alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-    }
-    // currentUserChoice = '';
-  } else
-    alert(`reached 5, compare time ${winCountingArray}`);
-  if (winCountingArray[0] > winCountingArray[1]) {
-    currentUser.winLossHistory[0]++;
-    console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
-
-  } else if (winCountingArray[0] < winCountingArray[1]) {
-    currentUser.winLossHistory[1]++;
-    console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
-  }
-  var playAgain = confirm('Would you like to play again?');
-  if (playAgain === true) {
-    winCountingArray = [0, 0];
-
-  } else
-    var newUser = prompt('INPUT NAME: ');
-  var currentUser = new User(newUser);
-  var score = document.getElementById('score');
-
-  //// CINDY WORK HERE! probabllyy
+  this.userHistory = 0;
 
   this.render = function (domReferance) {
+    // var score = document.getElementById('score');
     var tableContents = document.getElementById('scores');
     var tr = document.createElement('tr');
-    var td = document.createElement('td');
-    td.textContent = this.name;
-    tr.append(td);
+    var nameCell = document.createElement('td');
+    nameCell.textContent = this.name;
+    tr.append(nameCell);
+
+    var matchCount = document.createElement('td');
+    matchCount.textContent = this.userHistory;
+    tr.append(matchCount);
+  };
 
 
 
-    } else if (winCountingArray[0] < winCountingArray[1]) {
-      currentUser.winLossHistory[1]++;
-      console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
+
+  // Evaluate Choices
+  // sword beats spell, spell beats shield, shield beats sword
+
+  var swordTarget = document.getElementById('swordTarget');
+  var spellTarget = document.getElementById('spellTarget');
+  var shieldTarget = document.getElementById('shieldTarget');
+
+
+
+
+  swordTarget.addEventListener('click', event => {
+    currentUserChoice = 'sword';
+    battleFunction();
+
+
+  })
+  spellTarget.addEventListener('click', event => {
+    currentUserChoice = 'spell';
+    battleFunction();
+
+  })
+  shieldTarget.addEventListener('click', event => {
+    currentUserChoice = 'shield';
+    battleFunction();
+
+  })
+
+
+
+  function battleFunction() {
+    var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+    if (!winCountingArray.includes(5)) {
+      // currentUserChoice = prompt('sword, spell, or shield: ');
+      if (currentUserChoice === badGuyChoice) {
+        alert('draw');
+        turnCounter++;
+        console.log(badGuyChoice);
+      } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+        (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+        (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+        winCountingArray[0]++;
+        turnCounter++;
+        console.log(badGuyChoice);
+        alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
+      } else {
+        winCountingArray[1]++;
+        turnCounter++;
+        console.log(badGuyChoice);
+        alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
+      }
+      // currentUserChoice = '';
+    } else {
+      alert(`reached 5, compare time ${winCountingArray}`);
+      currentUser.userHistory++;
+      if (winCountingArray[0] > winCountingArray[1]) {
+        currentUser.winLossHistory[0]++;
+        console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
+
+      } else if (winCountingArray[0] < winCountingArray[1]) {
+        currentUser.winLossHistory[1]++;
+        console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
+      }
+      var playAgain = confirm('Would you like to play again?');
+      if (playAgain === true) {
+        winCountingArray = [0, 0];
+      } else {
+        var newUser = prompt('INPUT NAME: ');
+        var currentUser = new User(newUser);
+      };
     }
-    var playAgain = confirm('Would you like to play again?');
-    if (playAgain === true) {
-      winCountingArray = [0, 0];
-
-
   }
 }
+
+
+
 
 
 
@@ -120,10 +117,10 @@ function battleFunction() {
 
 /*to do list
 - be able to change the animation as the result of an if statement and then have it switch back to idle after completion of animation.
-
-
-
-
+ 
+ 
+ 
+ 
 Thoughts about animation
 - idle animation 2 frames back and forth.
 - battle scenes are lots of frames iterated over once!
@@ -296,45 +293,44 @@ goodGuySpriteSheet.image.addEventListener("load", function (event) {
 
   window.requestAnimationFrame(loop);
 });
-// //character animation functions
-// function idle() {
-//     //plays idle animation
+  // //character animation functions
+  // function idle() {
+  //     //plays idle animation
 
 
-// }
+  // }
 
-// function ggSwordbgSword() {
-//     //plays animation
-// }
+  // function ggSwordbgSword() {
+  //     //plays animation
+  // }
 
-// function ggSwordbgSpell() {
-//     //plays animation
-// }
+  // function ggSwordbgSpell() {
+  //     //plays animation
+  // }
 
-// function ggSwordbgSheild() {
-//     //plays animation
-// }
+  // function ggSwordbgSheild() {
+  //     //plays animation
+  // }
 
-// function ggShieldbgSword() {
-//     //plays animation
-// }
+  // function ggShieldbgSword() {
+  //     //plays animation
+  // }
 
-// function ggShieldbgSpell() {
-//     //plays animation
-// }
+  // function ggShieldbgSpell() {
+  //     //plays animation
+  // }
 
-// function ggShieldbgSheild() {
-//     //plays animation
-// }
+  // function ggShieldbgSheild() {
+  //     //plays animation
+  // }
 
-// function ggSpellbgSword() {
-//     //plays animation
-// }
+  // function ggSpellbgSword() {
+  //     //plays animation
+  // }
 
-// function ggSpellbgSpell() {
-//     //plays animation
-// }
+  // function ggSpellbgSpell() {
+  //     //plays animation
+  // }
 
-// function ggSpellbgSheild() {
-//     //plays animation
-// }
+  // function ggSpellbgSheild() {
+  //     //plays animation
