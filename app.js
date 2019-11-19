@@ -1,49 +1,95 @@
 'use strict';
 
+var attackChoices = ['sword', 'spell', 'shield'];
+
+var goodGuyChoice = '';
+
+var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+
+var winFlag = false;
+
+var winCountingArray = [0, 0]; // [0] is goodGuy , [1] is badGuy
+
+var turnCounter = 0;
+
+
+// Evaluate Choices
+// sword beats spell, spell beats shield, shield beats sword
+
+function compare() {
+  while (winFlag !== true) {
+    goodGuyChoice = prompt('sword, spell, or shield: ');
+    while (goodGuyChoice === 'sword' || goodGuyChoice === 'spell' || goodGuyChoice === 'shield') {
+      if (goodGuyChoice === badGuyChoice) {
+        alert('draw');
+        turnCounter++;
+      } else if ((goodGuyChoice === 'sword' && badGuyChoice === 'spell') ||
+        (goodGuyChoice === 'spell' && badGuyChoice === 'shield') ||
+        (goodGuyChoice === 'shield' && badGuyChoice === 'sword')) {
+        winCountingArray[0]++;
+        turnCounter++;
+        alert(`good point ${winCountingArray[0]}\n\ngood ${goodGuyChoice}| bad ${badGuyChoice}`);
+      } else {
+        winCountingArray[1]++;
+        turnCounter++;
+        alert(`bad point ${winCountingArray[1]}\n\ngood ${goodGuyChoice}| bad ${badGuyChoice}`);
+      }
+      if (winCountingArray.includes(5)) {
+        winFlag = true;
+      }
+      goodGuyChoice = '';
+    }
+  }
+  alert(`reached 5, compare time ${winCountingArray}`);
+  // check array for who wins here ( who has the 5 in the array )
+}
+compare();
 
 //Isaacs animation code - You guys can work above this
 
 /*to do list
-- make function that accurately iterates over the sprite sheet
-- then make functions for each action.
-    - today we'll just make a run       animation.
+- be able to change the animation as the result of an if statement and then have it switch back to idle after completion of animation.
 
 
-
+Thoughts about animation
+- idle animation 2 frames back and forth.
+- battle scenes are lots of frames iterated over once!
+- while battle scenes run, idle must disappear.
+- when battle ends units return to idle.
+- walk back to idle spots in battle scene.
 */
 
 var SPRITE_SIZE = 32;
 
 var canvas = document.getElementById('gameScreen');
+
+var swordTarget = document.getElementById('swordTarget');
+var spellTarget = document.getElementById('spellTarget');
+var shieldTarget = document.getElementById('shieldTarget');
+
 var ctx = canvas.getContext('2d');
 
 
 
 
 //preloading all images
-var cloudImage = new Image();
-cloudImage.src = "images/cloud1.png"
+// var cloudImage = new Image();
+// cloudImage.src = "images/cloud1.png";
 
-var cloudImage2 = new Image();
-cloudImage2.src = "images/cloud2.png"
+// var cloudImage2 = new Image();
+// cloudImage2.src = "images/cloud2.png";
 
-var cloudImage3 = new Image();
-cloudImage3.src = "images/cloud3.png"
+// var cloudImage3 = new Image();
+// cloudImage3.src = "images/cloud3.png";
 
 var backgroundImg = new Image();
-backgroundImg.src = "images/BG.png"
+backgroundImg.src = "images/BG.png";
 
-var swordImg = new Image();
-swordImg.src = "images/swordSprite.png"
+swordTarget.src = "images/swordSprite.png";
+spellTarget.src = "images/spellSprite.png";
+shieldTarget.src = "images/shieldSprite.png";
 
-var shieldImg = new Image();
-shieldImg.src = "images/shieldSprite.png"
 
-var spellImg = new Image();
-spellImg.src = "images/spellSprite.png"
-
-// //put this in the render at the end - to isaac
-//gif instead
 
 var CharAnimation = function (frameSet) {
     this.count = 0,
@@ -52,6 +98,7 @@ var CharAnimation = function (frameSet) {
         this.frameSet = frameSet,
         this.frameIndex = 0,
 
+        //for an animation use the change function to change to it and change the frameset to an array of animation. the animation may also need to be its own object.
         this.change = function (frameSet, delay) {
             if (this.frameSet != frameSet) {
 
@@ -60,7 +107,6 @@ var CharAnimation = function (frameSet) {
                 this.frameIndex = 0;
                 this.frameSet = frameSet;
                 this.frame = frameSet[this.frameIndex];
-
             }
         },
 
@@ -69,16 +115,16 @@ var CharAnimation = function (frameSet) {
 
             if (this.count >= this.delay) {
                 this.count = 0;
-                //frame index is stuck at 0
+
+
                 if (this.frameIndex === 1) {
                     this.frameIndex = 0;
-                } else { this.frameIndex += 1; }
+                } else {
+                    this.frameIndex += 1;
+                }
             }
             this.frame = this.frameSet[this.frameIndex];
-
         }
-
-
 };
 
 var goodGuySpriteSheet = {
@@ -86,51 +132,37 @@ var goodGuySpriteSheet = {
     image: new Image()
 };
 
+
 goodGuySpriteSheet.image.src = "images/pallySheet.png";
 
-var goodGuy = {
+var goodGuyIdle = {
     animation: new CharAnimation(goodGuySpriteSheet.frameSet),
     height: 32,
     width: 32,
     x: 85,
     y: 165
-
 };
 
-var cloud1;
-var cloud1;
-var cloud2;
-var cloud3;
-var sword;
-var shield;
-var spell;
+
+
 
 var loop = function () {
     // i think this is where we will put our big condition statement
 
-
-
-    goodGuy.animation.change(goodGuySpriteSheet.frameSet[2], 20);
-
+    goodGuyIdle.animation.change(goodGuySpriteSheet.frameSet[2], 40);
+    ctx.clearRect(0, 0, 480, 640)
     ctx.drawImage(backgroundImg, 0, 0);
-    cloud1 = new Asset(cloudImage, 5, 5, 1);
-    cloud2 = new Asset(cloudImage2, 140, 7, 1);
-    cloud3 = new Asset(cloudImage3, 50, -20, 1);
-    sword = new Asset(swordImg, 21, 432, 1);
-    shield = new Asset(shieldImg, 321, 462, 1);
-    spell = new Asset(spellImg, 151, 432, 1);
-    goodGuy.animation.update();
-    ctx.drawImage(goodGuySpriteSheet.image, goodGuy.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuy.x), Math.floor(goodGuy.y), SPRITE_SIZE, SPRITE_SIZE);
+    ctx.drawImage(goodGuySpriteSheet.image, goodGuyIdle.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuyIdle.x), Math.floor(goodGuyIdle.y), SPRITE_SIZE, SPRITE_SIZE);
+    goodGuyIdle.animation.update();
 
     window.requestAnimationFrame(loop);
-
 };
 
 
 
 
 
-//the render function. we could probably put this in the constructor but it was working so i didnt touch it!
+
 function renderNewSprite(image, x, y) {
     image.onload = function () {
 
@@ -153,34 +185,6 @@ var Asset = function (image, x, y, velocity) {
 
 
 
-// creating all sprites
-
-
-
-
-
-
-
-
-
-// cloud2.tickCount = 0;
-// cloud2.ticksPerFrame = options.ticksPerFrame || 0;
-// cloud2.moveClouds = function (velocity) {
-//     tickCount += 1;
-//     while (this.x <= 500) {
-//         this.x += velocity;
-//         if (this.x > 500) {
-//             this.x = -50;
-//         }
-//     }
-// }
-
-// cloud2.moveClouds(1);
-
-
-
-// var spriteSize = 32;
-
 // var spriteSheet = {
 
 //     frameSets: [[/* idle */],
@@ -199,39 +203,9 @@ var Asset = function (image, x, y, velocity) {
 
 
 goodGuySpriteSheet.image.addEventListener("load", function (event) {
+
     window.requestAnimationFrame(loop);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // //character animation functions
 // function idle() {
 //     //plays idle animation
