@@ -70,11 +70,35 @@ function battleFunction() {
       alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
     }
     // currentUserChoice = '';
-  } else {
+  } else
     alert(`reached 5, compare time ${winCountingArray}`);
-    if (winCountingArray[0] > winCountingArray[1]) {
-      currentUser.winLossHistory[0]++;
-      console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
+  if (winCountingArray[0] > winCountingArray[1]) {
+    currentUser.winLossHistory[0]++;
+    console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
+
+  } else if (winCountingArray[0] < winCountingArray[1]) {
+    currentUser.winLossHistory[1]++;
+    console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
+  }
+  var playAgain = confirm('Would you like to play again?');
+  if (playAgain === true) {
+    winCountingArray = [0, 0];
+
+  } else
+    var newUser = prompt('INPUT NAME: ');
+  var currentUser = new User(newUser);
+  var score = document.getElementById('score');
+
+  //// CINDY WORK HERE! probabllyy
+
+  this.render = function (domReferance) {
+    var tableContents = document.getElementById('scores');
+    var tr = document.createElement('tr');
+    var td = document.createElement('td');
+    td.textContent = this.name;
+    tr.append(td);
+
+
 
     } else if (winCountingArray[0] < winCountingArray[1]) {
       currentUser.winLossHistory[1]++;
@@ -84,15 +108,12 @@ function battleFunction() {
     if (playAgain === true) {
       winCountingArray = [0, 0];
 
-    } else {
-      var newUser = prompt('INPUT NAME: ');
-      var currentUser = new User(newUser); 
-      var score = document.getElementById('score');
-      //// CINDY WORK HERE! probabllyy
 
-    }
   }
 }
+
+
+
 
 
 //Isaacs animation code - You guys can work above this
@@ -116,8 +137,6 @@ var SPRITE_SIZE = 32;
 
 var canvas = document.getElementById('gameScreen');
 var ctx = canvas.getContext('2d');
-
-
 
 
 
