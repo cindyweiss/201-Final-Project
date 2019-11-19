@@ -1,5 +1,49 @@
 'use strict';
 
+var attackChoices = ['sword', 'spell', 'shield'];
+
+var goodGuyChoice = '';
+
+var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+
+var winFlag = false;
+
+var winCountingArray = [0, 0]; // [0] is goodGuy , [1] is badGuy
+
+var turnCounter = 0;
+
+
+// Evaluate Choices
+// sword beats spell, spell beats shield, shield beats sword
+
+function compare() {
+  while (winFlag !== true) {
+    goodGuyChoice = prompt('sword, spell, or shield: ');
+    while (goodGuyChoice === 'sword' || goodGuyChoice === 'spell' || goodGuyChoice === 'shield') {
+      if (goodGuyChoice === badGuyChoice) {
+        alert('draw');
+        turnCounter++;
+      } else if ((goodGuyChoice === 'sword' && badGuyChoice === 'spell') ||
+        (goodGuyChoice === 'spell' && badGuyChoice === 'shield') ||
+        (goodGuyChoice === 'shield' && badGuyChoice === 'sword')) {
+        winCountingArray[0]++;
+        turnCounter++;
+        alert(`good point ${winCountingArray[0]}\n\ngood ${goodGuyChoice}| bad ${badGuyChoice}`);
+      } else {
+        winCountingArray[1]++;
+        turnCounter++;
+        alert(`bad point ${winCountingArray[1]}\n\ngood ${goodGuyChoice}| bad ${badGuyChoice}`);
+      }
+      if (winCountingArray.includes(5)) {
+        winFlag = true;
+      }
+      goodGuyChoice = '';
+    }
+  }
+  alert(`reached 5, compare time ${winCountingArray}`);
+  // check array for who wins here ( who has the 5 in the array )
+}
+compare();
 
 //Isaacs animation code - You guys can work above this
 
@@ -23,7 +67,6 @@ var swordTarget = document.getElementById('swordTarget');
 var spellTarget = document.getElementById('spellTarget');
 var shieldTarget = document.getElementById('shieldTarget');
 
-// var stx = st.getContext('2d');
 var ctx = canvas.getContext('2d');
 
 
@@ -42,22 +85,11 @@ var ctx = canvas.getContext('2d');
 var backgroundImg = new Image();
 backgroundImg.src = "images/BG.png";
 
-// var swordImg = new Image();
-// swordImg.src = "images/swordSprite.png";
-
-// var shieldImg = new Image();
-// shieldImg.src = "images/shieldSprite.png";
-
-// var spellImg = new Image();
-// spellImg.src = "images/spellSprite.png";
 swordTarget.src = "images/swordSprite.png";
 spellTarget.src = "images/spellSprite.png";
 shieldTarget.src = "images/shieldSprite.png";
 
 
-
-// //put this in the render at the end - to isaac
-//gif instead
 
 var CharAnimation = function (frameSet) {
     this.count = 0,
@@ -112,44 +144,25 @@ var goodGuyIdle = {
 };
 
 
-// var practiceAnimation = true;
 
 
 var loop = function () {
     // i think this is where we will put our big condition statement
 
-
-
     goodGuyIdle.animation.change(goodGuySpriteSheet.frameSet[2], 40);
-    // console.log(goodGuy.animation.counter)
-
-
-
-
     ctx.clearRect(0, 0, 480, 640)
     ctx.drawImage(backgroundImg, 0, 0);
-
-    // ctx.drawImage(swordImg, 5, 210, 52, 97);
-    // ctx.drawImage(shieldImg, 160, 235, 76, 73);
-    // ctx.drawImage(spellImg, 70, 220, 72, 87);
-    // spellImg.addEventListener('click', event => {
-    //     console.log('it works!!');
-    // } );
     ctx.drawImage(goodGuySpriteSheet.image, goodGuyIdle.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuyIdle.x), Math.floor(goodGuyIdle.y), SPRITE_SIZE, SPRITE_SIZE);
     goodGuyIdle.animation.update();
 
     window.requestAnimationFrame(loop);
 };
 
-// st.src = 'images/spellSprite.png';
-// var spell = document.createElement('img');
-
-// st.append(spell);
 
 
 
 
-//the render function. we could probably put this in the constructor but it was working so i didnt touch it!
+
 function renderNewSprite(image, x, y) {
     image.onload = function () {
 
@@ -172,34 +185,6 @@ var Asset = function (image, x, y, velocity) {
 
 
 
-// creating all sprites
-
-
-
-
-
-
-
-
-
-// cloud2.tickCount = 0;
-// cloud2.ticksPerFrame = options.ticksPerFrame || 0;
-// cloud2.moveClouds = function (velocity) {
-//     tickCount += 1;
-//     while (this.x <= 500) {
-//         this.x += velocity;
-//         if (this.x > 500) {
-//             this.x = -50;
-//         }
-//     }
-// }
-
-// cloud2.moveClouds(1);
-
-
-
-// var spriteSize = 32;
-
 // var spriteSheet = {
 
 //     frameSets: [[/* idle */],
@@ -221,37 +206,6 @@ goodGuySpriteSheet.image.addEventListener("load", function (event) {
 
     window.requestAnimationFrame(loop);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // //character animation functions
 // function idle() {
 //     //plays idle animation
