@@ -34,40 +34,40 @@ swordTarget.addEventListener('click', event => {
   currentUserChoice = 'sword';
   battleFunction();
 
-})
+});
 spellTarget.addEventListener('click', event => {
   currentUserChoice = 'spell';
   battleFunction();
 
-})
+});
 shieldTarget.addEventListener('click', event => {
   currentUserChoice = 'shield';
   battleFunction();
 
-})
+});
 
-var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+
 
 function battleFunction() {
-  var bgc = badGuyChoice;
   if (!winCountingArray.includes(5)) {
+    var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
     // currentUserChoice = prompt('sword, spell, or shield: ');
-    if (currentUserChoice === bgc) {
+    if (currentUserChoice === badGuyChoice) {
       alert('draw');
       turnCounter++;
-      console.log(bgc);
-    } else if ((currentUserChoice === 'sword' && bgc === 'spell') ||
-      (currentUserChoice === 'spell' && bgc === 'shield') ||
-      (currentUserChoice === 'shield' && bgc === 'sword')) {
+      console.log(badGuyChoice);
+    } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+      (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+      (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
       winCountingArray[0]++;
       turnCounter++;
-      console.log(bgc);
-      alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${bgc}`);
+      console.log(badGuyChoice);
+      alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
     } else {
       winCountingArray[1]++;
       turnCounter++;
-      console.log(bgc);
-      alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${bgc}`);
+      console.log(badGuyChoice);
+      alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
     }
     // currentUserChoice = '';
   } else {
@@ -80,8 +80,8 @@ function battleFunction() {
       currentUser.winLossHistory[1]++;
       console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
     }
-    var continue = confirm('Would you like to play again?')
-    if (continue === true) {
+    var playAgain = confirm('Would you like to play again?');
+    if (playAgain === true) {
       winCountingArray = [0, 0];
 
     } else {
@@ -116,24 +116,6 @@ var SPRITE_SIZE = 32;
 
 var canvas = document.getElementById('gameScreen');
 var ctx = canvas.getContext('2d');
-
-
-
-
-//THESE ARE OUR BUTTONS, TEST THEM OUT GUYS!
-swordTarget.addEventListener('click', event => {
-  currentUserChoice = 'sword';
-  console.log(currentUserChoice)
-  battleFunction();
-})
-spellTarget.addEventListener('click', event => {
-  currentUserChoice = 'spell';
-  console.log(currentUserChoice)
-})
-shieldTarget.addEventListener('click', event => {
-  currentUserChoice = 'shield';
-  console.log(currentUserChoice)
-})
 
 
 
