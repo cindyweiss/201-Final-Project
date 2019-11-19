@@ -19,10 +19,10 @@ var User = function (name) {
   this.winLossHistory = [0, 0];
 };
 
-var newUser = prompt('INPUT NAME: ');
+// var newUser = prompt('INPUT NAME: ');
 
-var currentUser = new User(newUser); // test
-console.log(`currentUser: ${currentUser}`);
+// var currentUser = new User(newUser); // test
+// console.log(`currentUser: ${currentUser}`);
 
 // Evaluate Choices
 // sword beats spell, spell beats shield, shield beats sword
@@ -58,7 +58,7 @@ function battleFunction() {
   } else if (winCountingArray[0] < winCountingArray[1]) {
     currentUser.winLossHistory[1]++;
     console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
-  } else {}
+  } else { }
 }
 
 
@@ -129,72 +129,92 @@ shieldTarget.src = "images/shieldSprite.png";
 
 
 var CharAnimation = function (frameSet) {
-    this.count = 0,
-        this.delay = 20,
-        this.frame = 0,
-        this.frameSet = frameSet,
-        this.frameIndex = 0,
+  this.count = 0,
+    this.delay = 20,
+    this.frame = 0,
+    this.frameSet = frameSet,
+    this.frameIndex = 0,
 
-        //for an animation use the change function to change to it and change the frameset to an array of animation. the animation may also need to be its own object.
-        this.change = function (frameSet, delay) {
-            if (this.frameSet != frameSet) {
+    //for an animation use the change function to change to it and change the frameset to an array of animation. the animation may also need to be its own object.
+    this.change = function (frameSet, delay) {
+      if (this.frameSet != frameSet) {
 
-                this.count = 0;
-                this.delay = delay;
-                this.frameIndex = 0;
-                this.frameSet = frameSet;
-                this.frame = frameSet[this.frameIndex];
-            }
-        },
+        this.count = 0;
+        this.delay = delay;
+        this.frameIndex = 0;
+        this.frameSet = frameSet;
+        this.frame = frameSet[this.frameIndex];
+      }
+    },
 
-        this.update = function () {
-            this.count++;
+    this.update = function () {
+      this.count++;
 
-            if (this.count >= this.delay) {
-                this.count = 0;
+      if (this.count >= this.delay) {
+        this.count = 0;
 
 
 
-                if (this.frameIndex === 1) {
-                    this.frameIndex = 0;
-                } else {
-                    this.frameIndex += 1;
-                }
-            }
-            this.frame = this.frameSet[this.frameIndex];
+        if (this.frameIndex === 1) {
+          this.frameIndex = 0;
+        } else {
+          this.frameIndex += 1;
         }
+      }
+      this.frame = this.frameSet[this.frameIndex];
+    }
+};
+
+var banditSpriteSheet = {
+  frameSet: [[0, 1]],
+  image: new Image()
 };
 
 
+banditSpriteSheet.image.src = "images/banditIdle32.png";
+
 var goodGuySpriteSheet = {
-    frameSet: [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],
-    image: new Image()
+  frameSet: [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],
+  image: new Image()
 };
 
 
 goodGuySpriteSheet.image.src = "images/pallySheet.png";
 
+var banditIdle = {
+  animation: new CharAnimation(banditSpriteSheet.frameSet),
+  height: 32,
+  width: 32,
+  x: 150,
+  y: 165
+};
+
 var goodGuyIdle = {
-    animation: new CharAnimation(goodGuySpriteSheet.frameSet),
-    height: 32,
-    width: 32,
-    x: 85,
-    y: 165
+  animation: new CharAnimation(goodGuySpriteSheet.frameSet),
+  height: 32,
+  width: 32,
+  x: 85,
+  y: 165
 };
 
 
 
 
 var loop = function () {
-    // i think this is where we will put our big condition statement
+  // i think this is where we will put our big condition statement
 
-    goodGuyIdle.animation.change(goodGuySpriteSheet.frameSet[2], 40);
-    ctx.clearRect(0, 0, 480, 640)
-    ctx.drawImage(backgroundImg, 0, 0);
-    ctx.drawImage(goodGuySpriteSheet.image, goodGuyIdle.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuyIdle.x), Math.floor(goodGuyIdle.y), SPRITE_SIZE, SPRITE_SIZE);
-    goodGuyIdle.animation.update();
+  goodGuyIdle.animation.change(goodGuySpriteSheet.frameSet[2], 40);
+  banditIdle.animation.change(banditSpriteSheet.frameSet[0], 20);
+  ctx.clearRect(0, 0, 480, 640)
+  ctx.drawImage(backgroundImg, 0, 0);
 
-    window.requestAnimationFrame(loop);
+  ctx.drawImage(goodGuySpriteSheet.image, goodGuyIdle.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuyIdle.x), Math.floor(goodGuyIdle.y), SPRITE_SIZE, SPRITE_SIZE);
+
+  ctx.drawImage(banditSpriteSheet.image, banditIdle.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(banditIdle.x), Math.floor(banditIdle.y), SPRITE_SIZE, SPRITE_SIZE);
+
+  banditIdle.animation.update();
+  goodGuyIdle.animation.update();
+  window.requestAnimationFrame(loop);
 };
 
 
@@ -203,21 +223,21 @@ var loop = function () {
 
 
 function renderNewSprite(image, x, y) {
-    image.onload = function () {
+  image.onload = function () {
 
-        ctx.drawImage(image, x, y);
-    };
+    ctx.drawImage(image, x, y);
+  };
 
 }
 
 //the constructor for new sprites on the canvas
 var Asset = function (image, x, y, velocity) {
-    this.image = image;
-    this.x = x;
-    this.y = y;
-    this.velocity = velocity;
+  this.image = image;
+  this.x = x;
+  this.y = y;
+  this.velocity = velocity;
 
-    renderNewSprite(image, x, y);
+  renderNewSprite(image, x, y);
 
 };
 
@@ -243,7 +263,7 @@ var Asset = function (image, x, y, velocity) {
 
 goodGuySpriteSheet.image.addEventListener("load", function (event) {
 
-    window.requestAnimationFrame(loop);
+  window.requestAnimationFrame(loop);
 });
 // //character animation functions
 // function idle() {
