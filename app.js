@@ -10,6 +10,11 @@ var turnCounter = 0;
 
 var userHistory = []; // LS later
 
+var currentUser = {
+  winLossHistory: [0, 0],
+  userHistory: 0
+}
+
 // Local storage into user vvv
 
 var User = function (name) {
@@ -21,53 +26,58 @@ var User = function (name) {
   this.render = function (domReference) {
 
 
-    this.render = function (domReference) {
+    // var score = document.getElementById('score');
+    var tableContents = document.getElementById('scores');
+    var tr = document.createElement('tr');
+    var nameCell = document.createElement('td');
+    nameCell.textContent = this.name;
+    tr.append(nameCell);
 
 
-      // var score = document.getElementById('score');
-      var tableContents = document.getElementById('scores');
-      var tr = document.createElement('tr');
-      var nameCell = document.createElement('td');
-      nameCell.textContent = this.name;
-      tr.append(nameCell);
-
-      var matchCount = document.createElement('td');
-      matchCount.textContent = this.userHistory;
-      tr.append(matchCount);
-    };
-  }
+    var matchCount = document.createElement('td');
+    matchCount.textContent = this.userHistory;
+    tr.append(matchCount);
+  };
+}
 
 
+}
 
 
-  // Evaluate Choices
-  // sword beats spell, spell beats shield, shield beats sword
+// Evaluate Choices
+// sword beats spell, spell beats shield, shield beats sword
 
-  var swordTarget = document.getElementById('swordTarget');
-  var spellTarget = document.getElementById('spellTarget');
-  var shieldTarget = document.getElementById('shieldTarget');
-
-
+var swordTarget = document.getElementById('swordTarget');
+var spellTarget = document.getElementById('spellTarget');
+var shieldTarget = document.getElementById('shieldTarget');
 
 
 
-  // Action Listeners with What Happens when Clicked
+
+
+// Action Listeners with What Happens when Clicked
+
+swordTarget.addEventListener('click', event => {
+  currentUserChoice = 'sword';
+  battleFunction();
+
 
   swordTarget.addEventListener('click', event => {
     currentUserChoice = 'sword';
+    console.log('sword');
     battleFunction();
-
-
   });
+
   spellTarget.addEventListener('click', event => {
     currentUserChoice = 'spell';
+    console.log('spell');
     battleFunction();
-
   });
+
   shieldTarget.addEventListener('click', event => {
     currentUserChoice = 'shield';
+    console.log('shield');
     battleFunction();
-
   });
 
 
