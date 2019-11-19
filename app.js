@@ -47,6 +47,7 @@ var User = function (name) {
     currentUserChoice = 'sword';
     battleFunction();
 
+
   })
   spellTarget.addEventListener('click', event => {
     currentUserChoice = 'spell';
@@ -97,25 +98,9 @@ var User = function (name) {
       var playAgain = confirm('Would you like to play again?');
       if (playAgain === true) {
         winCountingArray = [0, 0];
-
       } else {
         var newUser = prompt('INPUT NAME: ');
         var currentUser = new User(newUser);
-        // currentUser.render();
-
-
-
-
-        //// CINDY WORK HERE! probabllyy
-
-
-
-
-
-
-
-
-
       };
     }
   }
@@ -149,13 +134,6 @@ var SPRITE_SIZE = 32;
 
 var canvas = document.getElementById('gameScreen');
 var ctx = canvas.getContext('2d');
-
-
-
-
-
-
-
 
 
 
