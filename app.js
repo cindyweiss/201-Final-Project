@@ -17,7 +17,7 @@ var User = function (name) {
   this.winLossHistory = [0, 0];
   this.userHistory = 0;
 
-  this.render = function (domReferance) {
+  this.render = function (domReference) {
     // var score = document.getElementById('score');
     var tableContents = document.getElementById('scores');
     var tr = document.createElement('tr');
@@ -28,106 +28,107 @@ var User = function (name) {
     var matchCount = document.createElement('td');
     matchCount.textContent = this.userHistory;
     tr.append(matchCount);
-  };
+};
 
 
+// Evaluate Choices
+// sword beats spell, spell beats shield, shield beats sword
+
+var swordTarget = document.getElementById('swordTarget');
+var spellTarget = document.getElementById('spellTarget');
+var shieldTarget = document.getElementById('shieldTarget');
 
 
-  // Evaluate Choices
-  // sword beats spell, spell beats shield, shield beats sword
+// Action Listeners with What Happens when Clicked
 
-  var swordTarget = document.getElementById('swordTarget');
-  var spellTarget = document.getElementById('spellTarget');
-  var shieldTarget = document.getElementById('shieldTarget');
+swordTarget.addEventListener('click', event => {
+  currentUserChoice = 'sword';
+  battleFunction();
 
+});
+spellTarget.addEventListener('click', event => {
+  currentUserChoice = 'spell';
+  battleFunction();
 
+});
+shieldTarget.addEventListener('click', event => {
+  currentUserChoice = 'shield';
+  battleFunction();
 
-
-  swordTarget.addEventListener('click', event => {
-    currentUserChoice = 'sword';
-    battleFunction();
-
-
-  })
-  spellTarget.addEventListener('click', event => {
-    currentUserChoice = 'spell';
-    battleFunction();
-
-  })
-  shieldTarget.addEventListener('click', event => {
-    currentUserChoice = 'shield';
-    battleFunction();
-
-  })
+});
 
 
-
-  function battleFunction() {
-    var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-    if (!winCountingArray.includes(5)) {
-      // currentUserChoice = prompt('sword, spell, or shield: ');
-      if (currentUserChoice === badGuyChoice) {
-        alert('draw');
-        turnCounter++;
-        console.log(badGuyChoice);
-      } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-        (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-        (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-        winCountingArray[0]++;
-        turnCounter++;
-        console.log(badGuyChoice);
-        alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-      } else {
-        winCountingArray[1]++;
-        turnCounter++;
-        console.log(badGuyChoice);
-        alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-      }
-      // currentUserChoice = '';
+function battleFunction() {
+  var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+  if (!winCountingArray.includes(5)) {
+    // currentUserChoice = prompt('sword, spell, or shield: ');
+    if (currentUserChoice === badGuyChoice) {
+      alert('draw');
+      turnCounter++;
+      console.log(badGuyChoice);
+    } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+      (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+      (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+      winCountingArray[0]++;
+      turnCounter++;
+      console.log(badGuyChoice);
+      alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
     } else {
-      alert(`reached 5, compare time ${winCountingArray}`);
-      currentUser.userHistory++;
-      if (winCountingArray[0] > winCountingArray[1]) {
-        currentUser.winLossHistory[0]++;
-        console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
-
-      } else if (winCountingArray[0] < winCountingArray[1]) {
-        currentUser.winLossHistory[1]++;
-        console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
-      }
-      var playAgain = confirm('Would you like to play again?');
-      if (playAgain === true) {
-        winCountingArray = [0, 0];
-      } else {
-        var newUser = prompt('INPUT NAME: ');
-        var currentUser = new User(newUser);
-      };
+      winCountingArray[1]++;
+      turnCounter++;
+      console.log(badGuyChoice);
+      alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
     }
+    // currentUserChoice = '';
+  } else {
+    alert(`reached 5, compare time ${winCountingArray}`);
+    currentUser.userHistory++;
+    if (winCountingArray[0] > winCountingArray[1]) {
+      currentUser.winLossHistory[0]++;
+      console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
+
+    } else if (winCountingArray[0] < winCountingArray[1]) {
+      currentUser.winLossHistory[1]++;
+      console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
+    }
+    var playAgain = confirm('Would you like to play again?');
+    if (playAgain === true) {
+      winCountingArray = [0, 0];
+    } else {
+      var newUser = prompt('INPUT NAME: ');
+      var currentUser = new User(newUser);
+    };
   }
 }
 
+// Current Scoreboard NOT HIGH SCORE
 
+function scoreBoard() {
+  var scoreCardReference = document.getElementById('scoreCard');
+  console.log(scoreCardReference);
+  var pElement = document.createElement('p');
+  pElement.textContent = 'This is a test';
+  scoreCardReference.append(pElement);
+}
 
+scoreBoard();
 
-
-
-
+// ====================================================================================
 
 //Isaacs animation code - You guys can work above this
 
-/*to do list
-- be able to change the animation as the result of an if statement and then have it switch back to idle after completion of animation.
+// to do list
+// - be able to change the animation as the result of an 
+// if statement and then have it switch back to idle after completion of animation.
  
  
- 
- 
-Thoughts about animation
-- idle animation 2 frames back and forth.
-- battle scenes are lots of frames iterated over once!
-- while battle scenes run, idle must disappear.
-- when battle ends units return to idle.
-- walk back to idle spots in battle scene.
-*/
+// Thoughts about animation
+// - idle animation 2 frames back and forth.
+// - battle scenes are lots of frames iterated over once!
+// - while battle scenes run, idle must disappear.
+// - when battle ends units return to idle.
+// - walk back to idle spots in battle scene.
+
 
 var SPRITE_SIZE = 32;
 
@@ -153,7 +154,6 @@ backgroundImg.src = "images/BG.png";
 swordTarget.src = "images/swordSprite.png";
 spellTarget.src = "images/spellSprite.png";
 shieldTarget.src = "images/shieldSprite.png";
-
 
 
 var CharAnimation = function (frameSet) {
@@ -236,9 +236,11 @@ var loop = function () {
   ctx.clearRect(0, 0, 480, 640)
   ctx.drawImage(backgroundImg, 0, 0);
 
-  ctx.drawImage(goodGuySpriteSheet.image, goodGuyIdle.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuyIdle.x), Math.floor(goodGuyIdle.y), SPRITE_SIZE, SPRITE_SIZE);
+  ctx.drawImage(goodGuySpriteSheet.image, goodGuyIdle.animation.frame * SPRITE_SIZE,
+     0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuyIdle.x), Math.floor(goodGuyIdle.y), SPRITE_SIZE, SPRITE_SIZE);
 
-  ctx.drawImage(banditSpriteSheet.image, banditIdle.animation.frame * SPRITE_SIZE, 0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(banditIdle.x), Math.floor(banditIdle.y), SPRITE_SIZE, SPRITE_SIZE);
+  ctx.drawImage(banditSpriteSheet.image, banditIdle.animation.frame * SPRITE_SIZE, 0,
+     SPRITE_SIZE, SPRITE_SIZE, Math.floor(banditIdle.x), Math.floor(banditIdle.y), SPRITE_SIZE, SPRITE_SIZE);
 
   banditIdle.animation.update();
   goodGuyIdle.animation.update();
@@ -293,6 +295,7 @@ goodGuySpriteSheet.image.addEventListener("load", function (event) {
 
   window.requestAnimationFrame(loop);
 });
+
   // //character animation functions
   // function idle() {
   //     //plays idle animation
@@ -334,3 +337,4 @@ goodGuySpriteSheet.image.addEventListener("load", function (event) {
 
   // function ggSpellbgSheild() {
   //     //plays animation
+  
