@@ -15,9 +15,8 @@ var userHistory = []; // LS later
 var User = function (name) {
   this.name = name;
   this.winLossHistory = [0, 0];
-  this.userHistory = 0;
-
-  this.render = function (domReferance) {
+   this.userHistory = 0;
+    this.render = function (domReferance) {
     // var score = document.getElementById('score');
     var tableContents = document.getElementById('scores');
     var tr = document.createElement('tr');
@@ -104,13 +103,8 @@ var User = function (name) {
       };
     }
   }
+
 }
-
-
-
-
-
-
 
 
 //Isaacs animation code - You guys can work above this
