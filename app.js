@@ -4,8 +4,6 @@ var attackChoices = ['sword', 'spell', 'shield'];
 
 var currentUserChoice = '';
 
-var badGuyChoice = '';
-
 var winCountingArray = [0, 0]; // [0] is currentUser , [1] is badGuy
 
 var turnCounter = 0;
@@ -19,48 +17,82 @@ var User = function (name) {
   this.winLossHistory = [0, 0];
 };
 
-// var newUser = prompt('INPUT NAME: ');
 
-// var currentUser = new User(newUser); // test
-// console.log(`currentUser: ${currentUser}`);
+
 
 // Evaluate Choices
 // sword beats spell, spell beats shield, shield beats sword
 
+var swordTarget = document.getElementById('swordTarget');
+var spellTarget = document.getElementById('spellTarget');
+var shieldTarget = document.getElementById('shieldTarget');
+
+
+
+
+swordTarget.addEventListener('click', event => {
+  currentUserChoice = 'sword';
+  battleFunction();
+
+})
+spellTarget.addEventListener('click', event => {
+  currentUserChoice = 'spell';
+  battleFunction();
+
+})
+shieldTarget.addEventListener('click', event => {
+  currentUserChoice = 'shield';
+  battleFunction();
+
+})
+
+var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+
 function battleFunction() {
-  while (!winCountingArray.includes(5)) {
-    badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+  var bgc = badGuyChoice;
+  if (!winCountingArray.includes(5)) {
     // currentUserChoice = prompt('sword, spell, or shield: ');
-    while (currentUserChoice === 'sword' || currentUserChoice === 'spell' || currentUserChoice === 'shield') {
-      if (currentUserChoice === badGuyChoice) {
-        alert('draw');
-        turnCounter++;
-      } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-        (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-        (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-        winCountingArray[0]++;
-        turnCounter++;
-        alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-      } else {
-        winCountingArray[1]++;
-        turnCounter++;
-        alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-      }
-      currentUserChoice = '';
+    if (currentUserChoice === bgc) {
+      alert('draw');
+      turnCounter++;
+      console.log(bgc);
+    } else if ((currentUserChoice === 'sword' && bgc === 'spell') ||
+      (currentUserChoice === 'spell' && bgc === 'shield') ||
+      (currentUserChoice === 'shield' && bgc === 'sword')) {
+      winCountingArray[0]++;
+      turnCounter++;
+      console.log(bgc);
+      alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${bgc}`);
+    } else {
+      winCountingArray[1]++;
+      turnCounter++;
+      console.log(bgc);
+      alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${bgc}`);
+    }
+    // currentUserChoice = '';
+  } else {
+    alert(`reached 5, compare time ${winCountingArray}`);
+    if (winCountingArray[0] > winCountingArray[1]) {
+      currentUser.winLossHistory[0]++;
+      console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
+
+    } else if (winCountingArray[0] < winCountingArray[1]) {
+      currentUser.winLossHistory[1]++;
+      console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
+    }
+    var continue = confirm('Would you like to play again?')
+    if (continue === true) {
+      winCountingArray = [0, 0];
+
+    } else {
+      var newUser = prompt('INPUT NAME: ');
+      var currentUser = new User(newUser); 
+      var score = document.getElementById('score');
+      //// CINDY WORK HERE! probabllyy
+
     }
   }
-
-  alert(`reached 5, compare time ${winCountingArray}`);
-  if (winCountingArray[0] > winCountingArray[1]) {
-    currentUser.winLossHistory[0]++;
-    console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
-
-  } else if (winCountingArray[0] < winCountingArray[1]) {
-    currentUser.winLossHistory[1]++;
-    console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
-  } else { }
 }
-
 
 
 //Isaacs animation code - You guys can work above this
@@ -85,16 +117,14 @@ var SPRITE_SIZE = 32;
 var canvas = document.getElementById('gameScreen');
 var ctx = canvas.getContext('2d');
 
-var swordTarget = document.getElementById('swordTarget');
-var spellTarget = document.getElementById('spellTarget');
-var shieldTarget = document.getElementById('shieldTarget');
+
 
 
 //THESE ARE OUR BUTTONS, TEST THEM OUT GUYS!
 swordTarget.addEventListener('click', event => {
   currentUserChoice = 'sword';
   console.log(currentUserChoice)
-  // battleFunction();
+  battleFunction();
 })
 spellTarget.addEventListener('click', event => {
   currentUserChoice = 'spell';
