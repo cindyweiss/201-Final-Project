@@ -30,7 +30,7 @@ console.log(`currentUser: ${currentUser}`);
 function battleFunction() {
   while (!winCountingArray.includes(5)) {
     badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-    currentUserChoice = prompt('sword, spell, or shield: ');
+    // currentUserChoice = prompt('sword, spell, or shield: ');
     while (currentUserChoice === 'sword' || currentUserChoice === 'spell' || currentUserChoice === 'shield') {
       if (currentUserChoice === badGuyChoice) {
         alert('draw');
@@ -83,12 +83,28 @@ var SPRITE_SIZE = 32;
 
 
 var canvas = document.getElementById('gameScreen');
+var ctx = canvas.getContext('2d');
 
 var swordTarget = document.getElementById('swordTarget');
 var spellTarget = document.getElementById('spellTarget');
 var shieldTarget = document.getElementById('shieldTarget');
 
-var ctx = canvas.getContext('2d');
+
+//THESE ARE OUR BUTTONS, TEST THEM OUT GUYS!
+swordTarget.addEventListener('click', event => {
+  currentUserChoice = 'sword';
+  console.log(currentUserChoice)
+  // battleFunction();
+})
+spellTarget.addEventListener('click', event => {
+  currentUserChoice = 'spell';
+  console.log(currentUserChoice)
+})
+shieldTarget.addEventListener('click', event => {
+  currentUserChoice = 'shield';
+  console.log(currentUserChoice)
+})
+
 
 
 
