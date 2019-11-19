@@ -10,13 +10,18 @@ var turnCounter = 0;
 
 var userHistory = []; // LS later
 
+var currentUser = {
+  winLossHistory: [0, 0],
+  userHistory : 0
+}
+
 // Local storage into user vvv
 
 var User = function (name) {
   this.name = name;
   this.winLossHistory = [0, 0];
-   this.userHistory = 0;
-    this.render = function (domReferance) {
+  this.userHistory = 0;
+  this.render = function (domReferance) {
     // var score = document.getElementById('score');
     var tableContents = document.getElementById('scores');
     var tr = document.createElement('tr');
@@ -30,81 +35,82 @@ var User = function (name) {
   };
 
 
+}
 
+// Evaluate Choices
+// sword beats spell, spell beats shield, shield beats sword
 
-  // Evaluate Choices
-  // sword beats spell, spell beats shield, shield beats sword
-
-  var swordTarget = document.getElementById('swordTarget');
-  var spellTarget = document.getElementById('spellTarget');
-  var shieldTarget = document.getElementById('shieldTarget');
-
-
-
-
-  swordTarget.addEventListener('click', event => {
-    currentUserChoice = 'sword';
-    battleFunction();
-
-
-  })
-  spellTarget.addEventListener('click', event => {
-    currentUserChoice = 'spell';
-    battleFunction();
-
-  })
-  shieldTarget.addEventListener('click', event => {
-    currentUserChoice = 'shield';
-    battleFunction();
-
-  })
+var swordTarget = document.getElementById('swordTarget');
+var spellTarget = document.getElementById('spellTarget');
+var shieldTarget = document.getElementById('shieldTarget');
 
 
 
-  function battleFunction() {
-    var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-    if (!winCountingArray.includes(5)) {
-      // currentUserChoice = prompt('sword, spell, or shield: ');
-      if (currentUserChoice === badGuyChoice) {
-        alert('draw');
-        turnCounter++;
-        console.log(badGuyChoice);
-      } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-        (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-        (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-        winCountingArray[0]++;
-        turnCounter++;
-        console.log(badGuyChoice);
-        alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-      } else {
-        winCountingArray[1]++;
-        turnCounter++;
-        console.log(badGuyChoice);
-        alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-      }
-      // currentUserChoice = '';
-    } else {
-      alert(`reached 5, compare time ${winCountingArray}`);
-      currentUser.userHistory++;
-      if (winCountingArray[0] > winCountingArray[1]) {
-        currentUser.winLossHistory[0]++;
-        console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
 
-      } else if (winCountingArray[0] < winCountingArray[1]) {
-        currentUser.winLossHistory[1]++;
-        console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
-      }
-      var playAgain = confirm('Would you like to play again?');
-      if (playAgain === true) {
-        winCountingArray = [0, 0];
-      } else {
-        var newUser = prompt('INPUT NAME: ');
-        var currentUser = new User(newUser);
-      };
-    }
+swordTarget.addEventListener('click', event => {
+  currentUserChoice = 'sword';
+  console.log('sword');
+  battleFunction();
+});
+
+spellTarget.addEventListener('click', event => {
+  currentUserChoice = 'spell';
+  console.log('spell');
+  battleFunction();
+});
+
+shieldTarget.addEventListener('click', event => {
+  currentUserChoice = 'shield';
+  console.log('shield');
+  battleFunction();
+});
+
+
+
+function battleFunction() {
+  var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+
+  if (currentUserChoice === badGuyChoice) {
+    //draw condition
+    alert('draw');
+  } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+    (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+    (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+      //user win condition
+    winCountingArray[0]++;
+    alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
+  } else {
+    //enemy win condtion
+    winCountingArray[1]++;
+    alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
   }
 
+  //check if game is over
+  if (winCountingArray.includes(3)) {
+    // alert(`reached 5, compare time ${winCountingArray}`);
+    currentUser.userHistory++;
+    if (winCountingArray[0] > winCountingArray[1]) {
+      currentUser.winLossHistory[0]++;
+      console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
+
+    } else if (winCountingArray[0] < winCountingArray[1]) {
+      currentUser.winLossHistory[1]++;
+      console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
+    }
+    var playAgain = confirm('Would you like to play again?');
+    if (playAgain === true) {
+      winCountingArray = [0, 0];
+    } else {
+      var newUser = prompt('INPUT NAME: ');
+      var scoreObj = new User(newUser);
+      scoreObj.userHistory = currentUser.userHistory;
+      scoreObj.winLossHistory = currentUser.winLossHistory;
+      scoreObj.render();
+    }
+  }
 }
+
+
 
 
 //Isaacs animation code - You guys can work above this
