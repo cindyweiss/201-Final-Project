@@ -9,28 +9,54 @@ canvas {
     image-rendering: crisp-edges;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 400px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     display: block;
     
 }
 #swordTarget {
-    position: absolute;
-    top: 1450px;left: 450px;
-    width: 100px;
-    z-index: 1;
+  position: absolute;
+  top: 1250px;
+  left: 560px;
+  width: 100px;
+  z-index: 1;
 }
 #spellTarget {
-    position: absolute;
-    top: 1470px;left: 600px;
-    width: 130px;
-    z-index: 2;
+  position: absolute;
+  top: 1270px;
+  left: 710px;
+  width: 130px;
+  z-index: 2;
     
 }
 #shieldTarget {
-    position: absolute;
-    top: 1500px;left: 770px;
-    width: 130px;
-    z-index: 3;
+  position: absolute;
+  top: 1300px;
+  left: 880px;
+  width: 130px;
+  z-index: 3;
+}
+
+#scoreCard {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif; /* remove this later */
+  color: white;
+  text-shadow: 1px 1px black;
+  background: rgba(162, 162, 162, 0.673);
+  border: 2px solid black;
+  position: absolute;
+  top: 810px;
+  left: 630px;
+  width: 300px;
+  z-index: 4;
+}
+
+#outerWrap {
+  /* stretch goal: learn how to div wrap centered stuff */
+}
+
+#innerWrap {
+  /* stretch goal: learn how to div wrap centered stuff */
 }
 
 #cloud3 {
@@ -60,11 +86,6 @@ body {
       margin-left:250px;
       font-style: oblique;
       font-size: 40px;
-      border
-
-
-      
-
   }
 
   #name {
@@ -72,3 +93,5 @@ body {
       margin: 30px;
       padding: 30px;
   }
+
+ 
