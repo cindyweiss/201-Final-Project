@@ -4,11 +4,15 @@ var attackChoices = ['sword', 'spell', 'shield'];
 
 var currentUserChoice = '';
 
+var SCORE_DATA = 'SCORE_DATA';
+
+var scoreData = '';
+
 var badGuyChoice = '';
 
 var winCountingArray = [0, 0]; // [0] is currentUser , [1] is badGuy
 
-var scoreObj;
+var scoreObj = [];
 
 var scoreBoardReference = document.getElementById('scoreBoard');
 
@@ -26,7 +30,9 @@ var choiceString = document.createElement('p');
 var clearDataReference = document.getElementById('clearData');
 clearDataReference.addEventListener('click', clearDataFunction);
 
-//  Local Storage set into User
+//  Local Storage set into User array
+
+var userArray = [];
 
 var User = function (name) {
   this.name = name;
@@ -34,7 +40,8 @@ var User = function (name) {
   this.userHistory = 0;
 
   this.saveToLocal = function () {
-    var scoreData = JSON.stringify(this);
+    userArray.push(this);
+    scoreData = JSON.stringify(userArray);
     localStorage.setItem('SCORE_DATA', scoreData);
   };
 };
@@ -92,12 +99,11 @@ function battleFunction() {
       dialogueString.textContent = 'Your spell crushes their aspirations!';
       break;
     default:
-      dialogueString.textContent = 'error, check battleFunction()';
       break;
     }
     winCountingArray[0]++;
   } else {
-    // enemy win condtion
+  // enemy win condtion
     switch (badGuyChoice) {
     case 'sword':
       dialogueString.textContent = 'Enemy sword disembowels you!';
@@ -109,7 +115,6 @@ function battleFunction() {
       dialogueString.textContent = 'Enemy spell really ruins your day!';
       break;
     default:
-      dialogueString.textContent = 'error, check battleFunction()';
       break;
     }
     winCountingArray[1]++;
