@@ -15,14 +15,18 @@ var scoreBoardReference = document.getElementById('scoreBoard');
 var currentUser = {
   winLossHistory: [0, 0],
   userHistory: 0
-
 };
 
 var scoreString = document.createElement('p');
 var dialogueString = document.createElement('p');
 var choiceString = document.createElement('p');
 
-//    Local Storage set into User
+// Reference for hearing the Clear Local Data <a href> button
+
+var clearDataReference = document.getElementById('clearData');
+clearDataReference.addEventListener('click', clearDataFunction);
+
+//  Local Storage set into User
 
 var User = function (name) {
   this.name = name;
@@ -35,6 +39,11 @@ var User = function (name) {
   };
 };
 
+//  To Remove Local Data, there is a clicker beneath About Us in index
+
+function clearDataFunction() {
+  localStorage.removeItem('SCORE_DATA');
+}
 
 // sword beats spell, spell beats shield, shield beats sword
 
@@ -47,24 +56,20 @@ var shieldTarget = document.getElementById('shieldTarget');
 
 swordTarget.addEventListener('click', event => {
   currentUserChoice = 'sword';
-  console.log('sword');
   battleFunction();
-
 });
 
 spellTarget.addEventListener('click', event => {
   currentUserChoice = 'spell';
-  console.log('spell');
   battleFunction();
 });
 
 shieldTarget.addEventListener('click', event => {
   currentUserChoice = 'shield';
-  console.log('shield');
   battleFunction();
 });
 
-//    Evaluate the Battle
+//  Evaluate the Battle
 
 function battleFunction() {
 
@@ -90,7 +95,6 @@ function battleFunction() {
       dialogueString.textContent = 'error, check battleFunction()';
       break;
     }
-    scoreBoard();
     winCountingArray[0]++;
   } else {
     // enemy win condtion
@@ -108,61 +112,60 @@ function battleFunction() {
       dialogueString.textContent = 'error, check battleFunction()';
       break;
     }
-    scoreBoard();
     winCountingArray[1]++;
   }
   scoreBoard();
 
   if (winCountingArray.includes(3)) {
-    alert(`reached 3, compare time ${winCountingArray}`);
-    currentUser.userHistory++;
-
-    if (winCountingArray[0] > winCountingArray[1]) {
-      currentUser.winLossHistory[0]++;
-      scoreString.textContent = '';
-      dialogueString.textContent = 'GLORY TO THE USER';
-      choiceString.textContent = '';
-
-    } else if (winCountingArray[0] < winCountingArray[1]) {
-      currentUser.winLossHistory[1]++;
-      scoreString.textContent = '';
-      dialogueString.textContent = 'DIE, USER SCUM!';
-      choiceString.textContent = '';
-    }
-    scoreBoard();
-    var playAgain = confirm('Would you like to play again?');
-    if (playAgain === true) {
-      winCountingArray = [0, 0];
-    } else {
-
-      winCountingArray = [0, 0];
-      var newUser = prompt('Input Name: ');
-      scoreObj = new User(newUser); //data constructed to obj
-      scoreObj.userHistory = currentUser.userHistory;
-      scoreObj.winLossHistory = currentUser.winLossHistory;
-      scoreObj.saveToLocal();
-    }
-  } else {
-    scoreBoard();
+    winDetected();
   }
 }
 
-// Current Scoreboard NOT HIGH SCORE
+// peter - in the spirit of small functions,
+// peter - I moved win check to its' own function
+
+function winDetected() {
+  currentUser.userHistory++;
+
+  if (winCountingArray[0] > winCountingArray[1]) {
+    currentUser.winLossHistory[0]++;
+    dialogueString.textContent = 'GLORY TO THE USER';
+
+  } else if (winCountingArray[0] < winCountingArray[1]) {
+    currentUser.winLossHistory[1]++;
+    dialogueString.textContent = 'DIE, USER SCUM!';
+  }
+  scoreBoard();
+  var playAgain = confirm('Would you like to play again?');
+  if (playAgain === true) {
+    winCountingArray = [0, 0];
+  } else {
+    winCountingArray = [0, 0];
+    var newUser = prompt('Input Name: ');
+    scoreObj = new User(newUser); //data constructed to obj
+    scoreObj.userHistory = currentUser.userHistory;
+    scoreObj.winLossHistory = currentUser.winLossHistory;
+    scoreObj.saveToLocal();
+  }
+}
+
+// Current Scoreboard Render
 
 function scoreBoard() {
   scoreString.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
-  choiceString.textContent = `${currentUserChoice} vs ${badGuyChoice}`;
+  if (!winCountingArray.includes(3)) {
+    choiceString.textContent = `${currentUserChoice} vs ${badGuyChoice}`;
+  } else {
+    choiceString.textContent = '';
+  }
   scoreBoardReference.append(scoreString);
   scoreBoardReference.append(dialogueString);
   scoreBoardReference.append(choiceString);
 }
 
-//isaac- wasnt sure what to delete and what to keep for these
-
 // ===============================================================
 
 var SPRITE_SIZE = 32;
-
 
 var canvas = document.getElementById('gameScreen');
 var ctx = canvas.getContext('2d');
@@ -183,8 +186,6 @@ backgroundImg.src = 'images/BG.png';
 swordTarget.src = 'images/swordSprite.png';
 spellTarget.src = 'images/spellSprite.png';
 shieldTarget.src = 'images/shieldSprite.png';
-
-
 
 var backgroundImg = new Image();
 backgroundImg.src = 'images/BG.png';
@@ -241,8 +242,6 @@ var goodGuySpriteSheet = {
 
 };
 
-
-
 goodGuySpriteSheet.image.src = 'images/pallySheet.png';
 
 var banditIdle = {
@@ -282,8 +281,6 @@ function renderNewSprite(image, x, y) {
   image.onload = function () {
     ctx.drawImage(image, x, y);
   };
-
-
 
 }
 
