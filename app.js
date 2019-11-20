@@ -82,35 +82,35 @@ function battleFunction() {
     (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
     // user win condition
     switch (currentUserChoice) {
-    case 'sword':
-      dialogueString.textContent = 'Your sword removes their limbs!';
-      break;
-    case 'shield':
-      dialogueString.textContent = 'Your shield deflects the sword blow!';
-      break;
-    case 'spell':
-      dialogueString.textContent = 'Your spell crushes their aspirations!';
-      break;
-    default:
-      dialogueString.textContent = 'error, check battleFunction()';
-      break;
+      case 'sword':
+        dialogueString.textContent = 'Your sword removes their limbs!';
+        break;
+      case 'shield':
+        dialogueString.textContent = 'Your shield deflects the sword blow!';
+        break;
+      case 'spell':
+        dialogueString.textContent = 'Your spell crushes their aspirations!';
+        break;
+      default:
+        dialogueString.textContent = 'error, check battleFunction()';
+        break;
     }
     winCountingArray[0]++;
   } else {
     // enemy win condtion
     switch (badGuyChoice) {
-    case 'sword':
-      dialogueString.textContent = 'Enemy sword disembowels you!';
-      break;
-    case 'shield':
-      dialogueString.textContent = 'Enemy shield laughs at your sword!';
-      break;
-    case 'spell':
-      dialogueString.textContent = 'Enemy spell really ruins your day!';
-      break;
-    default:
-      dialogueString.textContent = 'error, check battleFunction()';
-      break;
+      case 'sword':
+        dialogueString.textContent = 'Enemy sword disembowels you!';
+        break;
+      case 'shield':
+        dialogueString.textContent = 'Enemy shield laughs at your sword!';
+        break;
+      case 'spell':
+        dialogueString.textContent = 'Enemy spell really ruins your day!';
+        break;
+      default:
+        dialogueString.textContent = 'error, check battleFunction()';
+        break;
     }
     winCountingArray[1]++;
   }
@@ -192,38 +192,38 @@ backgroundImg.src = 'images/BG.png';
 
 var CharAnimation = function (frameSet) {
   this.count = 0,
-  this.delay = 20,
-  this.frame = 0,
-  this.frameSet = frameSet,
-  this.frameIndex = 0,
+    this.delay = 20,
+    this.frame = 0,
+    this.frameSet = frameSet,
+    this.frameIndex = 0,
 
-  //for an animation use the change function to change to it and change the frameset to an array of animation. the animation may also need to be its own object.
-  this.change = function (frameSet, delay) {
-    if (this.frameSet !== frameSet) {
+    //for an animation use the change function to change to it and change the frameset to an array of animation. the animation may also need to be its own object.
+    this.change = function (frameSet, delay) {
+      if (this.frameSet !== frameSet) {
 
-      this.count = 0;
-      this.delay = delay;
-      this.frameIndex = 0;
-      this.frameSet = frameSet;
-      this.frame = frameSet[this.frameIndex];
-    }
-  },
-
-  this.update = function () {
-    this.count++;
-
-    if (this.count >= this.delay) {
-      this.count = 0;
-
-
-      if (this.frameIndex === 1) {
+        this.count = 0;
+        this.delay = delay;
         this.frameIndex = 0;
-      } else {
-        this.frameIndex += 1;
+        this.frameSet = frameSet;
+        this.frame = frameSet[this.frameIndex];
       }
-    }
-    this.frame = this.frameSet[this.frameIndex];
-  };
+    },
+
+    this.update = function () {
+      this.count++;
+
+      if (this.count >= this.delay) {
+        this.count = 0;
+
+
+        if (this.frameIndex === 1) {
+          this.frameIndex = 0;
+        } else {
+          this.frameIndex += 1;
+        }
+      }
+      this.frame = this.frameSet[this.frameIndex];
+    };
 
 };
 
