@@ -1,3 +1,100 @@
+body {
+    position: relative;
+    width: 95%;
+    /* border: 1px solid red; */
+    display: block;
+    background-image: url("../images/backgroundcastle.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    font-family: cursive;
+    color: black;
+    padding-top: 250px;
+}
+
+body>* {
+    margin: auto;
+    width: 95%;
+    /* border: 1px solid blue; */
+    display: block;
+    overflow: auto;
+}
+
+body>script {
+    display: none
+}
+
+header {
+    position: fixed;
+    top: 0%;
+    left: auto;
+    width: 95%;
+    border: black 2px solid;
+    text-align: center;
+    background-color: lightgrey;
+}
+
+#header-label {
+    font-size: 275%;
+    text-decoration: underline;
+    width: 100%;
+    padding: 0% 0% 4% 0%;
+    /* border-bottom: 2px solid black; */
+}
+
+#nav-float-left {
+    float: left;
+    margin: -3% 10% 0% 10%;
+    width: 15%;
+    padding: 1% 1% 1% 1%;
+    border: black 2px solid;
+    border-top-left-radius: 20% 40%;
+    border-top-right-radius: 20% 40%;
+    border-bottom-left-radius: 20% 40%;
+    border-bottom-right-radius: 20% 40%;
+}
+
+#nav-float-right {
+    float: right;
+    margin: -3% 10% 0% 10%;
+    width: 15%;
+    padding: 1% 1% 1% 1%;
+    border: black 2px solid;
+    border-top-left-radius: 20% 40%;
+    border-top-right-radius: 20% 40%;
+    border-bottom-left-radius: 20% 40%;
+    border-bottom-right-radius: 20% 40%;
+}
+
+a:link {
+    background-color: white;
+}
+
+a:visited {
+    background-color: cyan;
+}
+
+a:hover {
+    background-color: lightgreen;
+}
+
+a:active {
+    background-color: hotpink;
+}
+
+.openingScroll {
+    text-align: center;
+    background-image: url("../images/scroll.jpeg");
+    background-repeat: no-repeat;
+    padding: 2%;
+    background-size: 100%;
+    /* max-height: 5%; */
+    /* margin-top: 250px; */
+    /* margin-left: 300px;
+    font-style: oblique;
+    font-size: 40px;
+}
+
 canvas {
     /* background-image: url(/images/BG.png); */
     border: 2px black solid;
@@ -38,22 +135,6 @@ canvas {
     z-index: 3;
 }
 
-#scoreBoard {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    /* remove this later */
-    color: white;
-    text-shadow: 1px 1px 2px black;
-    font-weight: bold;
-    background: rgba(150, 150, 150, 0.699);
-    border: 1px solid black;
-    position: absolute;
-    top: 810px;
-    left: 600px;
-    width: 370px;
-    z-index: 4;
-}
-
 #outerWrap {
     /* stretch goal: learn how to div wrap centered stuff */
 }
@@ -70,104 +151,21 @@ canvas {
     width: 90px;
 }
 
-body {
-    position: relative;
-    width: 95%;
-    border: 1px solid red;
-    display: block;
-    background-image: url("../images/backgroundcastle.jpeg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100%;
-    font-family: cursive;
-    color: black;
-    padding-top: 250px;
-}
-
-body>* {
-    margin: auto;
-    /* width: 95%; */
-    border: 1px solid blue;
-    display: block;
-    overflow: auto;
-}
-
-body>script {
-    display: none
-}
-
-body {}
-
-header {
-    position: fixed;
-    top: 0%;
-    left: auto;
-    width: 95%;
-    height: 18%;
-    border: black 2px solid;
+#scoreBoard {
     text-align: center;
-    background-color: lightgrey;
-}
-
-#header-label {
-    font-size: 275%;
-    width: 100%;
-    padding-bottom: 2%;
-    border-bottom: 2px solid black;
-}
-
-#nav-float-left {
-    float: left;
-    margin: -3% 10% 0% 10%;
-    width: 20%;
-    padding: 2% 1% 2% 1%;
-    border: black 2px solid;
-    border-top-left-radius: 20% 40%;
-    border-top-right-radius: 20% 40%;
-    border-bottom-left-radius: 20% 40%;
-    border-bottom-right-radius: 20% 40%;
-}
-
-#nav-float-right {
-    float: right;
-    margin: -3% 10% 0% 10%;
-    width: 20%;
-    padding: 2% 1% 2% 1%;
-    border: black 2px solid;
-    border-top-left-radius: 20% 40%;
-    border-top-right-radius: 20% 40%;
-    border-bottom-left-radius: 20% 40%;
-    border-bottom-right-radius: 20% 40%;
-}
-
-.openingScroll {
-    background-image: url("../images/scroll.jpeg");
-    background-repeat: no-repeat;
-    padding: 50px;
-    color: black;
-    text-shadow: 0 0 3px white;
-    text-align: left;
-    background-size: 75%;
-    margin-top: 170px;
-    margin-left: 250px;
-    font-style: oblique;
-    font-size: 40px;
-}
-
-a:link {
-    background-color: white;
-}
-
-a:visited {
-    background-color: cyan;
-}
-
-a:hover {
-    background-color: lightgreen;
-}
-
-a:active {
-    background-color: hotpink;
+    font-family: Arial, Helvetica, sans-serif;
+    /* remove this later */
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    font-weight: bold;
+    background: rgba(150, 150, 150, 0.699);
+    border: 1px solid black;
+    position: absolute;
+    top: 810px;
+    left: 600px;
+    width: 370px;
+    height: 50px;
+    z-index: 4;
 }
 
 #bios {
@@ -175,8 +173,11 @@ a:active {
 }
 
 .team-bios {
+    font-size: 125%;
+    display: inline-block;
+    width: 45%;
     background-color: blanchedalmond;
-    border-radius: 25%;
-    padding: 30px;
+    border-radius: 15%;
+    padding: 20px 20px 20px 20px;
     top: 250px;
 }
