@@ -16,7 +16,10 @@ var currentUser = {
   winLossHistory: [0, 0],
   userHistory: 0
 
-}
+};
+
+var pElement = document.createElement('p');
+var p2Element = document.createElement('p');
 
 // Local storage into user vvv
 
@@ -48,15 +51,9 @@ var User = function(name) {
     matchCount.textContent = this.userHistory;
     tr.append(matchCount);
   };
-}
+};
 
 
-        // var score = document.getElementById('score');
-        var tableContents = document.getElementById('scores');
-        var tr = document.createElement('tr');
-        var nameCell = document.createElement('td');
-        nameCell.textContent = this.name;
-        tr.append(nameCell);
 
 
         var matchCount = document.createElement('td');
@@ -65,15 +62,11 @@ var User = function(name) {
     };
 }
 
-
-// Evaluate Choices
 // sword beats spell, spell beats shield, shield beats sword
 
 var swordTarget = document.getElementById('swordTarget');
 var spellTarget = document.getElementById('spellTarget');
 var shieldTarget = document.getElementById('shieldTarget');
-
-
 
 
 // Action Listeners with What Happens when Clicked
@@ -98,8 +91,28 @@ shieldTarget.addEventListener('click', event => {
 });
 
 
-
 function battleFunction() {
+
+  
+    //I know this is the current version, but it seemed like it wasnt completely done yet.
+  
+//   var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+//   p2Element.textContent = `${currentUserChoice} VERSUS ${badGuyChoice}`;
+//   if (currentUserChoice === badGuyChoice) {
+//     //draw condition
+//     p2Element.textContent = 'draw';
+//   } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+//     (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+//     (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+    
+//     //user win condition
+//     winCountingArray[0]++;
+//   } else {
+    
+//     //enemy win condtion
+//     winCountingArray[1]++;
+//   }
+
 
   var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
   if (currentUserChoice === badGuyChoice) {
@@ -115,9 +128,11 @@ function battleFunction() {
       winCountingArray[1]++;
       alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
      
-    } else {
+    } 
+  ``if (){
       alert(`reached 5, compare time ${winCountingArray}`);
       currentUser.userHistory++;
+
 
     if (winCountingArray[0] > winCountingArray[1]) {
       currentUser.winLossHistory[0]++;
@@ -131,62 +146,51 @@ function battleFunction() {
     if (playAgain === true) {
       winCountingArray = [0, 0];
     } else {
-      var newUser = prompt('INPUT NAME: ');
+
+      winCountingArray = [0, 0];
+      var newUser = prompt('Input Name: ');
       scoreObj = new User(newUser); //data constructed to obj
       scoreObj.userHistory = currentUser.userHistory;
       scoreObj.winLossHistory = currentUser.winLossHistory;
       scoreObj.saveToLocal();
     }
   }
-};
 
-
-// Current Scoreboard NOT HIGH SCORE
-
-function scoreBoard() {
-
-  var scoreCardReference = document.getElementById('scoreCard');
-  console.log(scoreCardReference);
-  var pElement = document.createElement('p');
-  pElement.textContent = 'This is a test';
-  scoreCardReference.append(pElement);
-
+  scoreBoard();
 }
 
-      var currentUser = new User(newUser);
-    }
-  }
-}
 // Current Scoreboard NOT HIGH SCORE
 
 function scoreBoard() {
   var scoreCardReference = document.getElementById('scoreCard');
   console.log(scoreCardReference);
-  var pElement = document.createElement('p');
-  pElement.textContent = 'This is a test';
+  pElement.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
   scoreCardReference.append(pElement);
+  scoreCardReference.append(p2Element);
 }
 
-scoreBoard();
+isaac- wasnt sure what to delete and what to keep for these
+
+// ====================================================================================
 
 
+// Current Scoreboard NOT HIGH SCORE
 
+//function scoreBoard() {
 
-// Thoughts about animation
-// - idle animation 2 frames back and forth.
-// - battle scenes are lots of frames iterated over once!
-// - while battle scenes run, idle must disappear.
-// - when battle ends units return to idle.
-// - walk back to idle spots in battle scene.
+  //var scoreCardReference = document.getElementById('scoreCard');
+  //console.log(scoreCardReference);
+  //var pElement = document.createElement('p');
+  //pElement.textContent = 'This is a test';
+  //scoreCardReference.append(pElement);
 
+//}
 
 var SPRITE_SIZE = 32;
 
 
 var canvas = document.getElementById('gameScreen');
 var ctx = canvas.getContext('2d');
-
-
 
 //preloading all images
 // var cloudImage = new Image();
@@ -206,6 +210,9 @@ spellTarget.src = "images/spellSprite.png";
 shieldTarget.src = "images/shieldSprite.png";
 
 
+
+var backgroundImg = new Image();
+backgroundImg.src = "images/BG.png";
 
 var CharAnimation = function (frameSet) {
   this.count = 0,
@@ -233,6 +240,12 @@ var CharAnimation = function (frameSet) {
         this.count = 0;
 
 
+  this.update = function () {
+    this.count++;
+
+    if (this.count >= this.delay) {
+      this.count = 0;
+
 
         if (this.frameIndex === 1) {
           this.frameIndex = 0;
@@ -242,6 +255,7 @@ var CharAnimation = function (frameSet) {
       }
       this.frame = this.frameSet[this.frameIndex];
     }
+
 };
 
 var banditSpriteSheet = {
@@ -249,7 +263,6 @@ var banditSpriteSheet = {
   image: new Image()
 
 };
-
 
 banditSpriteSheet.image.src = "images/banditIdle32.png";
 
@@ -261,10 +274,10 @@ var goodGuySpriteSheet = {
 };
 
 
+
 goodGuySpriteSheet.image.src = "images/pallySheet.png";
 
 var banditIdle = {
-
   animation: new CharAnimation(banditSpriteSheet.frameSet),
   height: 32,
   width: 32,
@@ -278,15 +291,9 @@ var goodGuyIdle = {
   width: 32,
   x: 85,
   y: 165
-
 };
 
-
-
 var loop = function () {
-
-
-
   goodGuyIdle.animation.change(goodGuySpriteSheet.frameSet[2], 40);
   banditIdle.animation.change(banditSpriteSheet.frameSet[0], 20);
   ctx.clearRect(0, 0, 480, 640)
@@ -304,52 +311,28 @@ var loop = function () {
 };
 
 
-
-
-
-
 function renderNewSprite(image, x, y) {
-
   image.onload = function () {
 
-    ctx.drawImage(image, x, y);
+function renderNewSprite(image, x, y) {
+image.onload = function () {
+ctx.drawImage(image, x, y);
   };
+
 
 
 }
 
 //the constructor for new sprites on the canvas
 
-var Asset = function (image, x, y, velocity) {
-  this.image = image;
-  this.x = x;
-  this.y = y;
-  this.velocity = velocity;
+// var Asset = function (image, x, y, velocity) {
+//   this.image = image;
+//   this.x = x;
+//   this.y = y;
+//   this.velocity = velocity;
 
 
-  renderNewSprite(image, x, y);
-
-};
-
-
-
-
-// var spriteSheet = {
-
-//     frameSets: [[/* idle */],
-//     [/* gg Sword bg Sword */],
-//     [/* gg Sword bg Spell */],
-//     [/* gg Sword bg Shield */],
-//     [/* gg Spell bg Sword */],
-//     [/* gg Spell bg Spell */],
-//     [/* gg Spell bg S+hield */],
-//     [/* gg Shield bg Sword */],
-//     [/* gg Shield bg Spell */],
-//     [/* gg Shield bg Shield */],],
-
-
-// };
-
+//   renderNewSprite(image, x, y);
 
 
 goodGuySpriteSheet.image.addEventListener("load", function (event) {
@@ -399,3 +382,4 @@ goodGuySpriteSheet.image.addEventListener("load", function (event) {
 
 // function ggSpellbgSheild() {
 //     //plays animation
+//}
