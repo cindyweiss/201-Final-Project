@@ -18,26 +18,26 @@
         </div>
     </header>
     <main>
-        <div>
-            <p class="openingScroll">
+        <div class="openingScroll">
+            <p>
                 <b>Welcome squires to the "Duel of Fate"<br>
                     Enter at your own peril. <br> Ye just need to pick your weapon!</b>
             </p>
-
         </div>
         <!-- might want to use multiple canvas for layers -->
         <!-- <canvas id=""></canvas> -->
-        <div id="scoreBoard"> </div>
         <div id="outerWrap">
+            <div id="scoreBoard"> </div>
             <canvas id="gameScreen" style="border: 2px black solid;" width="240" height="320">
-          </canvas>
+                 </canvas>
+            <div id="innerWrap">
+                <div> <img id="swordTarget" src=""> </div>
+                <div> <img id="spellTarget" src=""> </div>
+                <div> <img id="shieldTarget" src=""> </div>
+            </div>
+            <a href="index.html" id="clearData">Clear Local Data</a>
+
         </div>
-        <div id="innerWrap">
-            <div> <img id="swordTarget" src=""> </div>
-            <div> <img id="spellTarget" src=""> </div>
-            <div> <img id="shieldTarget" src=""> </div>
-        </div>
-        <a href="index.html" id="clearData">Clear Local Data</a>
     </main>
     <script src="app.js"></script>
 </body>
