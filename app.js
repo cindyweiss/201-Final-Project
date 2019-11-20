@@ -8,17 +8,16 @@ var winCountingArray = [0, 0]; // [0] is currentUser , [1] is badGuy
 
 var turnCounter = 0;
 
-var userHistory = []; // LS later
-
 var currentUser = {
   winLossHistory: [0, 0],
   userHistory: 0
 };
 
 var pElement = document.createElement('p');
-var p2Element = document.createElement('p');
 
-// Local storage into user vvv
+var dialogueString = document.createElement('p');
+
+//    Local Storage set into User
 
 var User = function (name) {
   this.name = name;
@@ -26,8 +25,7 @@ var User = function (name) {
   this.userHistory = 0;
 
   this.render = function (domReference) {
-
-    // var score = document.getElementById('score');
+    //    var score = document.getElementById('score');
     var tableContents = document.getElementById('scores');
     var tr = document.createElement('tr');
     var nameCell = document.createElement('td');
@@ -37,67 +35,74 @@ var User = function (name) {
     var matchCount = document.createElement('td');
     matchCount.textContent = this.userHistory;
     tr.append(matchCount);
+    tableContents.append(tr); // peter - this line added 5:34pm 5/19, dunno if this is still needed
   };
 };
 
 
-// Evaluate Choices
-// sword beats spell, spell beats shield, shield beats sword
+//    Attach variables to User Choice Images
+//    Note: sword beats spell, spell beats shield, shield beats sword
 
 var swordTarget = document.getElementById('swordTarget');
 var spellTarget = document.getElementById('spellTarget');
 var shieldTarget = document.getElementById('shieldTarget');
 
 
-// Action Listeners with What Happens when Clicked
+//    Action Listeners with What Happens when Clicked
+function eventListeners() {
+  swordTarget.addEventListener('click', event => {
+    currentUserChoice = 'sword';
+    console.log('sword');
+    battleFunction();
+  });
 
-swordTarget.addEventListener('click', event => {
-  currentUserChoice = 'sword';
-  console.log('sword');
-  battleFunction();
-});
+  spellTarget.addEventListener('click', event => {
+    currentUserChoice = 'spell';
+    console.log('spell');
+    battleFunction();
+  });
 
-spellTarget.addEventListener('click', event => {
-  currentUserChoice = 'spell';
-  console.log('spell');
-  battleFunction();
-});
+  shieldTarget.addEventListener('click', event => {
+    currentUserChoice = 'shield';
+    console.log('shield');
+    battleFunction();
+  });
+}
 
-shieldTarget.addEventListener('click', event => {
-  currentUserChoice = 'shield';
-  console.log('shield');
-  battleFunction();
-});
-
+//    Evaluate the Battle
 
 function battleFunction() {
   var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-  p2Element.textContent = `${currentUserChoice} VERSUS ${badGuyChoice}`;
+  dialogueString.textContent = `${currentUserChoice} VERSUS ${badGuyChoice}`;
   if (currentUserChoice === badGuyChoice) {
-    //draw condition
-    p2Element.textContent = 'draw';
+    // draw condition
+    dialogueString.textContent = 'draw';
   } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
     (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
     (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-    //user win condition
+    // user win condition
     winCountingArray[0]++;
   } else {
-    //enemy win condtion
+    // enemy win condtion
     winCountingArray[1]++;
   }
+  // check if game is over
+  gameOverCheck();
+}
 
-  //check if game is over
+function gameOverCheck() {
   if (winCountingArray.includes(3)) {
-    // alert(`reached 5, compare time ${winCountingArray}`);
-    currentUser.userHistory++;
+    currentUser.userHistory++; // increment total games played by user
+
     if (winCountingArray[0] > winCountingArray[1]) {
       currentUser.winLossHistory[0]++;
-      console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
+      dialogueString.textContent = 'GLORY TO THE USER';
 
     } else if (winCountingArray[0] < winCountingArray[1]) {
       currentUser.winLossHistory[1]++;
-      console.log(`user Loss Count: ${currentUser.winLossHistory[1]}`);
+      dialogueString.textContent = 'DIE, USER SCUM!';
     }
+    scoreBoard();
     var playAgain = confirm('Would you like to play again?');
     if (playAgain === true) {
       winCountingArray = [0, 0];
@@ -109,18 +114,20 @@ function battleFunction() {
       scoreObj.winLossHistory = currentUser.winLossHistory;
       scoreObj.render();
     }
+  } else {
+    eventListeners();
+    scoreBoard();
   }
-  scoreBoard();
 }
 
 // Current Scoreboard NOT HIGH SCORE
 
 function scoreBoard() {
-  var scoreCardReference = document.getElementById('scoreCard');
-  console.log(scoreCardReference);
+  var scoreBoardReference = document.getElementById('scoreBoard');
+  console.log(scoreBoardReference);
   pElement.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
-  scoreCardReference.append(pElement);
-  scoreCardReference.append(p2Element);
+  scoreBoardReference.append(pElement);
+  scoreBoardReference.append(dialogueString);
 }
 
 
@@ -160,11 +167,11 @@ var ctx = canvas.getContext('2d');
 // cloudImage3.src = "images/cloud3.png";
 
 var backgroundImg = new Image();
-backgroundImg.src = "images/BG.png";
+backgroundImg.src = 'images/BG.png';
 
-swordTarget.src = "images/swordSprite.png";
-spellTarget.src = "images/spellSprite.png";
-shieldTarget.src = "images/shieldSprite.png";
+swordTarget.src = 'images/swordSprite.png';
+spellTarget.src = 'images/spellSprite.png';
+shieldTarget.src = 'images/shieldSprite.png';
 
 
 var CharAnimation = function (frameSet) {
@@ -208,7 +215,7 @@ var banditSpriteSheet = {
 };
 
 
-banditSpriteSheet.image.src = "images/banditIdle32.png";
+banditSpriteSheet.image.src = 'images/banditIdle32.png';
 
 var goodGuySpriteSheet = {
   frameSet: [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],
@@ -216,7 +223,7 @@ var goodGuySpriteSheet = {
 };
 
 
-goodGuySpriteSheet.image.src = "images/pallySheet.png";
+goodGuySpriteSheet.image.src = 'images/pallySheet.png';
 
 var banditIdle = {
   animation: new CharAnimation(banditSpriteSheet.frameSet),
@@ -298,7 +305,7 @@ var Asset = function (image, x, y, velocity) {
 // };
 
 
-goodGuySpriteSheet.image.addEventListener("load", function (event) {
+goodGuySpriteSheet.image.addEventListener('load', function (event) {
 
   window.requestAnimationFrame(loop);
 });

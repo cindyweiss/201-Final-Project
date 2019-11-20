@@ -37,7 +37,7 @@ canvas {
   z-index: 3;
 }
 
-#scoreCard {
+#scoreBoard {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif; /* remove this later */
   color: white;
@@ -80,10 +80,11 @@ body {
       background-repeat: no-repeat;
       padding: 50px;
       color: black;
+      text-shadow: 0 0 3px white;
       text-align: left;
       background-size: 75%;
       margin-top: 200px;
-      margin-left:250px;
+      margin-left: 250px;
       font-style: oblique;
       font-size: 40px;
   }
