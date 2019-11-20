@@ -1,0 +1,126 @@
+body {
+    background-image: url("../images/backgroundcastle.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    font-family: cursive;
+    color: black;
+}
+
+header {
+    position: fixed;
+    top: 15px;
+    left: 25px;
+    width: 95%;
+    height: 20%;
+    border: black 2px solid;
+    text-align: center;
+}
+
+h1 {
+    font-size: 250%;
+    width: 100%;
+    padding-bottom: 5%;
+    border-bottom: 2px solid black;
+}
+
+#nav-float-left {
+    float: left;
+    margin-top: -29px;
+    margin-left: 10%;
+    width: 150px;
+    padding: 20px 10px 18px 10px;
+    border: black 2px solid;
+    border-top-left-radius: 30px 30px;
+    border-top-right-radius: 30px 30px;
+    border-bottom-left-radius: 30px 30px;
+    border-bottom-right-radius: 30px 30px;
+}
+
+#nav-float-right {
+    float: right;
+    margin-top: -29px;
+    margin-right: 10%;
+    width: 150px;
+    padding: 20px 10px 18px 10px;
+    border: black 2px solid;
+    border-top-left-radius: 30px 30px;
+    border-top-right-radius: 30px 30px;
+    border-bottom-left-radius: 30px 30px;
+    border-bottom-right-radius: 30px 30px;
+}
+
+a:link {
+    background-color: white;
+}
+
+a:visited {
+    background-color: cyan;
+}
+
+a:hover {
+    background-color: lightgreen;
+}
+
+a:active {
+    background-color: hotpink;
+}
+
+.openingScroll {
+    background-image: url("../images/scroll.jpeg");
+    background-repeat: no-repeat;
+    padding: 50px;
+    background-size: 98%;
+    margin-top: 200px;
+    margin-left: 25px;
+    font-style: oblique;
+    font-size: 40px;
+    text-align: center;
+}
+
+canvas {
+    /* background-image: url(/images/BG.png); */
+    border: 2px black solid;
+    width: 750px;
+    height: 750px;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    display: block;
+}
+
+#swordTarget {
+    position: absolute;
+    top: 1150px;
+    left: 220px;
+    width: 100px;
+    z-index: 1;
+}
+
+#spellTarget {
+    position: absolute;
+    top: 1150px;
+    left: 415px;
+    width: 130px;
+    z-index: 2;
+}
+
+#shieldTarget {
+    position: absolute;
+    top: 1185px;
+    left: 625px;
+    width: 130px;
+    z-index: 3;
+}
+
+#cloud3 {
+    z-index: 1;
+    position: relative;
+    top: 50;
+    left: 50;
+    width: 90px;
+}
