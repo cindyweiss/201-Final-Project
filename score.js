@@ -3,7 +3,6 @@ var SCORE_DATA = 'SCORE_DATA';
 
 var render = function (user) {
 
-  // var score = document.getElementById('score');
   var tableContents = document.getElementById('scores');
   var tr = document.createElement('tr');
   var nameCell = document.createElement('td');
@@ -17,13 +16,11 @@ var render = function (user) {
   tableContents.append(tr);
 };
 
-
 var jsonData = localStorage.getItem(SCORE_DATA);
 var dataForHighScores = JSON.parse(jsonData);
 for (var i = 0; i < dataForHighScores.length; i++) {
   render(dataForHighScores[i]);
 }
-
 
 console.log(dataForHighScores);
 
