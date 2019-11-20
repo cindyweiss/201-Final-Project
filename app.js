@@ -26,7 +26,9 @@ var choiceString = document.createElement('p');
 var clearDataReference = document.getElementById('clearData');
 clearDataReference.addEventListener('click', clearDataFunction);
 
-//  Local Storage set into User
+//  Local Storage set into User array
+
+var userArray = [];
 
 var User = function (name) {
   this.name = name;
@@ -34,7 +36,8 @@ var User = function (name) {
   this.userHistory = 0;
 
   this.saveToLocal = function () {
-    var scoreData = JSON.stringify(this);
+    userArray.push(this);
+    var scoreData = JSON.stringify(userArray);
     localStorage.setItem('SCORE_DATA', scoreData);
   };
 };
