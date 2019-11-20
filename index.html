@@ -10,37 +10,31 @@
 </head>
 
 <body>
-
     <header>
-        <h1 id="header" id="name">Duel of Fate</h1>
+        <h1 id="header-label">Duel of Fate</h1>
         <a id="nav-float-left" href="scorePage.html">Score Page</a>
         <a id="nav-float-right" href="AboutUs.html">About Us</a>
     </header>
-
-
-    <p class="openingScroll">
-        <b>Welcome squires to the "Duel of Fate"<br>
-    Enter at your own peril. <br> Ye just need to pick your weapon!</b>
-    </p>
-
-    <!-- might want to use multiple canvas for layers -->
-    <!-- <canvas id=""></canvas> -->
-    <section>
+    <main>
+        <p class="openingScroll">
+            <b>Welcome squires to the "Duel of Fate"<br>
+        Enter at your own peril. <br> Ye just need to pick your weapon!</b>
+        </p>
+        <!-- might want to use multiple canvas for layers -->
+        <!-- <canvas id=""></canvas> -->
         <div id="scoreBoard"> </div>
         <div id="outerWrap">
             <canvas id="gameScreen" style="border: 2px black solid;" width="240" height="320">
-        </canvas>
-            <div id="innerWrap">
-                <div> <img id="swordTarget" src=""> </div>
-                <div> <img id="spellTarget" src=""> </div>
-                <div> <img id="shieldTarget" src=""> </div>
-            </div>
+          </canvas>
+        </div>
+        <div id="innerWrap">
+            <div> <img id="swordTarget" src=""> </div>
+            <div> <img id="spellTarget" src=""> </div>
+            <div> <img id="shieldTarget" src=""> </div>
         </div>
         <a href="index.html" id="clearData">Clear Local Data</a>
-
-    </section>
+    </main>
     <script src="app.js"></script>
-
 </body>
 
 </html>

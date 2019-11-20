@@ -1,13 +1,20 @@
 body {
     position: relative;
-    width: 100%;
+    width: 95%;
     border: 1px solid red;
     display: block;
+    background-image: url("../images/backgroundcastle.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    font-family: cursive;
+    color: black;
+    padding-top: 250px;
 }
 
 body>* {
     margin: auto;
-    width: 500px;
+    /* width: 95%; */
     border: 1px solid blue;
     display: block;
     overflow: auto;
@@ -17,21 +24,12 @@ body>script {
     display: none
 }
 
-body {
-    background-image: url("../images/backgroundcastle.jpeg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100%;
-    /* margin: 0 auto; */
-    font-family: cursive;
-    color: black;
-    padding-top: 250px;
-}
+body {}
 
 header {
     position: fixed;
     top: 0%;
-    left: 2%;
+    left: auto;
     width: 95%;
     height: 18%;
     border: black 2px solid;
@@ -49,25 +47,25 @@ header {
 #nav-float-left {
     float: left;
     margin: -3% 10% 0% 10%;
-    width: 150px;
-    padding: 18px 10px 18px 10px;
+    width: 20%;
+    padding: 2% 1% 2% 1%;
     border: black 2px solid;
-    border-top-left-radius: 30px 30px;
-    border-top-right-radius: 30px 30px;
-    border-bottom-left-radius: 30px 30px;
-    border-bottom-right-radius: 30px 30px;
+    border-top-left-radius: 20% 40%;
+    border-top-right-radius: 20% 40%;
+    border-bottom-left-radius: 20% 40%;
+    border-bottom-right-radius: 20% 40%;
 }
 
 #nav-float-right {
     float: right;
     margin: -3% 10% 0% 10%;
-    width: 150px;
-    padding: 18px 10px 18px 10px;
+    width: 20%;
+    padding: 2% 1% 2% 1%;
     border: black 2px solid;
-    border-top-left-radius: 30px 30px;
-    border-top-right-radius: 30px 30px;
-    border-bottom-left-radius: 30px 30px;
-    border-bottom-right-radius: 30px 30px;
+    border-top-left-radius: 20% 40%;
+    border-top-right-radius: 20% 40%;
+    border-bottom-left-radius: 20% 40%;
+    border-bottom-right-radius: 20% 40%;
 }
 
 a:link {
@@ -87,13 +85,14 @@ a:active {
 }
 
 .openingScroll {
-    /* text-align: center; */
+    text-align: center;
     background-image: url("../images/scroll.jpeg");
     background-repeat: no-repeat;
-    padding: 50px;
-    background-size: 75%;
+    padding: 2%;
+    background-size: 100%;
+    max-height: 5%;
     /* margin-top: 250px; */
-    /* margin-left: 300px; */
+    /* margin-left: 300px;
     font-style: oblique;
     font-size: 40px;
 }
@@ -172,7 +171,6 @@ canvas {
 }
 
 #bios {
-    /* position: absolute; */
     top: 200px;
 }
 
