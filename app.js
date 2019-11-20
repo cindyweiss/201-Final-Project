@@ -15,14 +15,15 @@ var userHistory = []; // LS later
 var currentUser = {
   winLossHistory: [0, 0],
   userHistory: 0
+
 }
 
 // Local storage into user vvv
 
-var User = function (name) {
-  this.name = name;
-  this.winLossHistory = [0, 0];
-  this.userHistory = 0;
+var User = function(name) {
+    this.name = name;
+    this.winLossHistory = [0, 0];
+    this.userHistory = 0;
 
   this.saveToLocal = function(){
     var scoreData = JSON.stringify(this);
@@ -50,6 +51,19 @@ var User = function (name) {
 }
 
 
+        // var score = document.getElementById('score');
+        var tableContents = document.getElementById('scores');
+        var tr = document.createElement('tr');
+        var nameCell = document.createElement('td');
+        nameCell.textContent = this.name;
+        tr.append(nameCell);
+
+
+        var matchCount = document.createElement('td');
+        matchCount.textContent = this.userHistory;
+        tr.append(matchCount);
+    };
+}
 
 
 // Evaluate Choices
@@ -61,7 +75,6 @@ var shieldTarget = document.getElementById('shieldTarget');
 
 
 
-// Action Listeners with What Happens when Clicked
 
 // Action Listeners with What Happens when Clicked
 
@@ -69,23 +82,25 @@ swordTarget.addEventListener('click', event => {
   currentUserChoice = 'sword';
   console.log('sword');
   battleFunction();
+
 });
 
 spellTarget.addEventListener('click', event => {
-  currentUserChoice = 'spell';
-  console.log('spell');
-  battleFunction();
+    currentUserChoice = 'spell';
+    console.log('spell');
+    battleFunction();
 });
 
 shieldTarget.addEventListener('click', event => {
-  currentUserChoice = 'shield';
-  console.log('shield');
-  battleFunction();
+    currentUserChoice = 'shield';
+    console.log('shield');
+    battleFunction();
 });
 
 
 
 function battleFunction() {
+
   var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
   if (currentUserChoice === badGuyChoice) {
       alert('draw');
@@ -125,14 +140,17 @@ function battleFunction() {
   }
 };
 
+
 // Current Scoreboard NOT HIGH SCORE
 
 function scoreBoard() {
+
   var scoreCardReference = document.getElementById('scoreCard');
   console.log(scoreCardReference);
   var pElement = document.createElement('p');
   pElement.textContent = 'This is a test';
   scoreCardReference.append(pElement);
+
 }
 
       var currentUser = new User(newUser);
@@ -151,8 +169,6 @@ function scoreBoard() {
 
 scoreBoard();
 
-
-// ====================================================================================
 
 
 
@@ -188,6 +204,7 @@ backgroundImg.src = "images/BG.png";
 swordTarget.src = "images/swordSprite.png";
 spellTarget.src = "images/spellSprite.png";
 shieldTarget.src = "images/shieldSprite.png";
+
 
 
 var CharAnimation = function (frameSet) {
@@ -230,20 +247,24 @@ var CharAnimation = function (frameSet) {
 var banditSpriteSheet = {
   frameSet: [[0, 1]],
   image: new Image()
+
 };
 
 
 banditSpriteSheet.image.src = "images/banditIdle32.png";
 
 var goodGuySpriteSheet = {
+
   frameSet: [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],
   image: new Image()
+
 };
 
 
 goodGuySpriteSheet.image.src = "images/pallySheet.png";
 
 var banditIdle = {
+
   animation: new CharAnimation(banditSpriteSheet.frameSet),
   height: 32,
   width: 32,
@@ -257,19 +278,19 @@ var goodGuyIdle = {
   width: 32,
   x: 85,
   y: 165
+
 };
 
 
 
-
 var loop = function () {
-  // i think this is where we will put our big condition statement
+
+
 
   goodGuyIdle.animation.change(goodGuySpriteSheet.frameSet[2], 40);
   banditIdle.animation.change(banditSpriteSheet.frameSet[0], 20);
   ctx.clearRect(0, 0, 480, 640)
   ctx.drawImage(backgroundImg, 0, 0);
-
   ctx.drawImage(goodGuySpriteSheet.image, goodGuyIdle.animation.frame * SPRITE_SIZE,
     0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuyIdle.x), Math.floor(goodGuyIdle.y), SPRITE_SIZE, SPRITE_SIZE);
 
@@ -279,6 +300,7 @@ var loop = function () {
   banditIdle.animation.update();
   goodGuyIdle.animation.update();
   window.requestAnimationFrame(loop);
+
 };
 
 
@@ -287,19 +309,23 @@ var loop = function () {
 
 
 function renderNewSprite(image, x, y) {
+
   image.onload = function () {
 
     ctx.drawImage(image, x, y);
   };
 
+
 }
 
 //the constructor for new sprites on the canvas
+
 var Asset = function (image, x, y, velocity) {
   this.image = image;
   this.x = x;
   this.y = y;
   this.velocity = velocity;
+
 
   renderNewSprite(image, x, y);
 
@@ -325,49 +351,51 @@ var Asset = function (image, x, y, velocity) {
 // };
 
 
+
 goodGuySpriteSheet.image.addEventListener("load", function (event) {
 
   window.requestAnimationFrame(loop);
+
 });
 
-  // //character animation functions
-  // function idle() {
-  //     //plays idle animation
+// //character animation functions
+// function idle() {
+//     //plays idle animation
 
 
-  // }
+// }
 
-  // function ggSwordbgSword() {
-  //     //plays animation
-  // }
+// function ggSwordbgSword() {
+//     //plays animation
+// }
 
-  // function ggSwordbgSpell() {
-  //     //plays animation
-  // }
+// function ggSwordbgSpell() {
+//     //plays animation
+// }
 
-  // function ggSwordbgSheild() {
-  //     //plays animation
-  // }
+// function ggSwordbgSheild() {
+//     //plays animation
+// }
 
-  // function ggShieldbgSword() {
-  //     //plays animation
-  // }
+// function ggShieldbgSword() {
+//     //plays animation
+// }
 
-  // function ggShieldbgSpell() {
-  //     //plays animation
-  // }
+// function ggShieldbgSpell() {
+//     //plays animation
+// }
 
-  // function ggShieldbgSheild() {
-  //     //plays animation
-  // }
+// function ggShieldbgSheild() {
+//     //plays animation
+// }
 
-  // function ggSpellbgSword() {
-  //     //plays animation
-  // }
+// function ggSpellbgSword() {
+//     //plays animation
+// }
 
-  // function ggSpellbgSpell() {
-  //     //plays animation
-  // }
+// function ggSpellbgSpell() {
+//     //plays animation
+// }
 
-  // function ggSpellbgSheild() {
-  //     //plays animation
+// function ggSpellbgSheild() {
+//     //plays animation
