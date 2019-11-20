@@ -1,7 +1,7 @@
 body {
     position: relative;
     width: 95%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: block;
     background-image: url("../images/backgroundcastle.jpeg");
     background-repeat: no-repeat;
@@ -14,8 +14,8 @@ body {
 
 body>* {
     margin: auto;
-    /* width: 95%; */
-    border: 1px solid blue;
+    width: 95%;
+    /* border: 1px solid blue; */
     display: block;
     overflow: auto;
 }
@@ -23,8 +23,6 @@ body>* {
 body>script {
     display: none
 }
-
-body {}
 
 header {
     position: fixed;
@@ -38,16 +36,17 @@ header {
 
 #header-label {
     font-size: 275%;
+    text-decoration: underline;
     width: 100%;
-    padding-bottom: 2%;
-    border-bottom: 2px solid black;
+    padding: 0% 0% 4% 0%;
+    /* border-bottom: 2px solid black; */
 }
 
 #nav-float-left {
     float: left;
     margin: -3% 10% 0% 10%;
-    width: 20%;
-    padding: 2% 1% 2% 1%;
+    width: 15%;
+    padding: 1% 1% 1% 1%;
     border: black 2px solid;
     border-top-left-radius: 20% 40%;
     border-top-right-radius: 20% 40%;
@@ -58,8 +57,8 @@ header {
 #nav-float-right {
     float: right;
     margin: -3% 10% 0% 10%;
-    width: 20%;
-    padding: 2% 1% 2% 1%;
+    width: 15%;
+    padding: 1% 1% 1% 1%;
     border: black 2px solid;
     border-top-left-radius: 20% 40%;
     border-top-right-radius: 20% 40%;
@@ -89,7 +88,7 @@ a:active {
     background-repeat: no-repeat;
     padding: 2%;
     background-size: 100%;
-    max-height: 5%;
+    /* max-height: 5%; */
     /* margin-top: 250px; */
     /* margin-left: 300px;*/
     font-style: oblique;
@@ -175,9 +174,12 @@ canvas {
 }
 
 .team-bios {
+    font-size: 125%;
+    display: inline-block;
+    width: 45%;
     background-color: blanchedalmond;
-    border-radius: 25%;
-    padding: 30px;
+    border-radius: 15%;
+    padding: 20px 20px 20px 20px;
     top: 250px;
 }
 
