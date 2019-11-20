@@ -70,11 +70,12 @@ function battleFunction() {
 
   badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
   if (currentUserChoice === badGuyChoice) {
-    //draw condition
+    // draw condition
     dialogueString.textContent = 'It was a draw!';
   } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
     (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
     (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+    // user win condition
     switch (currentUserChoice) {
     case 'sword':
       dialogueString.textContent = 'Your sword removes their limbs!';
@@ -90,15 +91,15 @@ function battleFunction() {
       break;
     }
     scoreBoard();
-    //user win condition
     winCountingArray[0]++;
   } else {
+    // enemy win condtion
     switch (badGuyChoice) {
     case 'sword':
       dialogueString.textContent = 'Enemy sword disembowels you!';
       break;
     case 'shield':
-      dialogueString.textContent = 'Enemy shield renders your sword useless!';
+      dialogueString.textContent = 'Enemy shield laughs at your sword!';
       break;
     case 'spell':
       dialogueString.textContent = 'Enemy spell really ruins your day!';
@@ -107,7 +108,7 @@ function battleFunction() {
       dialogueString.textContent = 'error, check battleFunction()';
       break;
     }
-    //enemy win condtion
+    scoreBoard();
     winCountingArray[1]++;
   }
   scoreBoard();
@@ -158,20 +159,7 @@ function scoreBoard() {
 
 //isaac- wasnt sure what to delete and what to keep for these
 
-// ====================================================================================
-
-
-// Current Scoreboard NOT HIGH SCORE
-
-//function scoreBoard() {
-
-//var scoreCardReference = document.getElementById('scoreCard');
-//console.log(scoreCardReference);
-//var scoreString = document.createElement('p');
-//scoreString.textContent = 'This is a test';
-//scoreCardReference.append(scoreString);
-
-//}
+// ===============================================================
 
 var SPRITE_SIZE = 32;
 
