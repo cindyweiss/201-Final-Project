@@ -4,11 +4,13 @@ var attackChoices = ['sword', 'spell', 'shield'];
 
 var currentUserChoice = '';
 
+var badGuyChoice = '';
+
 var winCountingArray = [0, 0]; // [0] is currentUser , [1] is badGuy
 
 var scoreObj;
 
-var turnCounter = 0;
+var scoreBoardReference = document.getElementById('scoreBoard');
 
 var currentUser = {
   winLossHistory: [0, 0],
@@ -16,9 +18,9 @@ var currentUser = {
 
 };
 
-var pElement = document.createElement('p');
-
+var scoreString = document.createElement('p');
 var dialogueString = document.createElement('p');
+var choiceString = document.createElement('p');
 
 //    Local Storage set into User
 
@@ -66,54 +68,65 @@ shieldTarget.addEventListener('click', event => {
 
 function battleFunction() {
 
-
-  //I know this is the current version, but it seemed like it wasnt completely done yet.
-
-  //   var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-  //   p2Element.textContent = `${currentUserChoice} VERSUS ${badGuyChoice}`;
-  //   if (currentUserChoice === badGuyChoice) {
-  //     //draw condition
-  //     p2Element.textContent = 'draw';
-  //   } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-  //     (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-  //     (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-
-  //     //user win condition
-  //     winCountingArray[0]++;
-  //   } else {
-
-  //     //enemy win condtion
-  //     winCountingArray[1]++;
-  //   }
-
-
-  var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+  badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
   if (currentUserChoice === badGuyChoice) {
-    alert('draw');
-
+    //draw condition
+    dialogueString.textContent = 'It was a draw!';
   } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
     (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
     (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+    switch (currentUserChoice) {
+    case 'sword':
+      dialogueString.textContent = 'Your sword removes their limbs!';
+      break;
+    case 'shield':
+      dialogueString.textContent = 'Your shield deflects the sword blow!';
+      break;
+    case 'spell':
+      dialogueString.textContent = 'Your spell crushes their aspirations!';
+      break;
+    default:
+      dialogueString.textContent = 'error, check battleFunction()';
+      break;
+    }
+    scoreBoard();
+    //user win condition
     winCountingArray[0]++;
-    alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-
   } else {
+    switch (badGuyChoice) {
+    case 'sword':
+      dialogueString.textContent = 'Enemy sword disembowels you!';
+      break;
+    case 'shield':
+      dialogueString.textContent = 'Enemy shield renders your sword useless!';
+      break;
+    case 'spell':
+      dialogueString.textContent = 'Enemy spell really ruins your day!';
+      break;
+    default:
+      dialogueString.textContent = 'error, check battleFunction()';
+      break;
+    }
+    //enemy win condtion
     winCountingArray[1]++;
-    alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-
   }
+  scoreBoard();
+
   if (winCountingArray.includes(3)) {
     alert(`reached 3, compare time ${winCountingArray}`);
     currentUser.userHistory++;
 
-
     if (winCountingArray[0] > winCountingArray[1]) {
       currentUser.winLossHistory[0]++;
+      scoreString.textContent = '';
       dialogueString.textContent = 'GLORY TO THE USER';
+      choiceString.textContent = '';
 
     } else if (winCountingArray[0] < winCountingArray[1]) {
       currentUser.winLossHistory[1]++;
+      scoreString.textContent = '';
       dialogueString.textContent = 'DIE, USER SCUM!';
+      choiceString.textContent = '';
     }
     scoreBoard();
     var playAgain = confirm('Would you like to play again?');
@@ -129,21 +142,18 @@ function battleFunction() {
       scoreObj.saveToLocal();
     }
   } else {
-    eventListeners();
     scoreBoard();
   }
-
-  scoreBoard();
 }
 
 // Current Scoreboard NOT HIGH SCORE
 
 function scoreBoard() {
-  var scoreBoardReference = document.getElementById('scoreBoard');
-  console.log(scoreBoardReference);
-  pElement.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
-  scoreBoardReference.append(pElement);
+  scoreString.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
+  choiceString.textContent = `${currentUserChoice} vs ${badGuyChoice}`;
+  scoreBoardReference.append(scoreString);
   scoreBoardReference.append(dialogueString);
+  scoreBoardReference.append(choiceString);
 }
 
 //isaac- wasnt sure what to delete and what to keep for these
@@ -157,9 +167,9 @@ function scoreBoard() {
 
 //var scoreCardReference = document.getElementById('scoreCard');
 //console.log(scoreCardReference);
-//var pElement = document.createElement('p');
-//pElement.textContent = 'This is a test';
-//scoreCardReference.append(pElement);
+//var scoreString = document.createElement('p');
+//scoreString.textContent = 'This is a test';
+//scoreCardReference.append(scoreString);
 
 //}
 
@@ -266,7 +276,7 @@ var goodGuyIdle = {
 var loop = function () {
   goodGuyIdle.animation.change(goodGuySpriteSheet.frameSet[2], 40);
   banditIdle.animation.change(banditSpriteSheet.frameSet[0], 20);
-  ctx.clearRect(0, 0, 480, 640)
+  ctx.clearRect(0, 0, 480, 640);
   ctx.drawImage(backgroundImg, 0, 0);
   ctx.drawImage(goodGuySpriteSheet.image, goodGuyIdle.animation.frame * SPRITE_SIZE,
     0, SPRITE_SIZE, SPRITE_SIZE, Math.floor(goodGuyIdle.x), Math.floor(goodGuyIdle.y), SPRITE_SIZE, SPRITE_SIZE);
