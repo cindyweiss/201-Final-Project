@@ -32,6 +32,26 @@ var User = function (name) {
 
 
 
+  this.render = function (domReference) {
+
+
+    // var score = document.getElementById('score');
+    var tableContents = document.getElementById('scores');
+    var tr = document.createElement('tr');
+    var nameCell = document.createElement('td');
+    nameCell.textContent = this.name;
+    tr.append(nameCell);
+
+
+    var matchCount = document.createElement('td');
+    matchCount.textContent = this.userHistory;
+    tr.append(matchCount);
+  };
+}
+
+
+
+
 // Evaluate Choices
 // sword beats spell, spell beats shield, shield beats sword
 
@@ -43,6 +63,7 @@ var shieldTarget = document.getElementById('shieldTarget');
 
 // Action Listeners with What Happens when Clicked
 
+// Action Listeners with What Happens when Clicked
 
 swordTarget.addEventListener('click', event => {
   currentUserChoice = 'sword';
@@ -66,26 +87,23 @@ shieldTarget.addEventListener('click', event => {
 
 function battleFunction() {
   var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-
   if (currentUserChoice === badGuyChoice) {
-    //draw condition
-    alert('draw');
-  } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-    (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-    (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-    //user win condition
-    winCountingArray[0]++;
-    alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-  } else {
-    //enemy win condtion
-    winCountingArray[1]++;
-    alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-  }
+      alert('draw');
+  
+    } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+      (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+      (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+      winCountingArray[0]++;
+      alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
+    
+    } else {
+      winCountingArray[1]++;
+      alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
+     
+    } else {
+      alert(`reached 5, compare time ${winCountingArray}`);
+      currentUser.userHistory++;
 
-  //check if game is over
-  if (winCountingArray.includes(3)) {
-    // alert(`reached 5, compare time ${winCountingArray}`);
-    currentUser.userHistory++;
     if (winCountingArray[0] > winCountingArray[1]) {
       currentUser.winLossHistory[0]++;
       console.log(`user Win Count: ${currentUser.winLossHistory[0]}`);
@@ -117,16 +135,25 @@ function scoreBoard() {
   scoreCardReference.append(pElement);
 }
 
+      var currentUser = new User(newUser);
+    }
+  }
+}
+// Current Scoreboard NOT HIGH SCORE
+
+function scoreBoard() {
+  var scoreCardReference = document.getElementById('scoreCard');
+  console.log(scoreCardReference);
+  var pElement = document.createElement('p');
+  pElement.textContent = 'This is a test';
+  scoreCardReference.append(pElement);
+}
 
 scoreBoard();
 
+
 // ====================================================================================
 
-//Isaacs animation code - You guys can work above this
-
-// to do list
-// - be able to change the animation as the result of an 
-// if statement and then have it switch back to idle after completion of animation.
 
 
 // Thoughts about animation
