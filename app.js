@@ -23,44 +23,17 @@ var p2Element = document.createElement('p');
 
 // Local storage into user vvv
 
-var User = function(name) {
-    this.name = name;
-    this.winLossHistory = [0, 0];
-    this.userHistory = 0;
+var User = function (name) {
+  this.name = name;
+  this.winLossHistory = [0, 0];
+  this.userHistory = 0;
 
-  this.saveToLocal = function(){
+  this.saveToLocal = function () {
     var scoreData = JSON.stringify(this);
     localStorage.setItem('SCORE_DATA', scoreData);
   }
 }
 
-
-
-  this.render = function (domReference) {
-
-
-    // var score = document.getElementById('score');
-    var tableContents = document.getElementById('scores');
-    var tr = document.createElement('tr');
-    var nameCell = document.createElement('td');
-    nameCell.textContent = this.name;
-    tr.append(nameCell);
-
-
-    var matchCount = document.createElement('td');
-    matchCount.textContent = this.userHistory;
-    tr.append(matchCount);
-  };
-};
-
-
-
-
-        var matchCount = document.createElement('td');
-        matchCount.textContent = this.userHistory;
-        tr.append(matchCount);
-    };
-}
 
 // sword beats spell, spell beats shield, shield beats sword
 
@@ -79,59 +52,59 @@ swordTarget.addEventListener('click', event => {
 });
 
 spellTarget.addEventListener('click', event => {
-    currentUserChoice = 'spell';
-    console.log('spell');
-    battleFunction();
+  currentUserChoice = 'spell';
+  console.log('spell');
+  battleFunction();
 });
 
 shieldTarget.addEventListener('click', event => {
-    currentUserChoice = 'shield';
-    console.log('shield');
-    battleFunction();
+  currentUserChoice = 'shield';
+  console.log('shield');
+  battleFunction();
 });
 
 
 function battleFunction() {
 
-  
-    //I know this is the current version, but it seemed like it wasnt completely done yet.
-  
-//   var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-//   p2Element.textContent = `${currentUserChoice} VERSUS ${badGuyChoice}`;
-//   if (currentUserChoice === badGuyChoice) {
-//     //draw condition
-//     p2Element.textContent = 'draw';
-//   } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-//     (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-//     (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-    
-//     //user win condition
-//     winCountingArray[0]++;
-//   } else {
-    
-//     //enemy win condtion
-//     winCountingArray[1]++;
-//   }
+
+  //I know this is the current version, but it seemed like it wasnt completely done yet.
+
+  //   var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+  //   p2Element.textContent = `${currentUserChoice} VERSUS ${badGuyChoice}`;
+  //   if (currentUserChoice === badGuyChoice) {
+  //     //draw condition
+  //     p2Element.textContent = 'draw';
+  //   } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+  //     (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+  //     (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+
+  //     //user win condition
+  //     winCountingArray[0]++;
+  //   } else {
+
+  //     //enemy win condtion
+  //     winCountingArray[1]++;
+  //   }
 
 
   var badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
   if (currentUserChoice === badGuyChoice) {
-      alert('draw');
-  
-    } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-      (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-      (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-      winCountingArray[0]++;
-      alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-    
-    } else {
-      winCountingArray[1]++;
-      alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
-     
-    } 
-  ``if (){
-      alert(`reached 5, compare time ${winCountingArray}`);
-      currentUser.userHistory++;
+    alert('draw');
+
+  } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+    (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+    (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+    winCountingArray[0]++;
+    alert(`good point ${winCountingArray[0]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
+
+  } else {
+    winCountingArray[1]++;
+    alert(`bad point ${winCountingArray[1]}\n\ngood ${currentUserChoice}| bad ${badGuyChoice}`);
+
+  }
+  if (winCountingArray.includes(3)) {
+    alert(`reached 3, compare time ${winCountingArray}`);
+    currentUser.userHistory++;
 
 
     if (winCountingArray[0] > winCountingArray[1]) {
@@ -169,7 +142,7 @@ function scoreBoard() {
   scoreCardReference.append(p2Element);
 }
 
-isaac- wasnt sure what to delete and what to keep for these
+//isaac- wasnt sure what to delete and what to keep for these
 
 // ====================================================================================
 
@@ -178,11 +151,11 @@ isaac- wasnt sure what to delete and what to keep for these
 
 //function scoreBoard() {
 
-  //var scoreCardReference = document.getElementById('scoreCard');
-  //console.log(scoreCardReference);
-  //var pElement = document.createElement('p');
-  //pElement.textContent = 'This is a test';
-  //scoreCardReference.append(pElement);
+//var scoreCardReference = document.getElementById('scoreCard');
+//console.log(scoreCardReference);
+//var pElement = document.createElement('p');
+//pElement.textContent = 'This is a test';
+//scoreCardReference.append(pElement);
 
 //}
 
@@ -238,13 +211,6 @@ var CharAnimation = function (frameSet) {
 
       if (this.count >= this.delay) {
         this.count = 0;
-
-
-  this.update = function () {
-    this.count++;
-
-    if (this.count >= this.delay) {
-      this.count = 0;
 
 
         if (this.frameIndex === 1) {
@@ -310,36 +276,32 @@ var loop = function () {
 
 };
 
-
-function renderNewSprite(image, x, y) {
-  image.onload = function () {
-
-function renderNewSprite(image, x, y) {
-image.onload = function () {
-ctx.drawImage(image, x, y);
-  };
+    function renderNewSprite(image, x, y) {
+      image.onload = function () {
+        ctx.drawImage(image, x, y);
+      };
 
 
 
-}
+    }
+  
+    //the constructor for new sprites on the canvas
 
-//the constructor for new sprites on the canvas
-
-// var Asset = function (image, x, y, velocity) {
-//   this.image = image;
-//   this.x = x;
-//   this.y = y;
-//   this.velocity = velocity;
-
-
-//   renderNewSprite(image, x, y);
+    // var Asset = function (image, x, y, velocity) {
+    //   this.image = image;
+    //   this.x = x;
+    //   this.y = y;
+    //   this.velocity = velocity;
 
 
-goodGuySpriteSheet.image.addEventListener("load", function (event) {
+    //   renderNewSprite(image, x, y);
 
-  window.requestAnimationFrame(loop);
 
-});
+    goodGuySpriteSheet.image.addEventListener("load", function (event) {
+
+      window.requestAnimationFrame(loop);
+
+    });
 
 // //character animation functions
 // function idle() {
@@ -382,4 +344,3 @@ goodGuySpriteSheet.image.addEventListener("load", function (event) {
 
 // function ggSpellbgSheild() {
 //     //plays animation
-//}
