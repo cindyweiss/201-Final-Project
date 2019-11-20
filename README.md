@@ -1,12 +1,8 @@
 ## Code Fellow 201 Final Project: _Duel of Fate_
 
-#### Members:
+**Members:** Cindy Weiss, Jerome Burns, Isaac Nelson, Peter Cole
 
-Cindy Weiss, Jerome Burns, Isaac Nelson, Peter Cole
-
-#### Description:
-
-Fantasy rock paper scissors with HTML, CSS, Javascript
+**Description:** Fantasy rock paper scissors with HTML, CSS, Javascript
 
 _v1 11/17/19_ - Isaac set up animation
 
