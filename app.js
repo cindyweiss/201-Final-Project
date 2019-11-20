@@ -189,42 +189,42 @@ shieldTarget.src = 'images/shieldSprite.png';
 
 
 var backgroundImg = new Image();
-backgroundImg.src = "images/BG.png";
+backgroundImg.src = 'images/BG.png';
 
 var CharAnimation = function (frameSet) {
   this.count = 0,
-    this.delay = 20,
-    this.frame = 0,
-    this.frameSet = frameSet,
-    this.frameIndex = 0,
+  this.delay = 20,
+  this.frame = 0,
+  this.frameSet = frameSet,
+  this.frameIndex = 0,
 
-    //for an animation use the change function to change to it and change the frameset to an array of animation. the animation may also need to be its own object.
-    this.change = function (frameSet, delay) {
-      if (this.frameSet != frameSet) {
+  //for an animation use the change function to change to it and change the frameset to an array of animation. the animation may also need to be its own object.
+  this.change = function (frameSet, delay) {
+    if (this.frameSet !== frameSet) {
 
-        this.count = 0;
-        this.delay = delay;
-        this.frameIndex = 0;
-        this.frameSet = frameSet;
-        this.frame = frameSet[this.frameIndex];
-      }
-    },
-
-    this.update = function () {
-      this.count++;
-
-      if (this.count >= this.delay) {
-        this.count = 0;
-
-
-        if (this.frameIndex === 1) {
-          this.frameIndex = 0;
-        } else {
-          this.frameIndex += 1;
-        }
-      }
-      this.frame = this.frameSet[this.frameIndex];
+      this.count = 0;
+      this.delay = delay;
+      this.frameIndex = 0;
+      this.frameSet = frameSet;
+      this.frame = frameSet[this.frameIndex];
     }
+  },
+
+  this.update = function () {
+    this.count++;
+
+    if (this.count >= this.delay) {
+      this.count = 0;
+
+
+      if (this.frameIndex === 1) {
+        this.frameIndex = 0;
+      } else {
+        this.frameIndex += 1;
+      }
+    }
+    this.frame = this.frameSet[this.frameIndex];
+  };
 
 };
 
@@ -280,32 +280,32 @@ var loop = function () {
 
 };
 
-    function renderNewSprite(image, x, y) {
-      image.onload = function () {
-        ctx.drawImage(image, x, y);
-      };
+function renderNewSprite(image, x, y) {
+  image.onload = function () {
+    ctx.drawImage(image, x, y);
+  };
 
 
 
-    }
-  
-    //the constructor for new sprites on the canvas
+}
 
-    // var Asset = function (image, x, y, velocity) {
-    //   this.image = image;
-    //   this.x = x;
-    //   this.y = y;
-    //   this.velocity = velocity;
+//the constructor for new sprites on the canvas
+
+// var Asset = function (image, x, y, velocity) {
+//   this.image = image;
+//   this.x = x;
+//   this.y = y;
+//   this.velocity = velocity;
 
 
-    //   renderNewSprite(image, x, y);
+//   renderNewSprite(image, x, y);
 
 
 goodGuySpriteSheet.image.addEventListener('load', function (event) {
 
-      window.requestAnimationFrame(loop);
+  window.requestAnimationFrame(loop);
 
-    });
+});
 
 // //character animation functions
 // function idle() {
