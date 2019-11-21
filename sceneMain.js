@@ -290,8 +290,8 @@ var choiceString = document.createElement('p');
 
 // Reference for hearing the Clear Local Data <a href> button
 
-// var clearDataReference = document.getElementById('clearData');
-// clearDataReference.addEventListener('click', clearDataFunction);
+var clearDataReference = document.getElementById('clearData');
+clearDataReference.addEventListener('click', clearDataFunction);
 
 //  Local Storage set into User array
 
@@ -302,6 +302,8 @@ if (localStorage.getItem(SCORE_DATA) === null) {
   localStorageArray = JSON.parse(jsonData);
   console.log(localStorageArray);
 }
+
+//  Constructor for User Session
 
 var User = function (name) {
   this.name = name;
@@ -317,11 +319,11 @@ var User = function (name) {
 
 //  To Remove Local Data, there is a clicker 'Clear Local Data' on index
 
-// function clearDataFunction() {
-//   localStorage.removeItem('SCORE_DATA');
-// }
+function clearDataFunction() {
+  localStorage.removeItem('SCORE_DATA');
+}
 
-// Current Scoreboard Render
+//  Current Scoreboard Render
 
 function scoreBoard() {
   scoreString.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
@@ -335,8 +337,7 @@ function scoreBoard() {
   scoreBoardReference.append(choiceString);
 }
 
-// peter - in the spirit of small functions,
-// peter - I moved win check to its' own function
+//  Render Win Screen and Provide User Options
 
 function winDetected() {
   currentUser.userHistory++;
