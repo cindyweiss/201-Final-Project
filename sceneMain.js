@@ -290,8 +290,8 @@ var choiceString = document.createElement('p');
 
 // Reference for hearing the Clear Local Data <a href> button
 
-var clearDataReference = document.getElementById('clearData');
-clearDataReference.addEventListener('click', clearDataFunction);
+// var clearDataReference = document.getElementById('clearData');
+// clearDataReference.addEventListener('click', clearDataFunction);
 
 //  Local Storage set into User array
 
@@ -311,15 +311,15 @@ var User = function (name) {
   this.saveToLocal = function () {
     userArray.push(this);
     scoreData = JSON.stringify(userArray);
-    localStorage.setItem('SCORE_DATA', scoreData);
+    localStorage.setItem(SCORE_DATA, scoreData);
   };
 };
 
 //  To Remove Local Data, there is a clicker 'Clear Local Data' on index
 
-function clearDataFunction() {
-  localStorage.removeItem('SCORE_DATA');
-}
+// function clearDataFunction() {
+//   localStorage.removeItem('SCORE_DATA');
+// }
 
 // Current Scoreboard Render
 

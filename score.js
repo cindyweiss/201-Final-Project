@@ -1,51 +1,36 @@
-// render header row; start with blank
-// function renderHours(domReference) {
-//     var tr = document.createElement('tr');
-//     var th = document.createElement('th');
-//     th.textContent = '';
-//     tr.appendChild(th);
 
-var SCORE_DATA = 'SCORE_DATA';
-
-var render = function(user) {
-
-  var tableContents = document.getElementById('scores');
+var renderTitleRow = function (tableContents) {
+  // var tableContents = document.getElementById('scores');
   var tr = document.createElement('tr');
-  var nameCell = document.createElement('td');
-  nameCell.textContent = user.name;
-  tr.append(nameCell);
-
-  var matchCount = document.createElement('td');
-  matchCount.textContent = user.winLossHistory;
-  tr.append(matchCount);
+  var userNames = document.createElement('td');
+  userNames.textContent = (' Squires Names ');
+  tr.append(userNames);
+  var td = document.createElement('td');
+  td.textContent = (' Squires Games Won / Squires Games Played ');
+  tr.append(td);
   tableContents.append(tr);
 };
 
+var SCORE_DATA = 'SCORE_DATA';
+
+var render = function (tableContents, userData) {
+  var tr = document.createElement('tr');
+  var nameCell = document.createElement('td');
+  nameCell.textContent = userData.name;
+  tr.append(nameCell);
+  var matchCount = document.createElement('td');
+  matchCount.textContent = userData.winLossHistory;
+  tr.append(matchCount);
+  console.log(this);
+  tableContents.append(tr);
+};
+
+var tableContents = document.getElementById('scores');
+
 var jsonData = localStorage.getItem(SCORE_DATA);
 var dataForHighScores = JSON.parse(jsonData);
+renderTitleRow(tableContents);
+
 for (var i = 0; i < dataForHighScores.length; i++) {
-  render(dataForHighScores[i]);
+  render(tableContents, dataForHighScores[i]);
 }
-
-render();
-
-// function renderFromLocal(a, b) {
-
-//   a = dataForHighScores[0];
-//   b = dataForHighScores[1];
-
-//   var tableContents = document.getElementById('scores');
-//   var tr = document.createElement('tr');
-//   var nameCell = document.createElement('td');
-//   nameCell.textContent = this.a;
-//   tr.append(nameCell);
-
-//   var matchCount = document.createElement('td');
-//   matchCount.textContent = this.b;
-//   tr.append(matchCount);
-
-//   tableContents.append(tr);
-
-// }
-
-// renderFromLocal(dataForHighScores[0], dataForHighScores[1]);
