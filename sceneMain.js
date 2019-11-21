@@ -310,6 +310,7 @@ class SceneMain extends Phaser.Scene {
           break;
         default:
           break;
+
       }
       winCountingArray[1]++;
     }
@@ -365,18 +366,22 @@ var choiceString = document.createElement('p');
 
 // Reference for hearing the Clear Local Data <a href> button
 
-// var clearDataReference = document.getElementById('clearData');
-// clearDataReference.addEventListener('click', clearDataFunction);
+var clearDataReference = document.getElementById('clearData');
+clearDataReference.addEventListener('click', clearDataFunction);
 
 //  Local Storage set into User array
 
-// if (SCORE_DATA === null) {
-  var userArray = [];
-// } else {
-//   var jsonData = localStorage.getItem(SCORE_DATA);
-//   var arrayFromLs = JSON.parse(jsonData);
-//   arrayFromLs.push(userArray);
-// }
+
+if (localStorage.getItem(SCORE_DATA) === null) {
+  var localStorageArray = [];
+} else {
+  var jsonData = localStorage.getItem(SCORE_DATA);
+  localStorageArray = JSON.parse(jsonData);
+  console.log(localStorageArray);
+}
+
+
+//  Constructor for User Session
 
 var User = function (name) {
   this.name = name;
@@ -384,19 +389,19 @@ var User = function (name) {
   this.userHistory = 0;
 
   this.saveToLocal = function () {
-    userArray.push(this);
-    scoreData = JSON.stringify(userArray);
+    localStorageArray.push(this);
+    scoreData = JSON.stringify(localStorageArray);
     localStorage.setItem(SCORE_DATA, scoreData);
   };
 };
 
 //  To Remove Local Data, there is a clicker 'Clear Local Data' on index
 
-// function clearDataFunction() {
-//   localStorage.removeItem('SCORE_DATA');
-// }
+function clearDataFunction() {
+  localStorage.removeItem('SCORE_DATA');
+}
 
-// Current Scoreboard Render
+//  Current Scoreboard Render
 
 function scoreBoard() {
   scoreString.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
@@ -410,8 +415,7 @@ function scoreBoard() {
   scoreBoardReference.append(choiceString);
 }
 
-// peter - in the spirit of small functions,
-// peter - I moved win check to its' own function
+//  Render Win Screen and Provide User Options
 
 function winDetected() {
   currentUser.userHistory++;
@@ -430,8 +434,8 @@ function winDetected() {
     winCountingArray = [0, 0];
   } else {
     winCountingArray = [0, 0];
-    var newUser = prompt('Input Name: ');
-    scoreObj = new User(newUser); //data constructed to obj
+    var newName = prompt('Input Name: ');
+    scoreObj = new User(newName); //data constructed to obj
     scoreObj.userHistory = currentUser.userHistory;
     scoreObj.winLossHistory = currentUser.winLossHistory;
     scoreObj.saveToLocal();
