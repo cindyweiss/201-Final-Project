@@ -89,33 +89,33 @@ function battleFunction() {
     (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
     // user win condition
     switch (currentUserChoice) {
-    case 'sword':
-      dialogueString.textContent = 'Your sword removes their limbs!';
-      break;
-    case 'shield':
-      dialogueString.textContent = 'Your shield deflects the sword blow!';
-      break;
-    case 'spell':
-      dialogueString.textContent = 'Your spell crushes their aspirations!';
-      break;
-    default:
-      break;
+      case 'sword':
+        dialogueString.textContent = 'Your sword removes their limbs!';
+        break;
+      case 'shield':
+        dialogueString.textContent = 'Your shield deflects the sword blow!';
+        break;
+      case 'spell':
+        dialogueString.textContent = 'Your spell crushes their aspirations!';
+        break;
+      default:
+        break;
     }
     winCountingArray[0]++;
   } else {
-  // enemy win condtion
+    // enemy win condtion
     switch (badGuyChoice) {
-    case 'sword':
-      dialogueString.textContent = 'Enemy sword disembowels you!';
-      break;
-    case 'shield':
-      dialogueString.textContent = 'Enemy shield laughs at your sword!';
-      break;
-    case 'spell':
-      dialogueString.textContent = 'Enemy spell really ruins your day!';
-      break;
-    default:
-      break;
+      case 'sword':
+        dialogueString.textContent = 'Enemy sword disembowels you!';
+        break;
+      case 'shield':
+        dialogueString.textContent = 'Enemy shield laughs at your sword!';
+        break;
+      case 'spell':
+        dialogueString.textContent = 'Enemy spell really ruins your day!';
+        break;
+      default:
+        break;
     }
     winCountingArray[1]++;
   }
@@ -421,39 +421,39 @@ class SceneMain extends Phaser.Scene {
     // this.shieldSprite.on('pointerdown', this.shieldOnDown, this);
     // this.shieldSprite.on('pointerup', this.shieldOnUp, this);
 
-  // }
-  // shieldOnUp() {
-  //   this.shieldSprite.alpha = 1;
-  // }
-  // shieldOnDown() {
-  //   this.shieldSprite.alpha = .5;
-  // }
-  // spellOnUp() {
-  //   this.spellSprite.alpha = 1;
-  // }
-  // spellOnDown() {
-  //   this.spellSprite.alpha = .5;
-  // }
-  // swordOnUp() {
-  //   this.swordSprite.alpha = 1;
-  // }
-  // swordOnDown() {
-  //   this.swordSprite.alpha = .5;
-  // }
-  // update() {
-  //   // this.cloud1.x += .1;
-  //   // if (this.cloud1.x > game.config.width + 100) {
-  //   //   this.cloud1.x = -100;
-  //   // }
-  //   // this.cloud2.x += .09;
-  //   // if (this.cloud2.x > game.config.width + 100) {
-  //   //   this.cloud2.x = -100;
-  //   // }
-  //   // this.cloud3.x += .075;
-  //   // if (this.cloud3.x > game.config.width + 100) {
-  //   //   this.cloud3.x = -100;
-  //   // }
+    // }
+    // shieldOnUp() {
+    //   this.shieldSprite.alpha = 1;
+    // }
+    // shieldOnDown() {
+    //   this.shieldSprite.alpha = .5;
+    // }
+    // spellOnUp() {
+    //   this.spellSprite.alpha = 1;
+    // }
+    // spellOnDown() {
+    //   this.spellSprite.alpha = .5;
+    // }
+    // swordOnUp() {
+    //   this.swordSprite.alpha = 1;
+    // }
+    // swordOnDown() {
+    //   this.swordSprite.alpha = .5;
+    // }
+    // update() {
+    //   // this.cloud1.x += .1;
+    //   // if (this.cloud1.x > game.config.width + 100) {
+    //   //   this.cloud1.x = -100;
+    //   // }
+    //   // this.cloud2.x += .09;
+    //   // if (this.cloud2.x > game.config.width + 100) {
+    //   //   this.cloud2.x = -100;
+    //   // }
+    //   // this.cloud3.x += .075;
+    //   // if (this.cloud3.x > game.config.width + 100) {
+    //   //   this.cloud3.x = -100;
+    //   // }
 
-  // }
-}
+    // }
+  }
 }
