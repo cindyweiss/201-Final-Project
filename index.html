@@ -2,10 +2,13 @@
 <html lang="en">
 
 <head>
+    <script src="window.js"></script>
+    <!-- <script src="phaser.js"></script> -->
+    <script src="phaser.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Duel of Fate</title>
 </head>
 
@@ -24,22 +27,22 @@
                     Enter at your own peril. <br> Ye just need to pick your weapon!</b>
             </p>
         </div>
-        <!-- might want to use multiple canvas for layers -->
-        <!-- <canvas id=""></canvas> -->
+
         <div id="outerWrap">
-            <div id="scoreBoard"> </div>
-            <canvas id="gameScreen" style="border: 2px black solid;" width="240" height="320">
-                 </canvas>
-            <div id="innerWrap">
-                <div> <img id="swordTarget" src=""> </div>
-                <div> <img id="spellTarget" src=""> </div>
-                <div> <img id="shieldTarget" src=""> </div>
+            <!-- phaser does not require you to make canvas -->
+            <div id="phaser-game">
             </div>
+<<<<<<< HEAD
             <!-- <a href="index.html" id="clearData">Clear Local Data</a> -->
+=======
+            <div id="scoreBoard"> </div>
+            
+            <a href="index.html" id="clearData">Clear Local Data</a>
+>>>>>>> a85165b8e7a2521edc7b09f2ed9a8a9f7e97c7f8
 
         </div>
     </main>
-    <script src="app.js"></script>
+    <script src="sceneMain.js"></script>
 </body>
 
 </html>
