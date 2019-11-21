@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <script src="window.js"></script>
+    <!-- <script src="phaser.js"></script> -->
+    <script src="phaser.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -24,22 +27,18 @@
                     Enter at your own peril. <br> Ye just need to pick your weapon!</b>
             </p>
         </div>
-        <!-- might want to use multiple canvas for layers -->
-        <!-- <canvas id=""></canvas> -->
+
         <div id="outerWrap">
-            <div id="scoreBoard"> </div>
-            <canvas id="gameScreen" style="border: 2px black solid;" width="240" height="320">
-                 </canvas>
-            <div id="innerWrap">
-                <div> <img id="swordTarget" src=""> </div>
-                <div> <img id="spellTarget" src=""> </div>
-                <div> <img id="shieldTarget" src=""> </div>
+            <!-- phaser does not require you to make canvas -->
+            <div id="phaser-game">
             </div>
+            <div id="scoreBoard"> </div>
+            
             <a href="index.html" id="clearData">Clear Local Data</a>
 
         </div>
     </main>
-    <script src="app.js"></script>
+    <script src="sceneMain.js"></script>
 </body>
 
 </html>
