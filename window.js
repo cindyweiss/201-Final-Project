@@ -1,3 +1,4 @@
+
 var game;
 window.onload = function () {
   var config = {
@@ -8,4 +9,4 @@ window.onload = function () {
     scene: [SceneMain]
   };
   game = new Phaser.Game(config);
-}
+};
