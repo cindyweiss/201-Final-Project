@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Kalam|Nothing+You+Could+Do|Patrick+Hand|Permanent+Marker&display=swap');
 body {
     position: relative;
     width: 95%;
@@ -7,7 +8,9 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100%;
-    font-family: cursive;
+    font-family: 'Patrick Hand', cursive;
+    /* font-family: 'Kalam', cursive; */
+    /* font-family: cursive; */
     color: black;
     padding-top: 250px;
 }
@@ -31,21 +34,24 @@ header {
     width: 95%;
     border: black 2px solid;
     text-align: center;
-    background-color: lightgrey;
+    /* background-color: lightgrey;
+    opacity: 35%; */
 }
 
 #header-label {
-    font-size: 275%;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 125%;
+    font-size: 400%;
     text-decoration: underline;
     width: 100%;
-    padding: 0% 0% 4% 0%;
-    /* border-bottom: 2px solid black; */
+    padding: 0% 0% 2% 0%;
 }
 
 #nav-float-left {
     float: left;
     margin: -3% 10% 0% 10%;
     width: 15%;
+    font-size: 125%;
     padding: 1% 1% 1% 1%;
     border: black 2px solid;
     border-top-left-radius: 20% 40%;
@@ -84,41 +90,40 @@ a:active {
 
 .openingScroll {
     text-align: center;
-    background-image: url("../images/scroll.jpeg");
+    background-image: url("images/scroller.jpeg");
     background-repeat: no-repeat;
-    padding: 2%;
+    padding: 1%;
     background-size: 100%;
-    /* max-height: 5%; */
-    /* margin-top: 250px; */
-    /* margin-left: 300px;*/
     font-style: oblique;
-    font-size: 40px;
-  }
-  
+    font-size: 350%;
+    color: black;
+    /* text-shadow: 1px 4px 0px black; */
+    font-weight: bold;
+}
+
 #scoreBoard {
-      text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
-      /* remove this later */
-      color: white;
-      text-shadow: 1px 1px 2px black;
-      font-weight: bold;
-      background: rgba(150, 150, 150, 0.699);
-      border: 1px solid black;
-      
-      width: 480px;
-      height: fit-content;
-      z-index: 3;
-      margin-left: auto;
-      margin-right: auto;
-      /* margin-bottom: -50; */
-      margin-top: 0px;
-  }
-  
-#phaser-game { */
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    /* remove this later */
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    font-weight: bold;
+    background: rgba(150, 150, 150, 0.699);
+    border: 1px solid black;
+    width: 480px;
+    height: fit-content;
+    z-index: 3;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-bottom: -50; */
+    margin-top: 40px;
+}
+
+#phaser-game {
     background-image: url(/images/BG.png);
     border: 2px black solid;
     width: fit-content;
-    /* height: 640px; */ 
+    /* height: 640px; */
     /* transform: scale(1.5); */
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-crisp-edges;
@@ -129,11 +134,11 @@ a:active {
     margin-top: 40px;
     /* margin-bottom: 40px; */
     display: block;
- }
+}
+
 #phaser-game canvas {
     z-index: 1;
     transform: scale(2);
-
 }
 
 #outerWrap {
@@ -152,13 +157,12 @@ a:active {
     width: 90px;
 }
 
-
 #bios {
     top: 200px;
 }
 
 .team-bios {
-    font-size: 125%;
+    font-size: 200%;
     display: inline-block;
     width: 45%;
     background-color: blanchedalmond;
@@ -167,14 +171,15 @@ a:active {
     top: 250px;
 }
 
-#scores th, td {
-   margin: 10px;
-   padding: 50px;
-   color: rgb(10, 87, 10);
-   width: 450px;
-   text-align: center;
-   background-color: lightyellow;
-   text-transform: uppercase;
-   font-size: 50px;
-   font-display: bold;
+#scores th,
+td {
+    margin: 10px;
+    padding: 50px;
+    color: rgb(10, 87, 10);
+    width: 450px;
+    text-align: center;
+    background-color: lightyellow;
+    text-transform: uppercase;
+    font-size: 50px;
+    font-display: bold;
 }
