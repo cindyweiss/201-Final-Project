@@ -228,17 +228,17 @@ class SceneMain extends Phaser.Scene {
     } else {
       // enemy win condtion
       switch (badGuyChoice) {
-        case 'sword':
-          dialogueString.textContent = 'Enemy sword disembowels you!';
-          break;
-        case 'shield':
-          dialogueString.textContent = 'Enemy shield laughs at your sword!';
-          break;
-        case 'spell':
-          dialogueString.textContent = 'Enemy spell really ruins your day!';
-          break;
-        default:
-          break;
+      case 'sword':
+        dialogueString.textContent = 'Enemy sword disembowels you!';
+        break;
+      case 'shield':
+        dialogueString.textContent = 'Enemy shield laughs at your sword!';
+        break;
+      case 'spell':
+        dialogueString.textContent = 'Enemy spell really ruins your day!';
+        break;
+      default:
+        break;
       }
       winCountingArray[1]++;
     }
@@ -295,12 +295,12 @@ var choiceString = document.createElement('p');
 
 //  Local Storage set into User array
 
-if (SCORE_DATA === null) {
-  var userArray = [];
+if (localStorage.getItem(SCORE_DATA) === null) {
+  var localStorageArray = [];
 } else {
   var jsonData = localStorage.getItem(SCORE_DATA);
-  var arrayFromLs = JSON.parse(jsonData);
-  arrayFromLs.push(userArray);
+  localStorageArray = JSON.parse(jsonData);
+  console.log(localStorageArray);
 }
 
 var User = function (name) {
@@ -309,8 +309,8 @@ var User = function (name) {
   this.userHistory = 0;
 
   this.saveToLocal = function () {
-    userArray.push(this);
-    scoreData = JSON.stringify(userArray);
+    localStorageArray.push(this);
+    scoreData = JSON.stringify(localStorageArray);
     localStorage.setItem(SCORE_DATA, scoreData);
   };
 };
@@ -355,8 +355,8 @@ function winDetected() {
     winCountingArray = [0, 0];
   } else {
     winCountingArray = [0, 0];
-    var newUser = prompt('Input Name: ');
-    scoreObj = new User(newUser); //data constructed to obj
+    var newName = prompt('Input Name: ');
+    scoreObj = new User(newName); //data constructed to obj
     scoreObj.userHistory = currentUser.userHistory;
     scoreObj.winLossHistory = currentUser.winLossHistory;
     scoreObj.saveToLocal();

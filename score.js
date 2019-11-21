@@ -1,3 +1,10 @@
+'use strict';
+
+var SCORE_DATA = 'SCORE_DATA';
+
+var tableContents = document.getElementById('scores');
+
+// HEADER
 
 var renderTitleRow = function (tableContents) {
   // var tableContents = document.getElementById('scores');
@@ -11,7 +18,7 @@ var renderTitleRow = function (tableContents) {
   tableContents.append(tr);
 };
 
-var SCORE_DATA = 'SCORE_DATA';
+// CELL DATA
 
 var render = function (tableContents, userData) {
   var tr = document.createElement('tr');
@@ -21,14 +28,16 @@ var render = function (tableContents, userData) {
   var matchCount = document.createElement('td');
   matchCount.textContent = userData.winLossHistory;
   tr.append(matchCount);
-  console.log(this);
   tableContents.append(tr);
 };
 
-var tableContents = document.getElementById('scores');
+if (localStorage.getItem(SCORE_DATA) !== null) {
+  var jsonData = localStorage.getItem(SCORE_DATA);
+  var dataForHighScores = JSON.parse(jsonData);
+} else {
+  dataForHighScores = [];
+}
 
-var jsonData = localStorage.getItem(SCORE_DATA);
-var dataForHighScores = JSON.parse(jsonData);
 renderTitleRow(tableContents);
 
 for (var i = 0; i < dataForHighScores.length; i++) {
