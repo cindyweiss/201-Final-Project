@@ -1,21 +1,21 @@
 
 body {
-  position: relative;
-  width: 95%; 
-  display: block;
-  background-image: url("../images/backgroundcastle.jpeg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100%;
-  font-family: cursive;
-  color: black;
-  padding-top: 250px;
+    position: relative;
+    width: 95%;
+    display: block;
+    background-image: url("../images/backgroundcastle.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    font-family: 'Patrick Hand', cursive;
+    color: black;
+    padding-top: 250px;
 }
 
 body>* {
-  margin: auto;
-  width: 95%;
-  display: block;
+    margin: auto;
+    width: 95%;
+    display: block;
 }
 
 body>script {
@@ -23,13 +23,12 @@ body>script {
 }
 
 header {
-  position: fixed;
-  top: 0%;
-  left: auto;
-  width: 95%;
-  border: black 2px solid;
-  text-align: center;
-  background-color: lightgrey;
+    position: fixed;
+    top: 0%;
+    left: auto;
+    width: 95%;
+    border: black 2px solid;
+    text-align: center;
 }
 
 #header-label {
@@ -99,44 +98,38 @@ a:hover {
 }
 
 #scoreBoard {
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  text-shadow: 1px 1px 2px black;
-  font-weight: bold;
-  background: rgba(150, 150, 150, 0.699);
-  border: 1px solid black;
-  width: 480px;
-  height: fit-content;
-  z-index: 3;
-  margin-left: auto;
-  margin-right: auto;
-  /* margin-bottom: -50; */
-  margin-top: 40px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    font-weight: bold;
+    background: rgba(150, 150, 150, 0.699);
+    border: 1px solid black;
+    width: 480px;
+    height: fit-content;
+    z-index: 3;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
 }
 
 #phaser-game {
-  background-image: url(/images/BG.png);
-  border: 2px black solid;
-  width: fit-content;
-  /* height: 640px; */ 
-  /* transform: scale(1.5); */
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-crisp-edges;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 40px;
-  /* margin-bottom: 40px; */
-  display: block;
+    background-image: url(/images/BG.png);
+    border: 2px black solid;
+    width: fit-content;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    display: block;
 }
 
 #phaser-game canvas {
   z-index: 1;
   transform: scale(2);
-
-}
 
 #cloud3 {
   z-index: 1;
