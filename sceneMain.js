@@ -6,24 +6,24 @@ class SceneMain extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("swordSprite", "images/swordSprite.png");
-    this.load.image("spellSprite", "images/spellSprite.png");
-    this.load.image("shieldSprite", "images/shieldSprite.png");
-    this.load.image("BG", "images/BG.png");
-    this.load.spritesheet("pallyNewIdle", "images/pallyNewIdle.png", { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet("banditIdle32", "images/banditIdle32.png", { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet("ggSword", "images/ggSword.png", { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet("ggSpell", "images/ggSpell.png", { frameWidth: 32, frameHeight: 45 });
+    this.load.image('swordSprite', 'images/swordSprite.png');
+    this.load.image('spellSprite', 'images/spellSprite.png');
+    this.load.image('shieldSprite', 'images/shieldSprite.png');
+    this.load.image('BG', 'images/BG.png');
+    this.load.spritesheet('pallyNewIdle', 'images/pallyNewIdle.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('banditIdle32', 'images/banditIdle32.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('ggSword', 'images/ggSword.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('ggSpell', 'images/ggSpell.png', { frameWidth: 32, frameHeight: 45 });
 
   }
   create() {
-    let background = this.add.image(game.config.width / 2, game.config.height / 2, "BG");
+    let background = this.add.image(game.config.width / 2, game.config.height / 2, 'BG');
     //test
 
 
 
     //test end 
-    this.paladin = this.add.sprite(190, 335, "pallyNewIdle");
+    this.paladin = this.add.sprite(190, 335, 'pallyNewIdle');
     this.anims.create({
       key: 'pallyIdle',
       frames: [
@@ -36,7 +36,7 @@ class SceneMain extends Phaser.Scene {
     });
     this.paladin.play('pallyIdle');
 
-    this.char = this.add.sprite(290, 339, "banditIdle32");
+    this.char = this.add.sprite(290, 339, 'banditIdle32');
 
     this.anims.create({
       key: 'badIdle',
@@ -57,7 +57,7 @@ class SceneMain extends Phaser.Scene {
       frameRate: 7,
       repeat: false
     });
-   //spell anim
+    //spell anim
     var frameNames = this.anims.generateFrameNumbers('ggSpell');
     this.anims.create({
       key: 'ggSpell',
@@ -67,19 +67,19 @@ class SceneMain extends Phaser.Scene {
     });
 
 
-    this.swordSprite = this.add.image(150, 415, "swordSprite");
+    this.swordSprite = this.add.image(150, 415, 'swordSprite');
     this.swordSprite.setInteractive();
     this.swordSprite.on('pointerdown', this.swordOnDown, this);
     this.swordSprite.on('pointerup', this.swordOnUp, this);
     this.swordSprite.setScale(.5);
 
-    this.spellSprite = this.add.image(225, 415, "spellSprite");
+    this.spellSprite = this.add.image(225, 415, 'spellSprite');
     this.spellSprite.setInteractive();
     this.spellSprite.on('pointerdown', this.spellOnDown, this);
     this.spellSprite.on('pointerup', this.spellOnUp, this);
     this.spellSprite.setScale(.5);
 
-    this.shieldSprite = this.add.image(315, 425, "shieldSprite");
+    this.shieldSprite = this.add.image(315, 425, 'shieldSprite');
     this.shieldSprite.setInteractive();
     this.shieldSprite.on('pointerdown', this.shieldOnDown, this);
     this.shieldSprite.on('pointerup', this.shieldOnUp, this);
@@ -101,8 +101,8 @@ class SceneMain extends Phaser.Scene {
       // user win condition
       switch (currentUserChoice) {
         case 'sword':
-          dialogueString.textContent = 'Your sword removes their limbs!'; 4
-          this.ggSlash = this.add.sprite(190, 335, "ggSword");
+          dialogueString.textContent = 'Your sword removes their limbs!';
+          this.ggSlash = this.add.sprite(190, 335, 'ggSword');
           this.ggSlash.play('ggSword');
           break;
         case 'shield':
@@ -154,8 +154,8 @@ class SceneMain extends Phaser.Scene {
       // user win condition
       switch (currentUserChoice) {
         case 'sword':
-          dialogueString.textContent = 'Your sword removes their limbs!'; 4
-          this.ggSlash = this.add.sprite(190, 335, "ggSword");
+          dialogueString.textContent = 'Your sword removes their limbs!';
+          this.ggSlash = this.add.sprite(190, 335, 'ggSword');
           this.ggSlash.play('ggSword');
           break;
         case 'shield':
@@ -164,7 +164,7 @@ class SceneMain extends Phaser.Scene {
         case 'spell':
           dialogueString.textContent = 'Your spell crushes their aspirations!';
           this.paladin.removeIdle;
-          this.ggSpark = this.add.sprite(190, 329, "ggSpell");
+          this.ggSpark = this.add.sprite(190, 329, 'ggSpell');
           this.ggSpark.play('ggSpell');
           // this.char = this.add.sprite(190, 335, "pallyNewIdle");
           break;
@@ -211,8 +211,8 @@ class SceneMain extends Phaser.Scene {
       // user win condition
       switch (currentUserChoice) {
         case 'sword':
-          dialogueString.textContent = 'Your sword removes their limbs!'; 4
-          this.ggSlash = this.add.sprite(190, 335, "ggSword");
+          dialogueString.textContent = 'Your sword removes their limbs!';
+          this.ggSlash = this.add.sprite(190, 335, 'ggSword');
           this.ggSlash.play('ggSword');
           break;
         case 'shield':
@@ -258,11 +258,10 @@ class SceneMain extends Phaser.Scene {
 
   update() {
 
-
-
   }
 }
 
+// Most of Old App.js Content Below ------------------------------------
 
 var attackChoices = ['sword', 'spell', 'shield'];
 
@@ -316,7 +315,19 @@ function clearDataFunction() {
   localStorage.removeItem('SCORE_DATA');
 }
 
+// Current Scoreboard Render
 
+function scoreBoard() {
+  scoreString.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
+  if (!winCountingArray.includes(3)) {
+    choiceString.textContent = `${currentUserChoice} vs ${badGuyChoice}`;
+  } else {
+    choiceString.textContent = '';
+  }
+  scoreBoardReference.append(scoreString);
+  scoreBoardReference.append(dialogueString);
+  scoreBoardReference.append(choiceString);
+}
 
 // peter - in the spirit of small functions,
 // peter - I moved win check to its' own function
@@ -345,21 +356,6 @@ function winDetected() {
     scoreObj.saveToLocal();
   }
 }
-
-// Current Scoreboard Render
-
-function scoreBoard() {
-  scoreString.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
-  if (!winCountingArray.includes(3)) {
-    choiceString.textContent = `${currentUserChoice} vs ${badGuyChoice}`;
-  } else {
-    choiceString.textContent = '';
-  }
-  scoreBoardReference.append(scoreString);
-  scoreBoardReference.append(dialogueString);
-  scoreBoardReference.append(choiceString);
-}
-
 
 // to do list, Refactoring with phaser!! :D
 //idle with phaser,
