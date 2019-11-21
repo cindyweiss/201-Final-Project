@@ -1,180 +1,180 @@
 body {
-    position: relative;
-    width: 95%;
-    /* border: 1px solid red; */
-    display: block;
-    background-image: url("../images/backgroundcastle.jpeg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100%;
-    font-family: cursive;
-    color: black;
-    padding-top: 250px;
+  position: relative;
+  width: 95%;
+  /* border: 1px solid red; */
+  display: block;
+  background-image: url("../images/backgroundcastle.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+  font-family: cursive;
+  color: black;
+  padding-top: 250px;
 }
 
 body>* {
-    margin: auto;
-    width: 95%;
-    /* border: 1px solid blue; */
-    display: block;
-    /* overflow: auto; */
+  margin: auto;
+  width: 95%;
+  /* border: 1px solid blue; */
+  display: block;
+  /* overflow: auto; */
 }
 
 body>script {
-    display: none
+  display: none
 }
 
 header {
-    position: fixed;
-    top: 0%;
-    left: auto;
-    width: 95%;
-    border: black 2px solid;
-    text-align: center;
-    background-color: lightgrey;
+  position: fixed;
+  top: 0%;
+  left: auto;
+  width: 95%;
+  border: black 2px solid;
+  text-align: center;
+  background-color: lightgrey;
 }
 
 #header-label {
-    font-size: 275%;
-    text-decoration: underline;
-    width: 100%;
-    padding: 0% 0% 4% 0%;
-    /* border-bottom: 2px solid black; */
+  font-size: 275%;
+  text-decoration: underline;
+  width: 100%;
+  padding: 0% 0% 4% 0%;
+  /* border-bottom: 2px solid black; */
 }
 
 #nav-float-left {
-    float: left;
-    margin: -3% 10% 0% 10%;
-    width: 15%;
-    padding: 1% 1% 1% 1%;
-    border: black 2px solid;
-    border-top-left-radius: 20% 40%;
-    border-top-right-radius: 20% 40%;
-    border-bottom-left-radius: 20% 40%;
-    border-bottom-right-radius: 20% 40%;
+  float: left;
+  margin: -3% 10% 0% 10%;
+  width: 15%;
+  padding: 1% 1% 1% 1%;
+  border: black 2px solid;
+  border-top-left-radius: 20% 40%;
+  border-top-right-radius: 20% 40%;
+  border-bottom-left-radius: 20% 40%;
+  border-bottom-right-radius: 20% 40%;
 }
 
 #nav-float-right {
-    float: right;
-    margin: -3% 10% 0% 10%;
-    width: 15%;
-    padding: 1% 1% 1% 1%;
-    border: black 2px solid;
-    border-top-left-radius: 20% 40%;
-    border-top-right-radius: 20% 40%;
-    border-bottom-left-radius: 20% 40%;
-    border-bottom-right-radius: 20% 40%;
+  float: right;
+  margin: -3% 10% 0% 10%;
+  width: 15%;
+  padding: 1% 1% 1% 1%;
+  border: black 2px solid;
+  border-top-left-radius: 20% 40%;
+  border-top-right-radius: 20% 40%;
+  border-bottom-left-radius: 20% 40%;
+  border-bottom-right-radius: 20% 40%;
 }
 
 a:link {
-    background-color: white;
+  background-color: white;
 }
 
 a:visited {
-    background-color: cyan;
+  background-color: cyan;
 }
 
 a:hover {
-    background-color: lightgreen;
+  background-color: lightgreen;
 }
 
 a:active {
-    background-color: hotpink;
+  background-color: hotpink;
 }
 
 .openingScroll {
-    text-align: center;
-    background-image: url("../images/scroll.jpeg");
-    background-repeat: no-repeat;
-    padding: 2%;
-    background-size: 100%;
-    /* max-height: 5%; */
-    /* margin-top: 250px; */
-    /* margin-left: 300px;*/
-    font-style: oblique;
-    font-size: 40px;
-  }
-  
+  text-align: center;
+  background-image: url("../images/scroll.jpeg");
+  background-repeat: no-repeat;
+  padding: 2%;
+  background-size: 100%;
+  /* max-height: 5%; */
+  /* margin-top: 250px; */
+  /* margin-left: 300px;*/
+  font-style: oblique;
+  font-size: 40px;
+}
+
 #scoreBoard {
-      text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
-      /* remove this later */
-      color: white;
-      text-shadow: 1px 1px 2px black;
-      font-weight: bold;
-      background: rgba(150, 150, 150, 0.699);
-      border: 1px solid black;
-      
-      width: 480px;
-      height: fit-content;
-      z-index: 3;
-      margin-left: auto;
-      margin-right: auto;
-      /* margin-bottom: -50; */
-      margin-top: 0px;
-  }
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  /* remove this later */
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-weight: bold;
+  background: rgba(150, 150, 150, 0.699);
+  border: 1px solid black;
   
-#phaser-game { */
-    background-image: url(/images/BG.png);
-    border: 2px black solid;
-    width: fit-content;
-    /* height: 640px; */ 
-    /* transform: scale(1.5); */
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-crisp-edges;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-    /* margin-bottom: 40px; */
-    display: block;
- }
+  width: 480px;
+  height: fit-content;
+  z-index: 3;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin-bottom: -50; */
+  margin-top: 0px;
+}
+
+#phaser-game {
+  background-image: url(/images/BG.png);
+  border: 2px black solid;
+  width: fit-content;
+  /* height: 640px; */ 
+  /* transform: scale(1.5); */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  /* margin-bottom: 40px; */
+  display: block;
+}
+
 #phaser-game canvas {
-    z-index: 1;
-    transform: scale(2);
+  z-index: 1;
+  transform: scale(2);
 
 }
 
 #outerWrap {
-    /* stretch goal: learn how to div wrap centered stuff */
+  /* stretch goal: learn how to div wrap centered stuff */
 }
 
 #innerWrap {
-    /* stretch goal: learn how to div wrap centered stuff */
+  /* stretch goal: learn how to div wrap centered stuff */
 }
 
 #cloud3 {
-    z-index: 1;
-    position: relative;
-    top: 50;
-    left: 50;
-    width: 90px;
+  z-index: 1;
+  position: relative;
+  top: 50;
+  left: 50;
+  width: 90px;
 }
 
-
 #bios {
-    top: 200px;
+  top: 200px;
 }
 
 .team-bios {
-    font-size: 125%;
-    display: inline-block;
-    width: 45%;
-    background-color: blanchedalmond;
-    border-radius: 15%;
-    padding: 20px 20px 20px 20px;
-    top: 250px;
+  font-size: 125%;
+  display: inline-block;
+  width: 45%;
+  background-color: blanchedalmond;
+  border-radius: 15%;
+  padding: 20px 20px 20px 20px;
+  top: 250px;
 }
 
 #scores th, td {
-   margin: 10px;
-   padding: 50px;
-   color: rgb(10, 87, 10);
-   width: 450px;
-   text-align: center;
-   background-color: lightyellow;
-   text-transform: uppercase;
-   font-size: 50px;
-   font-display: bold;
+  margin: 10px;
+  padding: 50px;
+  color: rgb(10, 87, 10);
+  width: 450px;
+  text-align: center;
+  background-color: lightyellow;
+  text-transform: uppercase;
+  font-size: 50px;
+  font-display: bold;
 }
