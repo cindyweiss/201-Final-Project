@@ -12,8 +12,6 @@ var badGuyChoice = '';
 
 var winCountingArray = [0, 0]; // [0] is currentUser , [1] is badGuy
 
-var scoreObj = [];
-
 var scoreBoardReference = document.getElementById('scoreBoard');
 
 var currentUser = {
@@ -27,12 +25,18 @@ var choiceString = document.createElement('p');
 
 // Reference for hearing the Clear Local Data <a href> button
 
-var clearDataReference = document.getElementById('clearData');
-clearDataReference.addEventListener('click', clearDataFunction);
+// var clearDataReference = document.getElementById('clearData');
+// clearDataReference.addEventListener('click', clearDataFunction);
 
 //  Local Storage set into User array
 
-var userArray = [];
+if (SCORE_DATA === null) {
+  var userArray = [];
+} else {
+  var jsonData = localStorage.getItem(SCORE_DATA);
+  var arrayFromLs = JSON.parse(jsonData);
+  arrayFromLs.push(userArray);
+}
 
 var User = function (name) {
   this.name = name;
@@ -41,15 +45,15 @@ var User = function (name) {
 
   this.saveToLocal = function () {
     userArray.push(this);
-    scoreData = JSON.stringify(userArray);
-    localStorage.setItem('SCORE_DATA', scoreData);
+    scoreData = JSON.stringify(userArray);//can parse here
+    localStorage.setItem(SCORE_DATA, scoreData);
   };
 };
 
 //  To Remove Local Data, there is a clicker beneath About Us in index
 
 function clearDataFunction() {
-  localStorage.removeItem('SCORE_DATA');
+  localStorage.removeItem(SCORE_DATA);
 }
 
 // sword beats spell, spell beats shield, shield beats sword
@@ -75,6 +79,20 @@ shieldTarget.addEventListener('click', event => {
   currentUserChoice = 'shield';
   battleFunction();
 });
+
+// Current Scoreboard Render
+
+function scoreBoard() {
+  scoreString.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
+  if (!winCountingArray.includes(3)) {
+    choiceString.textContent = `${currentUserChoice} vs ${badGuyChoice}`;
+  } else {
+    choiceString.textContent = '';
+  }
+  scoreBoardReference.append(scoreString);
+  scoreBoardReference.append(dialogueString);
+  scoreBoardReference.append(choiceString);
+}
 
 //  Evaluate the Battle
 
@@ -147,25 +165,12 @@ function winDetected() {
   } else {
     winCountingArray = [0, 0];
     var newUser = prompt('Input Name: ');
+    var scoreObj = [];
     scoreObj = new User(newUser); //data constructed to obj
     scoreObj.userHistory = currentUser.userHistory;
     scoreObj.winLossHistory = currentUser.winLossHistory;
     scoreObj.saveToLocal();
   }
-}
-
-// Current Scoreboard Render
-
-function scoreBoard() {
-  scoreString.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
-  if (!winCountingArray.includes(3)) {
-    choiceString.textContent = `${currentUserChoice} vs ${badGuyChoice}`;
-  } else {
-    choiceString.textContent = '';
-  }
-  scoreBoardReference.append(scoreString);
-  scoreBoardReference.append(dialogueString);
-  scoreBoardReference.append(choiceString);
 }
 
 // ===============================================================
@@ -421,39 +426,42 @@ class SceneMain extends Phaser.Scene {
     // this.shieldSprite.on('pointerdown', this.shieldOnDown, this);
     // this.shieldSprite.on('pointerup', this.shieldOnUp, this);
 
-    // }
-    // shieldOnUp() {
-    //   this.shieldSprite.alpha = 1;
-    // }
-    // shieldOnDown() {
-    //   this.shieldSprite.alpha = .5;
-    // }
-    // spellOnUp() {
-    //   this.spellSprite.alpha = 1;
-    // }
-    // spellOnDown() {
-    //   this.spellSprite.alpha = .5;
-    // }
-    // swordOnUp() {
-    //   this.swordSprite.alpha = 1;
-    // }
-    // swordOnDown() {
-    //   this.swordSprite.alpha = .5;
-    // }
-    // update() {
-    //   // this.cloud1.x += .1;
-    //   // if (this.cloud1.x > game.config.width + 100) {
-    //   //   this.cloud1.x = -100;
-    //   // }
-    //   // this.cloud2.x += .09;
-    //   // if (this.cloud2.x > game.config.width + 100) {
-    //   //   this.cloud2.x = -100;
-    //   // }
-    //   // this.cloud3.x += .075;
-    //   // if (this.cloud3.x > game.config.width + 100) {
-    //   //   this.cloud3.x = -100;
-    //   // }
 
-    // }
-  }
+    
+// }
+// shieldOnUp() {
+//   this.shieldSprite.alpha = 1;
+// }
+// shieldOnDown() {
+//   this.shieldSprite.alpha = .5;
+// }
+// spellOnUp() {
+//   this.spellSprite.alpha = 1;
+// }
+// spellOnDown() {
+//   this.spellSprite.alpha = .5;
+// }
+// swordOnUp() {
+//   this.swordSprite.alpha = 1;
+// }
+// swordOnDown() {
+//   this.swordSprite.alpha = .5;
+// }
+// update() {
+//   // this.cloud1.x += .1;
+//   // if (this.cloud1.x > game.config.width + 100) {
+//   //   this.cloud1.x = -100;
+//   // }
+//   // this.cloud2.x += .09;
+//   // if (this.cloud2.x > game.config.width + 100) {
+//   //   this.cloud2.x = -100;
+//   // }
+//   // this.cloud3.x += .075;
+//   // if (this.cloud3.x > game.config.width + 100) {
+//   //   this.cloud3.x = -100;
+//   // }
+
+// }
+}
+
 }
