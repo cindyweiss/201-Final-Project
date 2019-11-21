@@ -38,7 +38,7 @@ var render = function (user) {
 
 var jsonData = localStorage.getItem(SCORE_DATA);
 var dataForHighScores = JSON.parse(jsonData);
-renderTitleRow();
+renderTitleRow()
 for (var i = 0; i < dataForHighScores.length; i++) {
   render(dataForHighScores[i]);
 }

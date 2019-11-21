@@ -78,22 +78,24 @@ a:hover {
     background-color: lightgreen;
 }
 
-a:active {
-    background-color: hotpink;
-}
+
 
 .openingScroll {
     text-align: center;
     background-image: url("../images/scroll.jpeg");
     background-repeat: no-repeat;
-    padding: 2%;
+    padding: 1%;
     background-size: 100%;
     /* max-height: 5%; */
     /* margin-top: 250px; */
     /* margin-left: 300px;*/
     font-style: oblique;
     font-size: 40px;
-  }
+}
+
+.openingScroll p{
+    background-color: rgba(214, 189, 159, 0.44);
+}
   
 #scoreBoard {
       text-align: center;
@@ -168,13 +170,13 @@ a:active {
 }
 
 #scores th, td {
-   margin: 10px;
-   padding: 50px;
+   margin: 50px;
+   padding: 10px;
    color: rgb(10, 87, 10);
-   width: 450px;
+   width: 500px;
    text-align: center;
    background-color: lightyellow;
    text-transform: uppercase;
-   font-size: 50px;
+   font-size: 40px;
    font-display: bold;
 }
