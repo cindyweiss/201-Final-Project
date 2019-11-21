@@ -1,7 +1,6 @@
 body {
     position: relative;
-    width: 95%;
-    /* border: 1px solid red; */
+    width: 90%;
     display: block;
     background-image: url("../images/backgroundcastle.jpeg");
     background-repeat: no-repeat;
@@ -15,7 +14,6 @@ body {
 body>* {
     margin: auto;
     width: 95%;
-    /* border: 1px solid blue; */
     display: block;
     /* overflow: auto; */
 }
@@ -27,8 +25,8 @@ body>script {
 header {
     position: fixed;
     top: 0%;
-    left: auto;
-    width: 95%;
+    left: 5%;
+    width: 90%;
     border: black 2px solid;
     text-align: center;
     background-color: lightgrey;
@@ -38,13 +36,12 @@ header {
     font-size: 275%;
     text-decoration: underline;
     width: 100%;
-    padding: 0% 0% 4% 0%;
-    /* border-bottom: 2px solid black; */
+    padding: 0% 0% 3% 0%;
 }
 
 #nav-float-left {
     float: left;
-    margin: -3% 10% 0% 10%;
+    margin: -3% 5% 0% 5%;
     width: 15%;
     padding: 1% 1% 1% 1%;
     border: black 2px solid;
@@ -85,34 +82,27 @@ a:active {
 .openingScroll {
     text-align: center;
     background-image: url("../images/scroll.jpeg");
+    background-position: center;
     background-repeat: no-repeat;
     padding: 2%;
-    background-size: 100%;
-    /* max-height: 5%; */
-    /* margin-top: 250px; */
-    /* margin-left: 300px;*/
+    background-size: 60%;
+    /* left: 20%; */
     font-style: oblique;
-    font-size: 40px;
-  }
-  
-#scoreBoard {
-      text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
-      /* remove this later */
-      color: white;
-      text-shadow: 1px 1px 2px black;
-      font-weight: bold;
-      background: rgba(150, 150, 150, 0.699);
-      border: 1px solid black;
-      
-      width: 480px;
-      height: fit-content;
-      z-index: 3;
-      margin-left: auto;
-      margin-right: auto;
-      /* margin-bottom: -50; */
-      margin-top: 0px;
-  }
+
+    font-size: 250%;
+}
+
+#gameBoard {
+    margin-top: 5%;
+    /* border: blue 2px solid; */
+}
+
+canvas {
+    bottom: 0px;
+    position: absolute top 0px;
+    border: 2px black solid;
+    /* height: 45%; */
+    width: 50%;
   
 #phaser-game { */
     background-image: url(/images/BG.png);
@@ -120,28 +110,62 @@ a:active {
     width: fit-content;
     /* height: 640px; */ 
     /* transform: scale(1.5); */
+
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 40px;
-    /* margin-bottom: 40px; */
-    display: block;
- }
-#phaser-game canvas {
-    z-index: 1;
-    transform: scale(2);
 
+    display: block;
 }
 
-#outerWrap {
-    /* stretch goal: learn how to div wrap centered stuff */
+#scoreBoard {
+    position: absolute;
+    margin-top: 5%;
+    width: 40%;
+    left: 30%;
+    display: inline;
+    text-align: center;
+    border: 2px blue solid;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    font-weight: bold;
+    background: rgba(150, 150, 150, 0.699);
+    border: 1px solid black;
 }
 
 #innerWrap {
-    /* stretch goal: learn how to div wrap centered stuff */
+    position: absolute;
+    left: 25%;
+    bottom: 10%;
+    width: 50%;
+    display: flex;
+    text-align: center;
+}
+
+.column {
+    flex: 33.33%;
+    padding: 5px;
+    bottom: 0px;
+}
+
+#swordTarget {
+    width: 100px;
+    /* z-index: 1; */
+}
+
+#spellTarget {
+    width: 130px;
+    /* z-index: 2; */
+}
+
+#shieldTarget {
+    width: 130px;
+    /* z-index: 3; */
 }
 
 #cloud3 {
@@ -151,7 +175,6 @@ a:active {
     left: 50;
     width: 90px;
 }
-
 
 #bios {
     top: 200px;
@@ -167,17 +190,15 @@ a:active {
     top: 250px;
 }
 
-#scores th, td {
-   margin: 10px;
-   padding: 50px;
-   color: rgb(10, 87, 10);
-   width: 450px;
-   text-align: center;
-   background-color: lightyellow;
-   text-transform: uppercase;
-   font-size: 50px;
-   font-display: bold;
+#scores th,
+td {
+    margin: 10px;
+    padding: 50px;
+    color: rgb(10, 87, 10);
+    width: 450px;
+    text-align: center;
+    background-color: lightyellow;
+    text-transform: uppercase;
+    font-size: 50px;
+    font-display: bold;
 }
-
-
-   

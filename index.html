@@ -28,15 +28,24 @@
             </p>
         </div>
 
-        <div id="outerWrap">
-            <!-- phaser does not require you to make canvas -->
-            <div id="phaser-game">
-            </div>
+        <div id="gameBoard">
             <div id="scoreBoard"> </div>
-            
-            <a href="index.html" id="clearData">Clear Local Data</a>
+            <canvas id="gameScreen" style="border: 2px black solid;" width="240" height="320">
+                 </canvas>
+            <div id="innerWrap">
+                <div class="column">
+                    <img id="swordTarget" src="">
+                </div>
+                <div class="column">
+                    <img id="spellTarget" src="">
+                </div>
+                <div class="column">
+                    <img id="shieldTarget" src="">
+                </div>
+            </div>
 
         </div>
+        <a href="index.html" id="clearData">Clear Local Data</a>
     </main>
     <script src="sceneMain.js"></script>
 </body>
