@@ -10,31 +10,80 @@ class SceneMain extends Phaser.Scene {
     this.load.image("spellSprite", "images/spellSprite.png");
     this.load.image("shieldSprite", "images/shieldSprite.png");
     this.load.image("BG", "images/BG.png");
-    this.load.spritesheet("pallyNewIdle", "images/pallyNewIdle.png", { frameWidth: 32, frameHeight: 32 });
+    // this.load.spritesheet("pallyNewIdle", "images/pallyNewIdle.png", { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet("banditIdle32", "images/banditIdle32.png", { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet("ggSword", "images/ggSword.png", { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet("ggSpell", "images/ggSpell.png", { frameWidth: 32, frameHeight: 45 });
+    // this.load.spritesheet("ggSword", "images/ggSword.png", { frameWidth: 32, frameHeight: 32 });
+    // this.load.spritesheet("ggSpell", "images/ggSpell.png", { frameWidth: 32, frameHeight: 45 });
+    // this.load.spritesheet("ggShield", "images/ggShield.png", { frameWidth: 32, frameHeight: 45 });
+    this.load.spritesheet("pallyTotal", "images/pallyTotal.png", { frameWidth: 32, frameHeight: 45 });
 
   }
   create() {
+
+
     let background = this.add.image(game.config.width / 2, game.config.height / 2, "BG");
-    //test
 
 
+    paladin = this.add.sprite(190, 335, "pallyTotal");
 
-    //test end 
-    this.paladin = this.add.sprite(190, 335, "pallyNewIdle");
+
     this.anims.create({
       key: 'pallyIdle',
       frames: [
-        { key: 'pallyNewIdle', frame: 0 },
-        { key: 'pallyNewIdle', frame: 1 },
+        { key: 'pallyTotal', frame: 0 },
+        { key: 'pallyTotal', frame: 1 },
       ],
       frameRate: 3.2,
-      repeat: -1
-
+      repeat: -1,
     });
-    this.paladin.play('pallyIdle');
+
+    paladin.play('pallyIdle');
+    this.anims.create({
+      key: 'ggSpell',
+      frames: [
+        { key: 'pallyTotal', frame: 10},
+        { key: 'pallyTotal', frame: 11 },
+        { key: 'pallyTotal', frame: 12 },
+        { key: 'pallyTotal', frame: 13 },
+        { key: 'pallyTotal', frame: 14 },
+        { key: 'pallyTotal', frame: 15 },
+        { key: 'pallyTotal', frame: 16 },
+        { key: 'pallyTotal', frame: 17 },
+      ],
+      frameRate: 7,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'ggShield',
+      frames: [
+        { key: 'pallyTotal', frame: 18 },
+        { key: 'pallyTotal', frame: 19 },
+        { key: 'pallyTotal', frame: 20 },
+        { key: 'pallyTotal', frame: 21 },
+        { key: 'pallyTotal', frame: 22 },
+        { key: 'pallyTotal', frame: 23 },
+        { key: 'pallyTotal', frame: 24 },
+        { key: 'pallyTotal', frame: 25 },
+      ],
+      frameRate: 7,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'ggSword',
+      frames: [
+        { key: 'pallyTotal', frame: 2 },
+        { key: 'pallyTotal', frame: 3 },
+        { key: 'pallyTotal', frame: 4 },
+        { key: 'pallyTotal', frame: 5 },
+        { key: 'pallyTotal', frame: 6 },
+        { key: 'pallyTotal', frame: 7 },
+        { key: 'pallyTotal', frame: 8 },
+        { key: 'pallyTotal', frame: 9 },
+      ],
+      frameRate: 7,
+      repeat: -1,
+    });
+
 
     this.char = this.add.sprite(290, 339, "banditIdle32");
 
@@ -48,23 +97,6 @@ class SceneMain extends Phaser.Scene {
       repeat: -1
     });
     this.char.play('badIdle');
-
-    //sword anim
-    var frameNames = this.anims.generateFrameNumbers('ggSword');
-    this.anims.create({
-      key: 'ggSword',
-      frames: frameNames,
-      frameRate: 7,
-      repeat: false
-    });
-   //spell anim
-    var frameNames = this.anims.generateFrameNumbers('ggSpell');
-    this.anims.create({
-      key: 'ggSpell',
-      frames: frameNames,
-      frameRate: 4,
-      repeat: false
-    });
 
 
     this.swordSprite = this.add.image(150, 415, "swordSprite");
@@ -85,6 +117,8 @@ class SceneMain extends Phaser.Scene {
     this.shieldSprite.on('pointerup', this.shieldOnUp, this);
     this.shieldSprite.setScale(.5);
 
+    // this.paladin.play('pallyIdle');
+    //end create function
   }
 
   //below are our new phaser event listeners, we had to put a copy of battlefunction into each button unfortunately. When i tried to invoke battle function from this area it was not defined, and vice versa for the animation command. so this was my solution, it works for now and still succesfully invokes the other functions.
@@ -101,12 +135,14 @@ class SceneMain extends Phaser.Scene {
       // user win condition
       switch (currentUserChoice) {
         case 'sword':
-          dialogueString.textContent = 'Your sword removes their limbs!'; 4
+          dialogueString.textContent = 'Your sword removes their limbs!';
           this.ggSlash = this.add.sprite(190, 335, "ggSword");
           this.ggSlash.play('ggSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Your shield deflects the sword blow!';
+          paladin.play('ggShield');
+          
           break;
         case 'spell':
           dialogueString.textContent = 'Your spell crushes their aspirations!';
@@ -163,9 +199,8 @@ class SceneMain extends Phaser.Scene {
           break;
         case 'spell':
           dialogueString.textContent = 'Your spell crushes their aspirations!';
-          this.paladin.removeIdle;
-          this.ggSpark = this.add.sprite(190, 329, "ggSpell");
-          this.ggSpark.play('ggSpell');
+          paladin.play('ggSpell');
+          
           // this.char = this.add.sprite(190, 335, "pallyNewIdle");
           break;
         default:
@@ -211,9 +246,12 @@ class SceneMain extends Phaser.Scene {
       // user win condition
       switch (currentUserChoice) {
         case 'sword':
-          dialogueString.textContent = 'Your sword removes their limbs!'; 4
-          this.ggSlash = this.add.sprite(190, 335, "ggSword");
-          this.ggSlash.play('ggSword');
+          dialogueString.textContent = 'Your sword removes their limbs!';
+         
+
+          paladin.play('ggSword');
+          
+          
           break;
         case 'shield':
           dialogueString.textContent = 'Your shield deflects the sword blow!';
@@ -247,22 +285,24 @@ class SceneMain extends Phaser.Scene {
     if (winCountingArray.includes(3)) {
       winDetected();
     }
-
   }
   swordOnDown() {
     this.swordSprite.alpha = .5;
   }
-  removeIdle(){
-    this.paladin.destroy();
-  }
+  // removeIdle(){
+  //   this.paladin.destroy();
+  // }
 
   update() {
+    //  if(){
 
+    //  }
 
 
   }
 }
 
+var paladin;
 
 var attackChoices = ['sword', 'spell', 'shield'];
 
