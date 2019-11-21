@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Kalam|Nothing+You+Could+Do|Patrick+Hand|Permanent+Marker&display=swap');
+
 body {
     position: relative;
     width: 95%;
@@ -19,7 +19,7 @@ body>* {
 }
 
 body>script {
-    display: none
+  display: none
 }
 
 header {
@@ -32,66 +32,61 @@ header {
 }
 
 #header-label {
-    font-family: 'Permanent Marker', cursive;
-    font-size: 125%;
-    font-size: 400%;
-    text-decoration: underline;
-    width: 100%;
-    padding: 0% 0% 2% 0%;
+  font-size: 275%;
+  text-decoration: underline;
+  width: 100%;
+  padding: 0% 0% 4% 0%;
+  /* border-bottom: 2px solid black; */
 }
 
 #nav-float-left {
-    float: left;
-    margin: -3% 10% 0% 10%;
-    width: 15%;
-    font-size: 125%;
-    padding: 1% 1% 1% 1%;
-    border: black 2px solid;
-    border-top-left-radius: 20% 40%;
-    border-top-right-radius: 20% 40%;
-    border-bottom-left-radius: 20% 40%;
-    border-bottom-right-radius: 20% 40%;
+  float: left;
+  margin: -3% 10% 0% 10%;
+  width: 15%;
+  padding: 1% 1% 1% 1%;
+  border: black 2px solid;
+  border-top-left-radius: 20% 40%;
+  border-top-right-radius: 20% 40%;
+  border-bottom-left-radius: 20% 40%;
+  border-bottom-right-radius: 20% 40%;
 }
 
 #nav-float-right {
-    float: right;
-    margin: -3% 10% 0% 10%;
-    width: 15%;
-    padding: 1% 1% 1% 1%;
-    border: black 2px solid;
-    border-top-left-radius: 20% 40%;
-    border-top-right-radius: 20% 40%;
-    border-bottom-left-radius: 20% 40%;
-    border-bottom-right-radius: 20% 40%;
+  float: right;
+  margin: -3% 10% 0% 10%;
+  width: 15%;
+  padding: 1% 1% 1% 1%;
+  border: black 2px solid;
+  border-top-left-radius: 20% 40%;
+  border-top-right-radius: 20% 40%;
+  border-bottom-left-radius: 20% 40%;
+  border-bottom-right-radius: 20% 40%;
 }
 
 a:link {
-    background-color: white;
+  background-color: white;
 }
 
 a:visited {
-    background-color: cyan;
+  background-color: cyan;
 }
 
 a:hover {
-    background-color: lightgreen;
+  background-color: lightgreen;
 }
 
 a:active {
-    background-color: hotpink;
+  background-color: hotpink;
 }
 
 .openingScroll {
-    text-align: center;
-    background-image: url("images/scroller.jpeg");
-    background-repeat: no-repeat;
-    padding: 1%;
-    background-size: 100%;
-    font-style: oblique;
-    font-size: 350%;
-    color: black;
-    /* text-shadow: 1px 4px 0px black; */
-    font-weight: bold;
+  text-align: center;
+  background-image: url("../images/scroll.jpeg");
+  background-repeat: no-repeat;
+  padding: 2%;
+  background-size: 100%;
+  font-style: oblique;
+  font-size: 40px;
 }
 
 #scoreBoard {
@@ -125,41 +120,39 @@ a:active {
 }
 
 #phaser-game canvas {
-    z-index: 1;
-    transform: scale(2);
-}
+  z-index: 1;
+  transform: scale(2);
 
 #cloud3 {
-    z-index: 1;
-    position: relative;
-    top: 50;
-    left: 50;
-    width: 90px;
+  z-index: 1;
+  position: relative;
+  top: 50;
+  left: 50;
+  width: 90px;
 }
 
 #bios {
-    top: 200px;
+  top: 200px;
 }
 
 .team-bios {
-    font-size: 200%;
-    display: inline-block;
-    width: 45%;
-    background-color: blanchedalmond;
-    border-radius: 15%;
-    padding: 20px 20px 20px 20px;
-    top: 250px;
+  font-size: 125%;
+  display: inline-block;
+  width: 45%;
+  background-color: blanchedalmond;
+  border-radius: 15%;
+  padding: 20px 20px 20px 20px;
+  top: 250px;
 }
 
-#scores th,
-td {
-    margin: 10px;
-    padding: 50px;
-    color: rgb(10, 87, 10);
-    width: 450px;
-    text-align: center;
-    background-color: lightyellow;
-    text-transform: uppercase;
-    font-size: 50px;
-    font-display: bold;
+#scores th, td {
+  margin: 10px;
+  padding: 50px;
+  color: rgb(10, 87, 10);
+  width: 450px;
+  text-align: center;
+  background-color: lightyellow;
+  text-transform: uppercase;
+  font-size: 50px;
+  font-display: bold;
 }

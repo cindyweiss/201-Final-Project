@@ -6,64 +6,127 @@ class SceneMain extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('swordSprite', 'images/swordSprite.png');
-    this.load.image('spellSprite', 'images/spellSprite.png');
-    this.load.image('shieldSprite', 'images/shieldSprite.png');
-    this.load.image('BG', 'images/BG.png');
-    this.load.spritesheet('pallyNewIdle', 'images/pallyNewIdle.png', { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('banditIdle32', 'images/banditIdle32.png', { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('ggSword', 'images/ggSword.png', { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('ggSpell', 'images/ggSpell.png', { frameWidth: 32, frameHeight: 45 });
+
+    this.load.image("swordSprite", "images/swordSprite.png");
+    this.load.image("spellSprite", "images/spellSprite.png");
+    this.load.image("shieldSprite", "images/shieldSprite.png");
+    this.load.image("BG", "images/BG.png");
+    // this.load.spritesheet("pallyNewIdle", "images/pallyNewIdle.png", { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet("banditIdle32", "images/banditIdle32.png", { frameWidth: 32, frameHeight: 32 });
+    // this.load.spritesheet("ggSword", "images/ggSword.png", { frameWidth: 32, frameHeight: 32 });
+    // this.load.spritesheet("ggSpell", "images/ggSpell.png", { frameWidth: 32, frameHeight: 45 });
+    // this.load.spritesheet("ggShield", "images/ggShield.png", { frameWidth: 32, frameHeight: 45 });
+    this.load.spritesheet("pallyTotal", "images/pallyTotal.png", { frameWidth: 32, frameHeight: 45 });
+    this.load.spritesheet("banditTotal", "images/banditTotal.png", { frameWidth: 32, frameHeight: 45 });
 
   }
+  // create() {
+
+
+  //   let background = this.add.image(game.config.width / 2, game.config.height / 2, "BG");
+
+  //   this.load.image('swordSprite', 'images/swordSprite.png');
+  //   this.load.image('spellSprite', 'images/spellSprite.png');
+  //   this.load.image('shieldSprite', 'images/shieldSprite.png');
+  //   this.load.image('BG', 'images/BG.png');
+  //   this.load.spritesheet('pallyNewIdle', 'images/pallyNewIdle.png', { frameWidth: 32, frameHeight: 32 });
+  //   this.load.spritesheet('banditIdle32', 'images/banditIdle32.png', { frameWidth: 32, frameHeight: 32 });
+  //   this.load.spritesheet('ggSword', 'images/ggSword.png', { frameWidth: 32, frameHeight: 32 });
+  //   this.load.spritesheet('ggSpell', 'images/ggSpell.png', { frameWidth: 32, frameHeight: 45 });
+    
+
+  // }
   create() {
     let background = this.add.image(game.config.width / 2, game.config.height / 2, 'BG');
-    //test
 
 
 
-    //test end
-    this.paladin = this.add.sprite(190, 335, 'pallyNewIdle');
+    paladin = this.add.sprite(222, 335, "pallyTotal");
+
+
     this.anims.create({
       key: 'pallyIdle',
       frames: [
-        { key: 'pallyNewIdle', frame: 0 },
-        { key: 'pallyNewIdle', frame: 1 },
+        { key: 'pallyTotal', frame: 0 },
+        { key: 'pallyTotal', frame: 1 },
       ],
       frameRate: 3.2,
-      repeat: -1
-
+      repeat: -1,
     });
-    this.paladin.play('pallyIdle');
 
-    this.char = this.add.sprite(290, 339, 'banditIdle32');
+    paladin.play('pallyIdle');
+    this.anims.create({
+      key: 'ggSpell',
+      frames: [
+        { key: 'pallyTotal', frame: 10 },
+        { key: 'pallyTotal', frame: 11 },
+        { key: 'pallyTotal', frame: 12 },
+        { key: 'pallyTotal', frame: 13 },
+        { key: 'pallyTotal', frame: 14 },
+        { key: 'pallyTotal', frame: 15 },
+        { key: 'pallyTotal', frame: 16 },
+        { key: 'pallyTotal', frame: 17 },
+      ],
+      frameRate: 7,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'ggShield',
+      frames: [
+        { key: 'pallyTotal', frame: 18 },
+        { key: 'pallyTotal', frame: 19 },
+        { key: 'pallyTotal', frame: 20 },
+        { key: 'pallyTotal', frame: 21 },
+        { key: 'pallyTotal', frame: 22 },
+        { key: 'pallyTotal', frame: 23 },
+        { key: 'pallyTotal', frame: 24 },
+        { key: 'pallyTotal', frame: 25 },
+      ],
+      frameRate: 7,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'ggSword',
+      frames: [
+        { key: 'pallyTotal', frame: 2 },
+        { key: 'pallyTotal', frame: 3 },
+        { key: 'pallyTotal', frame: 4 },
+        { key: 'pallyTotal', frame: 5 },
+        { key: 'pallyTotal', frame: 6 },
+        { key: 'pallyTotal', frame: 7 },
+        { key: 'pallyTotal', frame: 8 },
+        { key: 'pallyTotal', frame: 9 },
+      ],
+      frameRate: 7,
+      repeat: -1,
+    });
+
+
+    bandit = this.add.sprite(252, 339, 'banditTotal');
 
     this.anims.create({
       key: 'badIdle',
       frames: [
-        { key: 'banditIdle32', frame: 0 },
-        { key: 'banditIdle32', frame: 1 },
+        { key: 'banditTotal', frame: 0 },
+        { key: 'banditTotal', frame: 1 },
       ],
       frameRate: 3.2,
       repeat: -1
     });
-    this.char.play('badIdle');
+    bandit.play('badIdle');
 
-    //sword anim
-    var frameNames = this.anims.generateFrameNumbers('ggSword');
     this.anims.create({
-      key: 'ggSword',
-      frames: frameNames,
-      frameRate: 7,
-      repeat: false
-    });
-    //spell anim
-    var frameNames = this.anims.generateFrameNumbers('ggSpell');
-    this.anims.create({
-      key: 'ggSpell',
-      frames: frameNames,
-      frameRate: 4,
-      repeat: false
+      key: 'bgSword',
+      frames: [
+        { key: 'banditTotal', frame: 0 },
+        { key: 'banditTotal', frame: 1 },
+        { key: 'banditTotal', frame: 2 },
+        { key: 'banditTotal', frame: 3 },
+        { key: 'banditTotal', frame: 4 },
+        { key: 'banditTotal', frame: 5 },
+      ],
+      frameRate: 5,
+      repeat: -1,
     });
 
 
@@ -85,6 +148,8 @@ class SceneMain extends Phaser.Scene {
     this.shieldSprite.on('pointerup', this.shieldOnUp, this);
     this.shieldSprite.setScale(.5);
 
+    // this.paladin.play('pallyIdle');
+    //end create function
   }
 
   //below are our new phaser event listeners, we had to put a copy of battlefunction into each button unfortunately. When i tried to invoke battle function from this area it was not defined, and vice versa for the animation command. so this was my solution, it works for now and still succesfully invokes the other functions.
@@ -102,11 +167,14 @@ class SceneMain extends Phaser.Scene {
       switch (currentUserChoice) {
         case 'sword':
           dialogueString.textContent = 'Your sword removes their limbs!';
-          this.ggSlash = this.add.sprite(190, 335, 'ggSword');
+
           this.ggSlash.play('ggSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Your shield deflects the sword blow!';
+          paladin.play('ggShield');
+          bandit.play('bgSword');
+
           break;
         case 'spell':
           dialogueString.textContent = 'Your spell crushes their aspirations!';
@@ -120,6 +188,8 @@ class SceneMain extends Phaser.Scene {
       switch (badGuyChoice) {
         case 'sword':
           dialogueString.textContent = 'Enemy sword disembowels you!';
+           bandit.play('bgSword');
+          bandit.play('bgSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Enemy shield laughs at your sword!';
@@ -163,9 +233,9 @@ class SceneMain extends Phaser.Scene {
           break;
         case 'spell':
           dialogueString.textContent = 'Your spell crushes their aspirations!';
-          this.paladin.removeIdle;
-          this.ggSpark = this.add.sprite(190, 329, 'ggSpell');
-          this.ggSpark.play('ggSpell');
+
+          paladin.play('ggSpell');
+
           // this.char = this.add.sprite(190, 335, "pallyNewIdle");
           break;
         default:
@@ -177,6 +247,7 @@ class SceneMain extends Phaser.Scene {
       switch (badGuyChoice) {
         case 'sword':
           dialogueString.textContent = 'Enemy sword disembowels you!';
+           bandit.play('bgSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Enemy shield laughs at your sword!';
@@ -212,8 +283,7 @@ class SceneMain extends Phaser.Scene {
       switch (currentUserChoice) {
         case 'sword':
           dialogueString.textContent = 'Your sword removes their limbs!';
-          this.ggSlash = this.add.sprite(190, 335, 'ggSword');
-          this.ggSlash.play('ggSword');
+          paladin.play('ggSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Your shield deflects the sword blow!';
@@ -230,6 +300,7 @@ class SceneMain extends Phaser.Scene {
       switch (badGuyChoice) {
         case 'sword':
           dialogueString.textContent = 'Enemy sword disembowels you!';
+           bandit.play('bgSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Enemy shield laughs at your sword!';
@@ -239,6 +310,7 @@ class SceneMain extends Phaser.Scene {
           break;
         default:
           break;
+
       }
       winCountingArray[1]++;
     }
@@ -247,21 +319,25 @@ class SceneMain extends Phaser.Scene {
     if (winCountingArray.includes(3)) {
       winDetected();
     }
-
   }
   swordOnDown() {
     this.swordSprite.alpha = .5;
   }
-  removeIdle(){
-    this.paladin.destroy();
-  }
+  // removeIdle(){
+  //   this.paladin.destroy();
+  // }
 
   update() {
+    //  if(){
+
+
 
   }
 }
 
-// Most of Old App.js Content Below ------------------------------------
+var paladin;
+
+var bandit;
 
 var attackChoices = ['sword', 'spell', 'shield'];
 
@@ -295,13 +371,17 @@ clearDataReference.addEventListener('click', clearDataFunction);
 
 //  Local Storage set into User array
 
-if (SCORE_DATA === null) {
-  var userArray = [];
+
+if (localStorage.getItem(SCORE_DATA) === null) {
+  var localStorageArray = [];
 } else {
   var jsonData = localStorage.getItem(SCORE_DATA);
-  var arrayFromLs = JSON.parse(jsonData);
-  arrayFromLs.push(userArray);
+  localStorageArray = JSON.parse(jsonData);
+  console.log(localStorageArray);
 }
+
+
+//  Constructor for User Session
 
 var User = function (name) {
   this.name = name;
@@ -309,9 +389,9 @@ var User = function (name) {
   this.userHistory = 0;
 
   this.saveToLocal = function () {
-    userArray.push(this);
-    scoreData = JSON.stringify(userArray);
-    localStorage.setItem('SCORE_DATA', scoreData);
+    localStorageArray.push(this);
+    scoreData = JSON.stringify(localStorageArray);
+    localStorage.setItem(SCORE_DATA, scoreData);
   };
 };
 
@@ -321,7 +401,7 @@ function clearDataFunction() {
   localStorage.removeItem('SCORE_DATA');
 }
 
-// Current Scoreboard Render
+//  Current Scoreboard Render
 
 function scoreBoard() {
   scoreString.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
@@ -335,8 +415,7 @@ function scoreBoard() {
   scoreBoardReference.append(choiceString);
 }
 
-// peter - in the spirit of small functions,
-// peter - I moved win check to its' own function
+//  Render Win Screen and Provide User Options
 
 function winDetected() {
   currentUser.userHistory++;
@@ -355,8 +434,8 @@ function winDetected() {
     winCountingArray = [0, 0];
   } else {
     winCountingArray = [0, 0];
-    var newUser = prompt('Input Name: ');
-    scoreObj = new User(newUser); //data constructed to obj
+    var newName = prompt('Input Name: ');
+    scoreObj = new User(newName); //data constructed to obj
     scoreObj.userHistory = currentUser.userHistory;
     scoreObj.winLossHistory = currentUser.winLossHistory;
     scoreObj.saveToLocal();
