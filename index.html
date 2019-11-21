@@ -13,23 +13,32 @@
 </head>
 
 <body>
-  <header>
-    <h1 id="header-label">Duel of Fate</h1>
-    <div>
-      <a id="nav-float-left" href="scorePage.html">Score Page</a>
-      <a id="nav-float-right" href="AboutUs.html">About Us</a>
-    </div>
-  </header>
-  <main>
-    <div class="openingScroll">
-      <p>
-        <b>Welcome squires to the "Duel of Fate"<br>
-          Enter at your own peril. <br> Ye just need to pick your weapon!</b>
-      </p>
-    </div>
 
-    <div id="phaser-game"> </div>
-    <div id="scoreBoard"> </div>
+    <header>
+        <h1 id="header-label">Duel of Fate</h1>
+        <div>
+            <a id="nav-float-left" href="scorePage.html">Score Page</a>
+            <a id="nav-float-right" href="AboutUs.html">About Us</a>
+        </div>
+    </header>
+    <main>
+        <div class="openingScroll">
+            <p>
+                You stumble upon an unsavory bandit on your daily patrol through the kingdom<br>
+                Slay this fiend!
+                <br>
+                Select either Sword, Spell, or Shield and pray that fate is kind to you!
+            </p>
+        </div>
+
+        <div id="outerWrap">
+            <!-- phaser does not require you to make canvas -->
+            <div id="phaser-game">
+            </div>
+            <div id="scoreBoard"> </div>
+
+            <a href="index.html" id="clearData">Clear Local Data</a>
+
 
     <a href="index.html" id="clearData">Clear Local Data</a>
 

@@ -1,10 +1,28 @@
 'use strict';
 
+var renderTitleRow = function (domreferance) {
+  var tableContents = document.getElementById('scores');
+  var tr = document.createElement('tr');
+  var userNames = document.createElement('td');
+  userNames.textContent = (' Squires Names ');
+  tr.append(userNames);
+
+  var td = document.createElement('td');
+  td.textContent = (' Squires Games Won / Squires Games Played ');
+  tr.append(td);
+
+  tableContents.append(tr);
+};
+
 var SCORE_DATA = 'SCORE_DATA';
+
+
+
 
 var tableContents = document.getElementById('scores');
 
-// HEADER
+
+
 
 var renderTitleRow = function (tableContents) {
   // var tableContents = document.getElementById('scores');
@@ -18,13 +36,15 @@ var renderTitleRow = function (tableContents) {
   tableContents.append(tr);
 };
 
-// CELL DATA
+
 
 var render = function (tableContents, userData) {
   var tr = document.createElement('tr');
   var nameCell = document.createElement('td');
   nameCell.textContent = userData.name;
   tr.append(nameCell);
+
+
   var matchCount = document.createElement('td');
   matchCount.textContent = userData.winLossHistory;
   tr.append(matchCount);
@@ -42,4 +62,5 @@ renderTitleRow(tableContents);
 
 for (var i = 0; i < dataForHighScores.length; i++) {
   render(tableContents, dataForHighScores[i]);
+
 }
