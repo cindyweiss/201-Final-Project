@@ -13,6 +13,7 @@ class SceneMain extends Phaser.Scene {
     this.load.spritesheet("pallyNewIdle", "images/pallyNewIdle.png", { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet("banditIdle32", "images/banditIdle32.png", { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet("ggSword", "images/ggSword.png", { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet("ggSpell", "images/ggSpell.png", { frameWidth: 32, frameHeight: 45 });
 
   }
   create() {
@@ -22,7 +23,7 @@ class SceneMain extends Phaser.Scene {
 
 
     //test end 
-    this.char = this.add.sprite(190, 335, "pallyNewIdle");
+    this.paladin = this.add.sprite(190, 335, "pallyNewIdle");
     this.anims.create({
       key: 'pallyIdle',
       frames: [
@@ -33,7 +34,7 @@ class SceneMain extends Phaser.Scene {
       repeat: -1
 
     });
-    this.char.play('pallyIdle');
+    this.paladin.play('pallyIdle');
 
     this.char = this.add.sprite(290, 339, "banditIdle32");
 
@@ -48,12 +49,20 @@ class SceneMain extends Phaser.Scene {
     });
     this.char.play('badIdle');
 
-    // this.char = 
+    //sword anim
     var frameNames = this.anims.generateFrameNumbers('ggSword');
     this.anims.create({
       key: 'ggSword',
       frames: frameNames,
       frameRate: 7,
+      repeat: false
+    });
+   //spell anim
+    var frameNames = this.anims.generateFrameNumbers('ggSpell');
+    this.anims.create({
+      key: 'ggSpell',
+      frames: frameNames,
+      frameRate: 4,
       repeat: false
     });
 
@@ -78,58 +87,56 @@ class SceneMain extends Phaser.Scene {
 
   }
 
- 
-
-
+  //below are our new phaser event listeners, we had to put a copy of battlefunction into each button unfortunately. When i tried to invoke battle function from this area it was not defined, and vice versa for the animation command. so this was my solution, it works for now and still succesfully invokes the other functions.
   shieldOnUp() {
     this.shieldSprite.alpha = 1;
     currentUserChoice = 'shield';
     badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-      if (currentUserChoice === badGuyChoice) {
-        // draw condition
-        dialogueString.textContent = 'It was a draw!';
-      } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-        (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-        (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-        // user win condition
-        switch (currentUserChoice) {
-          case 'sword':
-            dialogueString.textContent = 'Your sword removes their limbs!'; 4
-            this.ggSlash = this.add.sprite(190, 335, "ggSword");
-            this.ggSlash.play('ggSword');
-            break;
-          case 'shield':
-            dialogueString.textContent = 'Your shield deflects the sword blow!';
-            break;
-          case 'spell':
-            dialogueString.textContent = 'Your spell crushes their aspirations!';
-            break;
-          default:
-            break;
-        }
-        winCountingArray[0]++;
-      } else {
-        // enemy win condtion
-        switch (badGuyChoice) {
-          case 'sword':
-            dialogueString.textContent = 'Enemy sword disembowels you!';
-            break;
-          case 'shield':
-            dialogueString.textContent = 'Enemy shield laughs at your sword!';
-            break;
-          case 'spell':
-            dialogueString.textContent = 'Enemy spell really ruins your day!';
-            break;
-          default:
-            break;
-        }
-        winCountingArray[1]++;
+    if (currentUserChoice === badGuyChoice) {
+      // draw condition
+      dialogueString.textContent = 'It was a draw!';
+    } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+      (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+      (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+      // user win condition
+      switch (currentUserChoice) {
+        case 'sword':
+          dialogueString.textContent = 'Your sword removes their limbs!'; 4
+          this.ggSlash = this.add.sprite(190, 335, "ggSword");
+          this.ggSlash.play('ggSword');
+          break;
+        case 'shield':
+          dialogueString.textContent = 'Your shield deflects the sword blow!';
+          break;
+        case 'spell':
+          dialogueString.textContent = 'Your spell crushes their aspirations!';
+          break;
+        default:
+          break;
       }
-      scoreBoard();
-  
-      if (winCountingArray.includes(3)) {
-        winDetected();
+      winCountingArray[0]++;
+    } else {
+      // enemy win condtion
+      switch (badGuyChoice) {
+        case 'sword':
+          dialogueString.textContent = 'Enemy sword disembowels you!';
+          break;
+        case 'shield':
+          dialogueString.textContent = 'Enemy shield laughs at your sword!';
+          break;
+        case 'spell':
+          dialogueString.textContent = 'Enemy spell really ruins your day!';
+          break;
+        default:
+          break;
       }
+      winCountingArray[1]++;
+    }
+    scoreBoard();
+
+    if (winCountingArray.includes(3)) {
+      winDetected();
+    }
   }
   shieldOnDown() {
     this.shieldSprite.alpha = .5;
@@ -138,51 +145,55 @@ class SceneMain extends Phaser.Scene {
     this.spellSprite.alpha = 1;
     currentUserChoice = 'spell';
     badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-      if (currentUserChoice === badGuyChoice) {
-        // draw condition
-        dialogueString.textContent = 'It was a draw!';
-      } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-        (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-        (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-        // user win condition
-        switch (currentUserChoice) {
-          case 'sword':
-            dialogueString.textContent = 'Your sword removes their limbs!'; 4
-            this.ggSlash = this.add.sprite(190, 335, "ggSword");
-            this.ggSlash.play('ggSword');
-            break;
-          case 'shield':
-            dialogueString.textContent = 'Your shield deflects the sword blow!';
-            break;
-          case 'spell':
-            dialogueString.textContent = 'Your spell crushes their aspirations!';
-            break;
-          default:
-            break;
-        }
-        winCountingArray[0]++;
-      } else {
-        // enemy win condtion
-        switch (badGuyChoice) {
-          case 'sword':
-            dialogueString.textContent = 'Enemy sword disembowels you!';
-            break;
-          case 'shield':
-            dialogueString.textContent = 'Enemy shield laughs at your sword!';
-            break;
-          case 'spell':
-            dialogueString.textContent = 'Enemy spell really ruins your day!';
-            break;
-          default:
-            break;
-        }
-        winCountingArray[1]++;
+    if (currentUserChoice === badGuyChoice) {
+      // draw condition
+      dialogueString.textContent = 'It was a draw!';
+    } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+      (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+      (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+      // user win condition
+      switch (currentUserChoice) {
+        case 'sword':
+          dialogueString.textContent = 'Your sword removes their limbs!'; 4
+          this.ggSlash = this.add.sprite(190, 335, "ggSword");
+          this.ggSlash.play('ggSword');
+          break;
+        case 'shield':
+          dialogueString.textContent = 'Your shield deflects the sword blow!';
+          break;
+        case 'spell':
+          dialogueString.textContent = 'Your spell crushes their aspirations!';
+          this.paladin.removeIdle;
+          this.ggSpark = this.add.sprite(190, 329, "ggSpell");
+          this.ggSpark.play('ggSpell');
+          // this.char = this.add.sprite(190, 335, "pallyNewIdle");
+          break;
+        default:
+          break;
       }
-      scoreBoard();
-  
-      if (winCountingArray.includes(3)) {
-        winDetected();
+      winCountingArray[0]++;
+    } else {
+      // enemy win condtion
+      switch (badGuyChoice) {
+        case 'sword':
+          dialogueString.textContent = 'Enemy sword disembowels you!';
+          break;
+        case 'shield':
+          dialogueString.textContent = 'Enemy shield laughs at your sword!';
+          break;
+        case 'spell':
+          dialogueString.textContent = 'Enemy spell really ruins your day!';
+          break;
+        default:
+          break;
       }
+      winCountingArray[1]++;
+    }
+    scoreBoard();
+
+    if (winCountingArray.includes(3)) {
+      winDetected();
+    }
   }
   spellOnDown() {
     this.spellSprite.alpha = .5;
@@ -190,58 +201,60 @@ class SceneMain extends Phaser.Scene {
   swordOnUp() {
     this.swordSprite.alpha = 1;
     currentUserChoice = 'sword';
-      badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
-      if (currentUserChoice === badGuyChoice) {
-        // draw condition
-        dialogueString.textContent = 'It was a draw!';
-      } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
-        (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
-        (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
-        // user win condition
-        switch (currentUserChoice) {
-          case 'sword':
-            dialogueString.textContent = 'Your sword removes their limbs!'; 4
-            this.ggSlash = this.add.sprite(190, 335, "ggSword");
-            this.ggSlash.play('ggSword');
-            break;
-          case 'shield':
-            dialogueString.textContent = 'Your shield deflects the sword blow!';
-            break;
-          case 'spell':
-            dialogueString.textContent = 'Your spell crushes their aspirations!';
-            break;
-          default:
-            break;
-        }
-        winCountingArray[0]++;
-      } else {
-        // enemy win condtion
-        switch (badGuyChoice) {
-          case 'sword':
-            dialogueString.textContent = 'Enemy sword disembowels you!';
-            break;
-          case 'shield':
-            dialogueString.textContent = 'Enemy shield laughs at your sword!';
-            break;
-          case 'spell':
-            dialogueString.textContent = 'Enemy spell really ruins your day!';
-            break;
-          default:
-            break;
-        }
-        winCountingArray[1]++;
+    badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
+    if (currentUserChoice === badGuyChoice) {
+      // draw condition
+      dialogueString.textContent = 'It was a draw!';
+    } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
+      (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
+      (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
+      // user win condition
+      switch (currentUserChoice) {
+        case 'sword':
+          dialogueString.textContent = 'Your sword removes their limbs!'; 4
+          this.ggSlash = this.add.sprite(190, 335, "ggSword");
+          this.ggSlash.play('ggSword');
+          break;
+        case 'shield':
+          dialogueString.textContent = 'Your shield deflects the sword blow!';
+          break;
+        case 'spell':
+          dialogueString.textContent = 'Your spell crushes their aspirations!';
+          break;
+        default:
+          break;
       }
-      scoreBoard();
-  
-      if (winCountingArray.includes(3)) {
-        winDetected();
+      winCountingArray[0]++;
+    } else {
+      // enemy win condtion
+      switch (badGuyChoice) {
+        case 'sword':
+          dialogueString.textContent = 'Enemy sword disembowels you!';
+          break;
+        case 'shield':
+          dialogueString.textContent = 'Enemy shield laughs at your sword!';
+          break;
+        case 'spell':
+          dialogueString.textContent = 'Enemy spell really ruins your day!';
+          break;
+        default:
+          break;
       }
-    
+      winCountingArray[1]++;
+    }
+    scoreBoard();
+
+    if (winCountingArray.includes(3)) {
+      winDetected();
+    }
+
   }
   swordOnDown() {
     this.swordSprite.alpha = .5;
   }
-  
+  removeIdle(){
+    this.paladin.destroy();
+  }
 
   update() {
 
@@ -302,32 +315,6 @@ var User = function (name) {
 function clearDataFunction() {
   localStorage.removeItem('SCORE_DATA');
 }
-
-// sword beats spell, spell beats shield, shield beats sword
-
-// var swordTarget = document.getElementById('swordTarget');
-// var spellTarget = document.getElementById('spellTarget');
-// var shieldTarget = document.getElementById('shieldTarget');
-
-
-// Action Listeners with What Happens when Clicked
-
-// swordTarget.addEventListener('click', event => {
-//   currentUserChoice = 'sword';
-//   battleFunction();
-// });
-
-// spellTarget.addEventListener('click', event => {
-//   currentUserChoice = 'spell';
-//   battleFunction();
-// });
-
-// shieldTarget.addEventListener('click', event => {
-//   currentUserChoice = 'shield';
-//   battleFunction();
-// });
-
-//  Evaluate the Battle
 
 
 
