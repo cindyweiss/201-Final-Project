@@ -29,23 +29,23 @@ for (var i = 0; i < dataForHighScores.length; i++) {
 
 render();
 
-function renderFromLocal(a, b) {
+// function renderFromLocal(a, b) {
 
-  a = dataForHighScores[0];
-  b = dataForHighScores[1];
+//   a = dataForHighScores[0];
+//   b = dataForHighScores[1];
 
-  var tableContents = document.getElementById('scores');
-  var tr = document.createElement('tr');
-  var nameCell = document.createElement('td');
-  nameCell.textContent = this.a;
-  tr.append(nameCell);
+//   var tableContents = document.getElementById('scores');
+//   var tr = document.createElement('tr');
+//   var nameCell = document.createElement('td');
+//   nameCell.textContent = this.a;
+//   tr.append(nameCell);
 
-  var matchCount = document.createElement('td');
-  matchCount.textContent = this.b;
-  tr.append(matchCount);
+//   var matchCount = document.createElement('td');
+//   matchCount.textContent = this.b;
+//   tr.append(matchCount);
 
-  tableContents.append(tr);
+//   tableContents.append(tr);
 
-}
+// }
 
-renderFromLocal(dataForHighScores[0], dataForHighScores[1]);
+// renderFromLocal(dataForHighScores[0], dataForHighScores[1]);

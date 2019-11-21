@@ -104,14 +104,13 @@ a:active {
   font-weight: bold;
   background: rgba(150, 150, 150, 0.699);
   border: 1px solid black;
-  
   width: 480px;
   height: fit-content;
   z-index: 3;
   margin-left: auto;
   margin-right: auto;
   /* margin-bottom: -50; */
-  margin-top: 0px;
+  margin-top: 40px;
 }
 
 #phaser-game {

@@ -22,7 +22,7 @@ class SceneMain extends Phaser.Scene {
 
 
 
-    //test end 
+    //test end
     this.paladin = this.add.sprite(190, 335, 'pallyNewIdle');
     this.anims.create({
       key: 'pallyIdle',
@@ -295,7 +295,13 @@ clearDataReference.addEventListener('click', clearDataFunction);
 
 //  Local Storage set into User array
 
-var userArray = [];
+if (SCORE_DATA === null) {
+  var userArray = [];
+} else {
+  var jsonData = localStorage.getItem(SCORE_DATA);
+  var arrayFromLs = JSON.parse(jsonData);
+  arrayFromLs.push(userArray);
+}
 
 var User = function (name) {
   this.name = name;
@@ -309,7 +315,7 @@ var User = function (name) {
   };
 };
 
-//  To Remove Local Data, there is a clicker beneath About Us in index
+//  To Remove Local Data, there is a clicker 'Clear Local Data' on index
 
 function clearDataFunction() {
   localStorage.removeItem('SCORE_DATA');
@@ -356,9 +362,3 @@ function winDetected() {
     scoreObj.saveToLocal();
   }
 }
-
-// to do list, Refactoring with phaser!! :D
-//idle with phaser,
-//buttons with pahser?
-//animate with phaser!
-

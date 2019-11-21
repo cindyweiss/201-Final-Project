@@ -52,9 +52,9 @@ var User = function (name) {
 
 //  To Remove Local Data, there is a clicker beneath About Us in index
 
-// function clearDataFunction() {
-//   localStorage.removeItem(SCORE_DATA);
-// }
+function clearDataFunction() {
+  localStorage.removeItem(SCORE_DATA);
+}
 
 // sword beats spell, spell beats shield, shield beats sword
 
@@ -426,39 +426,39 @@ class SceneMain extends Phaser.Scene {
     // this.shieldSprite.on('pointerdown', this.shieldOnDown, this);
     // this.shieldSprite.on('pointerup', this.shieldOnUp, this);
 
-  // }
-  // shieldOnUp() {
-  //   this.shieldSprite.alpha = 1;
-  // }
-  // shieldOnDown() {
-  //   this.shieldSprite.alpha = .5;
-  // }
-  // spellOnUp() {
-  //   this.spellSprite.alpha = 1;
-  // }
-  // spellOnDown() {
-  //   this.spellSprite.alpha = .5;
-  // }
-  // swordOnUp() {
-  //   this.swordSprite.alpha = 1;
-  // }
-  // swordOnDown() {
-  //   this.swordSprite.alpha = .5;
-  // }
-  // update() {
-  //   // this.cloud1.x += .1;
-  //   // if (this.cloud1.x > game.config.width + 100) {
-  //   //   this.cloud1.x = -100;
-  //   // }
-  //   // this.cloud2.x += .09;
-  //   // if (this.cloud2.x > game.config.width + 100) {
-  //   //   this.cloud2.x = -100;
-  //   // }
-  //   // this.cloud3.x += .075;
-  //   // if (this.cloud3.x > game.config.width + 100) {
-  //   //   this.cloud3.x = -100;
-  //   // }
+// }
+// shieldOnUp() {
+//   this.shieldSprite.alpha = 1;
+// }
+// shieldOnDown() {
+//   this.shieldSprite.alpha = .5;
+// }
+// spellOnUp() {
+//   this.spellSprite.alpha = 1;
+// }
+// spellOnDown() {
+//   this.spellSprite.alpha = .5;
+// }
+// swordOnUp() {
+//   this.swordSprite.alpha = 1;
+// }
+// swordOnDown() {
+//   this.swordSprite.alpha = .5;
+// }
+// update() {
+//   // this.cloud1.x += .1;
+//   // if (this.cloud1.x > game.config.width + 100) {
+//   //   this.cloud1.x = -100;
+//   // }
+//   // this.cloud2.x += .09;
+//   // if (this.cloud2.x > game.config.width + 100) {
+//   //   this.cloud2.x = -100;
+//   // }
+//   // this.cloud3.x += .075;
+//   // if (this.cloud3.x > game.config.width + 100) {
+//   //   this.cloud3.x = -100;
+//   // }
 
-  // }
+// }
 }
 }
