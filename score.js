@@ -9,12 +9,11 @@ var SCORE_DATA = 'SCORE_DATA';
 
 var render = function(user) {
 
-    // var score = document.getElementById('score');
-    var tableContents = document.getElementById('scores');
-    var tr = document.createElement('tr');
-    var nameCell = document.createElement('td');
-    nameCell.textContent = user.name;
-    tr.append(nameCell);
+  var tableContents = document.getElementById('scores');
+  var tr = document.createElement('tr');
+  var nameCell = document.createElement('td');
+  nameCell.textContent = user.name;
+  tr.append(nameCell);
 
     var matchCount = document.createElement('td');
     matchCount.textContent = user.winLossHistory;
@@ -23,12 +22,8 @@ var render = function(user) {
     tableContents.append(tr);
 };
 
-
 var jsonData = localStorage.getItem(SCORE_DATA);
 var dataForHighScores = JSON.parse(jsonData);
 for (var i = 0; i < dataForHighScores.length; i++) {
     render(dataForHighScores[i]);
 }
-
-
-console.log(dataForHighScores);

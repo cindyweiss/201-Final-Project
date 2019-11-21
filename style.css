@@ -15,7 +15,7 @@ body>* {
     margin: auto;
     width: 95%;
     display: block;
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 body>script {
@@ -88,6 +88,7 @@ a:active {
     background-size: 60%;
     /* left: 20%; */
     font-style: oblique;
+
     font-size: 250%;
 }
 
@@ -102,12 +103,21 @@ canvas {
     border: 2px black solid;
     /* height: 45%; */
     width: 50%;
+  
+#phaser-game { */
+    background-image: url(/images/BG.png);
+    border: 2px black solid;
+    width: fit-content;
+    /* height: 640px; */ 
+    /* transform: scale(1.5); */
+
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     margin-left: auto;
     margin-right: auto;
+
     display: block;
 }
 
