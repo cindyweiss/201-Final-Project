@@ -13,6 +13,17 @@ body {
     padding-top: 250px;
 }
 
+#continue {
+position: absolute;
+top: 805px; left: 46%;
+z-index: 8;
+background-color: bisque;
+padding: 20px;
+visibility: hidden;
+border-bottom: burlywood 4px solid;
+border-left: burlywood 4px solid;
+}
+
 body>* {
     margin: auto;
     width: 95%;
@@ -20,16 +31,18 @@ body>* {
 }
 
 body>script {
-  display: none
+  display: none;
 }
 
 header {
     position: fixed;
+    background-color: cornflowerblue;
     top: 0%;
     left: auto;
     width: 95%;
     border: black 2px solid;
     text-align: center;
+    background-color: cornflowerblue;
 }
 
 #header-label {
@@ -76,8 +89,6 @@ a:hover {
   background-color: lightgreen;
 }
 
-
-
 .openingScroll {
     text-align: center;
     background-image: url("../images/scroll.jpeg");
@@ -94,9 +105,6 @@ a:hover {
 .openingScroll p{
     background-color: rgba(214, 189, 159, 0.44);
 }
-  
-
-}
 
 #scoreBoard {
     text-align: center;
@@ -105,13 +113,15 @@ a:hover {
     text-shadow: 1px 1px 2px black;
     font-weight: bold;
     background: rgba(150, 150, 150, 0.699);
-    border: 1px solid black;
+    border-bottom: 3px solid rgb(80, 95, 95);
     width: 480px;
     height: fit-content;
     z-index: 3;
     margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
+    margin-right: auto; 
+    /* margin-top: 0px;  */
+    position: absolute;
+    top: 618px; left: 35%;
 }
 
 #phaser-game {
@@ -131,6 +141,7 @@ a:hover {
 #phaser-game canvas {
   z-index: 1;
   transform: scale(2);
+}
 
 #cloud3 {
   z-index: 1;
@@ -155,7 +166,6 @@ a:hover {
 }
 
 #scores th, td {
-
    margin: 50px;
    padding: 10px;
    color: rgb(10, 87, 10);

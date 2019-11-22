@@ -13,37 +13,35 @@
 </head>
 
 <body>
-
-    <header>
-        <h1 id="header-label">Duel of Fate</h1>
-        <div>
-            <a id="nav-float-left" href="scorePage.html">Score Page</a>
-            <a id="nav-float-right" href="AboutUs.html">About Us</a>
-        </div>
-    </header>
+  <header>
+    <h1 id="header-label">Duel of Fate</h1>
+    <div>
+      <a id="nav-float-left" href="scorePage.html">Score Page</a>
+      <a id="nav-float-right" href="AboutUs.html">About Us</a>
+    </div>
+  </header>
+  <main>
+    <div class="openingScroll">
+      <p>
+        You stumble upon an unsavory bandit on your daily patrol through the kingdom<br> Slay this fiend! <br><br>
+        Select either Sword, Spell, or Shield and pray that fate is kind to you!
+      </p>
+    </div>
     <main>
-        <div class="openingScroll">
-            <p>
-                You stumble upon an unsavory bandit on your daily patrol through the kingdom<br>
-                Slay this fiend!
-                <br>
-                Select either Sword, Spell, or Shield and pray that fate is kind to you!
-            </p>
-        </div>
+      <div id="continue">
+        <p>Play Again?</p>
 
-        <div id="outerWrap">
-            <!-- phaser does not require you to make canvas -->
-            <div id="phaser-game">
-            </div>
-            <div id="scoreBoard"> </div>
+        <input type="button" name="yes" id="yes" onclick="playAgain();" value="Yes!">
 
-            <a href="index.html" id="clearData">Clear Local Data</a>
+        <input type="button" name="no" onclick="dontPlay();" id="no" value="No...">
 
-
-    <a href="index.html" id="clearData">Clear Local Data</a>
-
-  </main>
-  <script src="sceneMain.js"></script>
+      </div>
+        <!-- phaser does not require you to make canvas -->
+        <div id="phaser-game"></div>
+        <div id="scoreBoard"></div>
+    </main>
+    <a href="index.html" id="clearData">Clear Game History</a>
+    <script src="sceneMain.js"></script>
 </body>
 
 </html>

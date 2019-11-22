@@ -7,21 +7,20 @@ class SceneMain extends Phaser.Scene {
 
   preload() {
 
-    this.load.image("swordSprite", "images/swordSprite.png");
-    this.load.image("spellSprite", "images/spellSprite.png");
-    this.load.image("shieldSprite", "images/shieldSprite.png");
-    this.load.image("BG", "images/BG.png");
+    this.load.image('swordSprite', 'images/swordSprite.png');
+    this.load.image('spellSprite', 'images/spellSprite.png');
+    this.load.image('shieldSprite', 'images/shieldSprite.png');
+    this.load.image('BG', 'images/BG.png');
     // this.load.spritesheet("pallyNewIdle", "images/pallyNewIdle.png", { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet("banditIdle32", "images/banditIdle32.png", { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('banditIdle32', 'images/banditIdle32.png', { frameWidth: 32, frameHeight: 32 });
     // this.load.spritesheet("ggSword", "images/ggSword.png", { frameWidth: 32, frameHeight: 32 });
     // this.load.spritesheet("ggSpell", "images/ggSpell.png", { frameWidth: 32, frameHeight: 45 });
     // this.load.spritesheet("ggShield", "images/ggShield.png", { frameWidth: 32, frameHeight: 45 });
-    this.load.spritesheet("pallyTotal", "images/pallyTotal.png", { frameWidth: 32, frameHeight: 45 });
-    this.load.spritesheet("banditTotal", "images/banditTotal.png", { frameWidth: 32, frameHeight: 45 });
+    this.load.spritesheet('pallyTotal', 'images/pallyTotal.png', { frameWidth: 32, frameHeight: 45 });
+    this.load.spritesheet('banditTotal', 'images/banditTotal.png', { frameWidth: 32, frameHeight: 45 });
 
   }
   // create() {
-
 
   //   let background = this.add.image(game.config.width / 2, game.config.height / 2, "BG");
 
@@ -33,16 +32,12 @@ class SceneMain extends Phaser.Scene {
   //   this.load.spritesheet('banditIdle32', 'images/banditIdle32.png', { frameWidth: 32, frameHeight: 32 });
   //   this.load.spritesheet('ggSword', 'images/ggSword.png', { frameWidth: 32, frameHeight: 32 });
   //   this.load.spritesheet('ggSpell', 'images/ggSpell.png', { frameWidth: 32, frameHeight: 45 });
-    
 
   // }
   create() {
     let background = this.add.image(game.config.width / 2, game.config.height / 2, 'BG');
 
-
-
-    paladin = this.add.sprite(222, 335, "pallyTotal");
-
+    paladin = this.add.sprite(226, 335, 'pallyTotal');
 
     this.anims.create({
       key: 'pallyIdle',
@@ -67,7 +62,7 @@ class SceneMain extends Phaser.Scene {
         { key: 'pallyTotal', frame: 16 },
         { key: 'pallyTotal', frame: 17 },
       ],
-      frameRate: 7,
+      frameRate: 5,
       repeat: -1,
     });
     this.anims.create({
@@ -100,9 +95,48 @@ class SceneMain extends Phaser.Scene {
       frameRate: 7,
       repeat: -1,
     });
+    this.anims.create({
+      key: 'ggStabbed',
+      frames: [
+        { key: 'pallyTotal', frame: 25 },
+        { key: 'pallyTotal', frame: 26 },
+        { key: 'pallyTotal', frame: 27 },
+        { key: 'pallyTotal', frame: 28 },
+        { key: 'pallyTotal', frame: 28 },
+        { key: 'pallyTotal', frame: 29 },
 
+      ],
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'ggBurned',
+      frames: [
+        { key: 'pallyTotal', frame: 31 },
+        { key: 'pallyTotal', frame: 32 },
+        { key: 'pallyTotal', frame: 33 },
+        { key: 'pallyTotal', frame: 33 },
+        { key: 'pallyTotal', frame: 34 },
+        { key: 'pallyTotal', frame: 35 },
+        { key: 'pallyTotal', frame: 36 },
+      ],
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'ggCounter',
+      frames: [
+        { key: 'pallyTotal', frame: 37 },
+        { key: 'pallyTotal', frame: 38 },
+        { key: 'pallyTotal', frame: 39 },
+        { key: 'pallyTotal', frame: 40 },
+        { key: 'pallyTotal', frame: 41 },
+      ],
+      frameRate: 4,
+      repeat: -1,
+    });
 
-    bandit = this.add.sprite(252, 339, 'banditTotal');
+    bandit = this.add.sprite(250, 339, 'banditTotal');
 
     this.anims.create({
       key: 'badIdle',
@@ -128,7 +162,75 @@ class SceneMain extends Phaser.Scene {
       frameRate: 5,
       repeat: -1,
     });
-
+    this.anims.create({
+      key: 'bgSpell',
+      frames: [
+        { key: 'banditTotal', frame: 5 },
+        { key: 'banditTotal', frame: 6 },
+        { key: 'banditTotal', frame: 7 },
+        { key: 'banditTotal', frame: 8 },
+        { key: 'banditTotal', frame: 9 },
+        { key: 'banditTotal', frame: 9 },
+        { key: 'banditTotal', frame: 9 },
+      ],
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'bgShield',
+      frames: [
+        { key: 'banditTotal', frame: 10 },
+        { key: 'banditTotal', frame: 11 },
+        { key: 'banditTotal', frame: 12 },
+        { key: 'banditTotal', frame: 13 },
+        { key: 'banditTotal', frame: 14 },
+      ],
+      frameRate: 4,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'bgStabbed',
+      frames: [
+        { key: 'banditTotal', frame: 15 },
+        { key: 'banditTotal', frame: 15 },
+        { key: 'banditTotal', frame: 16 },
+        { key: 'banditTotal', frame: 17 },
+        { key: 'banditTotal', frame: 18 },
+        { key: 'banditTotal', frame: 18 },
+      ],
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'bgZapped',
+      frames: [
+        { key: 'banditTotal', frame: 23 },
+        { key: 'banditTotal', frame: 23 },
+        { key: 'banditTotal', frame: 24 },
+        { key: 'banditTotal', frame: 24 },
+        { key: 'banditTotal', frame: 25 },
+        { key: 'banditTotal', frame: 26 },
+        { key: 'banditTotal', frame: 27 },
+        { key: 'banditTotal', frame: 28 },
+      ],
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'bgCounter',
+      frames: [
+        { key: 'banditTotal', frame: 19 },
+        { key: 'banditTotal', frame: 19 },
+        { key: 'banditTotal', frame: 20 },
+        { key: 'banditTotal', frame: 20 },
+        { key: 'banditTotal', frame: 21 },
+        { key: 'banditTotal', frame: 22 },
+        { key: 'banditTotal', frame: 22 },
+        { key: 'banditTotal', frame: 23 },
+      ],
+      frameRate: 7,
+      repeat: -1,
+    });
 
     this.swordSprite = this.add.image(150, 415, 'swordSprite');
     this.swordSprite.setInteractive();
@@ -158,8 +260,19 @@ class SceneMain extends Phaser.Scene {
     currentUserChoice = 'shield';
     badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
     if (currentUserChoice === badGuyChoice) {
-      // draw condition
-      dialogueString.textContent = 'It was a draw!';
+      if (currentUserChoice === 'sword') {
+        dialogueString.textContent = 'It was a draw!';
+        paladin.play('ggSword');
+        bandit.play('bgSword');
+      } else if (currentUserChoice === 'spell') {
+        dialogueString.textContent = 'Your magics are evenly matched!';
+        paladin.play('ggSpell');
+        bandit.play('bgSpell');
+      } else {
+        dialogueString.textContent = 'You both block like fools!';
+        paladin.play('ggShield');
+        bandit.play('bgShield');
+      }
     } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
       (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
       (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
@@ -167,14 +280,12 @@ class SceneMain extends Phaser.Scene {
       switch (currentUserChoice) {
         case 'sword':
           dialogueString.textContent = 'Your sword removes their limbs!';
-
-          this.ggSlash.play('ggSword');
+          paladin.play('ggSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Your shield deflects the sword blow!';
           paladin.play('ggShield');
-          bandit.play('bgSword');
-
+          bandit.play('bgCounter');
           break;
         case 'spell':
           dialogueString.textContent = 'Your spell crushes their aspirations!';
@@ -188,14 +299,16 @@ class SceneMain extends Phaser.Scene {
       switch (badGuyChoice) {
         case 'sword':
           dialogueString.textContent = 'Enemy sword disembowels you!';
-           bandit.play('bgSword');
           bandit.play('bgSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Enemy shield laughs at your sword!';
+          bandit.play('bgShield');
           break;
         case 'spell':
           dialogueString.textContent = 'Enemy spell really ruins your day!';
+          bandit.play('bgSpell');
+          paladin.play('ggBurned');
           break;
         default:
           break;
@@ -216,8 +329,19 @@ class SceneMain extends Phaser.Scene {
     currentUserChoice = 'spell';
     badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
     if (currentUserChoice === badGuyChoice) {
-      // draw condition
-      dialogueString.textContent = 'It was a draw!';
+      if (currentUserChoice === 'sword') {
+        dialogueString.textContent = 'It was a draw!';
+        paladin.play('ggSword');
+        bandit.play('bgSword');
+      } else if (currentUserChoice === 'spell') {
+        dialogueString.textContent = 'Your magics are evenly matched!';
+        paladin.play('ggSpell');
+        bandit.play('bgSpell');
+      } else {
+        dialogueString.textContent = 'You both block like fools!';
+        paladin.play('ggShield');
+        bandit.play('bgShield');
+      }
     } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
       (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
       (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
@@ -225,17 +349,14 @@ class SceneMain extends Phaser.Scene {
       switch (currentUserChoice) {
         case 'sword':
           dialogueString.textContent = 'Your sword removes their limbs!';
-          this.ggSlash = this.add.sprite(190, 335, 'ggSword');
-          this.ggSlash.play('ggSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Your shield deflects the sword blow!';
           break;
         case 'spell':
           dialogueString.textContent = 'Your spell crushes their aspirations!';
-
           paladin.play('ggSpell');
-
+          bandit.play('bgZapped');
           // this.char = this.add.sprite(190, 335, "pallyNewIdle");
           break;
         default:
@@ -247,13 +368,16 @@ class SceneMain extends Phaser.Scene {
       switch (badGuyChoice) {
         case 'sword':
           dialogueString.textContent = 'Enemy sword disembowels you!';
-           bandit.play('bgSword');
+          bandit.play('bgSword');
+          paladin.play('ggStabbed');
           break;
         case 'shield':
           dialogueString.textContent = 'Enemy shield laughs at your sword!';
+          bandit.play('bgShield');
           break;
         case 'spell':
           dialogueString.textContent = 'Enemy spell really ruins your day!';
+          bandit.play('bgSpell');
           break;
         default:
           break;
@@ -274,16 +398,30 @@ class SceneMain extends Phaser.Scene {
     currentUserChoice = 'sword';
     badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
     if (currentUserChoice === badGuyChoice) {
-      // draw condition
-      dialogueString.textContent = 'It was a draw!';
+      if (currentUserChoice === 'sword') {
+        dialogueString.textContent = 'It was a draw!';
+        paladin.play('ggSword');
+        bandit.play('bgSword');
+      } else if (currentUserChoice === 'spell') {
+        dialogueString.textContent = 'Your magics are evenly matched!';
+        paladin.play('ggSpell');
+        bandit.play('bgSpell');
+
+      } else {
+        dialogueString.textContent = 'You both block like fools!';
+        paladin.play('ggShield');
+        bandit.play('bgShield');
+
+      }
     } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
       (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
       (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
       // user win condition
       switch (currentUserChoice) {
         case 'sword':
-          dialogueString.textContent = 'Your sword removes their limbs!';
+          dialogueString.textContent = 'Your sword evicerates the scoundrel!';
           paladin.play('ggSword');
+          bandit.play('bgStabbed');
           break;
         case 'shield':
           dialogueString.textContent = 'Your shield deflects the sword blow!';
@@ -300,17 +438,19 @@ class SceneMain extends Phaser.Scene {
       switch (badGuyChoice) {
         case 'sword':
           dialogueString.textContent = 'Enemy sword disembowels you!';
-           bandit.play('bgSword');
+          bandit.play('bgSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Enemy shield laughs at your sword!';
+          bandit.play('bgShield');
+          paladin.play('ggCounter');
           break;
         case 'spell':
           dialogueString.textContent = 'Enemy spell really ruins your day!';
+          bandit.play('bgSpell');
           break;
         default:
           break;
-
       }
       winCountingArray[1]++;
     }
@@ -326,12 +466,8 @@ class SceneMain extends Phaser.Scene {
   // removeIdle(){
   //   this.paladin.destroy();
   // }
-
   update() {
     //  if(){
-
-
-
   }
 }
 
@@ -371,7 +507,6 @@ clearDataReference.addEventListener('click', clearDataFunction);
 
 //  Local Storage set into User array
 
-
 if (localStorage.getItem(SCORE_DATA) === null) {
   var localStorageArray = [];
 } else {
@@ -379,7 +514,6 @@ if (localStorage.getItem(SCORE_DATA) === null) {
   localStorageArray = JSON.parse(jsonData);
   console.log(localStorageArray);
 }
-
 
 //  Constructor for User Session
 
@@ -404,7 +538,7 @@ function clearDataFunction() {
 //  Current Scoreboard Render
 
 function scoreBoard() {
-  scoreString.textContent = `User: ${winCountingArray[0]}, Enemy: ${winCountingArray[1]}`;
+  scoreString.textContent = `Knight: ${winCountingArray[0]} - Enemy: ${winCountingArray[1]}`;
   if (!winCountingArray.includes(3)) {
     choiceString.textContent = `${currentUserChoice} vs ${badGuyChoice}`;
   } else {
@@ -416,28 +550,45 @@ function scoreBoard() {
 }
 
 //  Render Win Screen and Provide User Options
-
-function winDetected() {
-  currentUser.userHistory++;
-
+var playAgain; // peter - do we need this var?
+function popUp() {
+  var continueBox = document.getElementById('continue');
+  continueBox.style.visibility = 'visible';
+}
+function playAgain() {
+  winCountingArray = [0, 0];
+  var continueBox = document.getElementById('continue');
+  continueBox.style.visibility = 'hidden';
   if (winCountingArray[0] > winCountingArray[1]) {
-    currentUser.winLossHistory[0]++;
     dialogueString.textContent = 'GLORY TO THE USER';
 
   } else if (winCountingArray[0] < winCountingArray[1]) {
-    currentUser.winLossHistory[1]++;
     dialogueString.textContent = 'DIE, USER SCUM!';
   }
   scoreBoard();
-  var playAgain = confirm('Would you like to play again?');
-  if (playAgain === true) {
-    winCountingArray = [0, 0];
-  } else {
-    winCountingArray = [0, 0];
-    var newName = prompt('Input Name: ');
-    scoreObj = new User(newName); //data constructed to obj
-    scoreObj.userHistory = currentUser.userHistory;
-    scoreObj.winLossHistory = currentUser.winLossHistory;
-    scoreObj.saveToLocal();
+}
+
+function dontPlay() {
+  var newName = prompt('Input Name: ');
+  scoreObj = new User(newName); //data constructed to obj
+  scoreObj.userHistory = currentUser.userHistory;
+  scoreObj.winLossHistory = currentUser.winLossHistory;
+  scoreObj.saveToLocal();
+  var continueBox = document.getElementById('continue');
+  continueBox.style.visibility = 'hidden';
+  location.reload();
+}
+
+function winDetected() {
+  popUp();
+  currentUser.userHistory++;
+  if (winCountingArray[0] > winCountingArray[1]) {
+    currentUser.winLossHistory[0]++;
+    dialogueString.textContent = 'You shall not be thieving any longer. - Stalwart Knight. \n   USER WINS!';
+
+  } else if (winCountingArray[0] < winCountingArray[1]) {
+    currentUser.winLossHistory[1]++;
+    dialogueString.textContent = 'Ye corpse is ripe for the plundering! - unsavory Bandit. \n   COMPUTER WINS!';
   }
+  scoreBoard();
 }

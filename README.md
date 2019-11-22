@@ -8,11 +8,13 @@ _v1 11/17/19_ - Isaac set up animation
 
 _v2 11/18/19_ - Wireframe & Work on JS Logic and CSS and display
 
-_v3 11/19/19_ - MVP sprint
+_v3 11/19/19_ - MVP sprint, gameplay, display & ocal storage
 
 _v4 11/20/19_ - MVP presentation
 
 _v5 11/21/19_ - Phaser integration and polish
+
+_v6 11/22/19_ - Final Presentation
 
 [_User Stories_](https://github.com/ISAACLNELSON/201-Final-Project/projects/1)
 
