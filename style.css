@@ -36,6 +36,7 @@ body>script {
 
 header {
     position: fixed;
+    background-color: cornflowerblue;
     top: 0%;
     left: auto;
     width: 95%;
@@ -88,8 +89,6 @@ a:hover {
   background-color: lightgreen;
 }
 
-
-
 .openingScroll {
     text-align: center;
     background-image: url("../images/scroll.jpeg");
@@ -106,9 +105,12 @@ a:hover {
 .openingScroll p{
     background-color: rgba(214, 189, 159, 0.44);
 }
+<<<<<<< HEAD
+=======
   
 
 
+>>>>>>> bdc14e1b15c104ab7a148c6103df6f6fc55f7b07
 
 #scoreBoard {
     text-align: center;
@@ -170,7 +172,6 @@ a:hover {
 }
 
 #scores th, td {
-
    margin: 50px;
    padding: 10px;
    color: rgb(10, 87, 10);

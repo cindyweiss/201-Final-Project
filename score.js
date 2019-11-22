@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 var SCORE_DATA = 'SCORE_DATA';
 
 var tableContents = document.getElementById('scores');
@@ -13,7 +11,7 @@ var renderTitleRow = function (tableContents) {
   userNames.textContent = (' Player Names ');
   tr.append(userNames);
   var td = document.createElement('td');
-  td.textContent = (' Games Won /  Games Lost ');
+  td.textContent = (' Games Won / Games Lost ');
   tr.append(td);
   tableContents.append(tr);
 };
@@ -23,7 +21,6 @@ var render = function (tableContents, userData) {
   var nameCell = document.createElement('td');
   nameCell.textContent = userData.name;
   tr.append(nameCell);
-
 
   var matchCount = document.createElement('td');
   matchCount.textContent = userData.winLossHistory;
@@ -42,5 +39,4 @@ renderTitleRow(tableContents);
 
 for (var i = 0; i < dataForHighScores.length; i++) {
   render(tableContents, dataForHighScores[i]);
-
 }
