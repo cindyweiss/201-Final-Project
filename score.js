@@ -1,49 +1,26 @@
 'use strict';
 
-var renderTitleRow = function (domreferance) {
-  var tableContents = document.getElementById('scores');
-  var tr = document.createElement('tr');
-  var userNames = document.createElement('td');
-  userNames.textContent = (' Squires Names ');
-  tr.append(userNames);
-
-  var td = document.createElement('td');
-  td.textContent = (' Squires Games Won / Squires Games Played ');
-  tr.append(td);
-
-  tableContents.append(tr);
-};
-
 var SCORE_DATA = 'SCORE_DATA';
 
-
-
-
 var tableContents = document.getElementById('scores');
-
-
-
 
 var renderTitleRow = function (tableContents) {
   // var tableContents = document.getElementById('scores');
   var tr = document.createElement('tr');
   var userNames = document.createElement('td');
-  userNames.textContent = (' Squires Names ');
+  userNames.textContent = (' Player Names ');
   tr.append(userNames);
   var td = document.createElement('td');
-  td.textContent = (' Squires Games Won / Squires Games Played ');
+  td.textContent = (' Games Won / Games Lost ');
   tr.append(td);
   tableContents.append(tr);
 };
-
-
 
 var render = function (tableContents, userData) {
   var tr = document.createElement('tr');
   var nameCell = document.createElement('td');
   nameCell.textContent = userData.name;
   tr.append(nameCell);
-
 
   var matchCount = document.createElement('td');
   matchCount.textContent = userData.winLossHistory;
@@ -62,5 +39,4 @@ renderTitleRow(tableContents);
 
 for (var i = 0; i < dataForHighScores.length; i++) {
   render(tableContents, dataForHighScores[i]);
-
 }
