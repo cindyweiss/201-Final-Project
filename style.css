@@ -31,6 +31,7 @@ header {
     width: 95%;
     border: black 2px solid;
     text-align: center;
+    background-color: cornflowerblue;
 }
 
 #header-label {
@@ -93,6 +94,12 @@ a:hover {
 .openingScroll p{
     background-color: rgba(214, 189, 159, 0.44);
 }
+<<<<<<< HEAD
+=======
+  
+
+
+>>>>>>> bdc14e1b15c104ab7a148c6103df6f6fc55f7b07
 
 #scoreBoard {
     text-align: center;
