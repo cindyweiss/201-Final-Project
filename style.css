@@ -30,6 +30,7 @@ header {
     width: 95%;
     border: black 2px solid;
     text-align: center;
+    background-color: cornflowerblue;
 }
 
 #header-label {
@@ -96,7 +97,7 @@ a:hover {
 }
   
 
-}
+
 
 #scoreBoard {
     text-align: center;
@@ -131,6 +132,7 @@ a:hover {
 #phaser-game canvas {
   z-index: 1;
   transform: scale(2);
+}
 
 #cloud3 {
   z-index: 1;
