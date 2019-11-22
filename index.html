@@ -30,22 +30,17 @@
     <main>
       <div id="continue">
         <p>Play Again?</p>
-        
+
         <input type="button" name="yes" id="yes" onclick="playAgain();" value="Yes!">
-        
+
         <input type="button" name="no" onclick="dontPlay();" id="no" value="No...">
-    
-    
+
       </div>
-      <div id="outerWrap">
         <!-- phaser does not require you to make canvas -->
-        <div id="phaser-game">
-        </div>
-        <div id="scoreBoard"> </div>
-
-        <a href="index.html" id="clearData">Clear Local Data</a>
-
+        <div id="phaser-game"></div>
+        <div id="scoreBoard"></div>
     </main>
+    <a href="index.html" id="clearData">Clear Game History</a>
     <script src="sceneMain.js"></script>
 </body>
 

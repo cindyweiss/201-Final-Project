@@ -31,7 +31,7 @@ body>* {
 }
 
 body>script {
-  display: none
+  display: none;
 }
 
 header {
@@ -105,12 +105,6 @@ a:hover {
 .openingScroll p{
     background-color: rgba(214, 189, 159, 0.44);
 }
-<<<<<<< HEAD
-=======
-  
-
-
->>>>>>> bdc14e1b15c104ab7a148c6103df6f6fc55f7b07
 
 #scoreBoard {
     text-align: center;
@@ -127,7 +121,7 @@ a:hover {
     margin-right: auto; 
     /* margin-top: 0px;  */
     position: absolute;
-    top: 612px; left: 31.2%;
+    top: 618px; left: 35%;
 }
 
 #phaser-game {

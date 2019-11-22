@@ -5,7 +5,6 @@ var SCORE_DATA = 'SCORE_DATA';
 var tableContents = document.getElementById('scores');
 
 var renderTitleRow = function (tableContents) {
-  // var tableContents = document.getElementById('scores');
   var tr = document.createElement('tr');
   var userNames = document.createElement('td');
   userNames.textContent = (' Player Names ');
