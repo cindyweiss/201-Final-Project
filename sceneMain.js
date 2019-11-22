@@ -109,7 +109,7 @@ class SceneMain extends Phaser.Scene {
         { key: 'pallyTotal', frame: 28 },
         { key: 'pallyTotal', frame: 28 },
         { key: 'pallyTotal', frame: 29 },
- 
+
       ],
       frameRate: 5,
       repeat: -1,
@@ -292,10 +292,10 @@ class SceneMain extends Phaser.Scene {
 
           paladin.play('ggSword');
           break;
-          case 'shield':
-            dialogueString.textContent = 'Your shield deflects the sword blow!';
-            paladin.play('ggShield');
-            bandit.play('bgCounter');
+        case 'shield':
+          dialogueString.textContent = 'Your shield deflects the sword blow!';
+          paladin.play('ggShield');
+          bandit.play('bgCounter');
 
 
           break;
@@ -364,7 +364,7 @@ class SceneMain extends Phaser.Scene {
       switch (currentUserChoice) {
         case 'sword':
           dialogueString.textContent = 'Your sword removes their limbs!';
-          
+
           break;
         case 'shield':
           dialogueString.textContent = 'Your shield deflects the sword blow!';
@@ -575,28 +575,42 @@ function scoreBoard() {
 }
 
 //  Render Win Screen and Provide User Options
-
-function winDetected() {
-  currentUser.userHistory++;
-
+var playAgain;
+function popUp() {
+  var continueBox = document.getElementById('continue');
+  continueBox.style.visibility = "visible";
+}
+function playAgain() {
+  winCountingArray = [0, 0];
+  var continueBox = document.getElementById('continue');
+  continueBox.style.visibility = "hidden";
   if (winCountingArray[0] > winCountingArray[1]) {
-    currentUser.winLossHistory[0]++;
     dialogueString.textContent = 'GLORY TO THE USER';
 
   } else if (winCountingArray[0] < winCountingArray[1]) {
-    currentUser.winLossHistory[1]++;
     dialogueString.textContent = 'DIE, USER SCUM!';
   }
   scoreBoard();
-  var playAgain = confirm('Would you like to play again?');
-  if (playAgain === true) {
-    winCountingArray = [0, 0];
-  } else {
-    winCountingArray = [0, 0];
-    var newName = prompt('Input Name: ');
-    scoreObj = new User(newName); //data constructed to obj
-    scoreObj.userHistory = currentUser.userHistory;
-    scoreObj.winLossHistory = currentUser.winLossHistory;
-    scoreObj.saveToLocal();
+}
+function dontPlay() {
+  var newName = prompt('Input Name: ');
+  scoreObj = new User(newName); //data constructed to obj
+  scoreObj.userHistory = currentUser.userHistory;
+  scoreObj.winLossHistory = currentUser.winLossHistory;
+  scoreObj.saveToLocal();
+  var continueBox = document.getElementById('continue');
+  continueBox.style.visibility = "hidden";
+}
+function winDetected() {
+  popUp();
+  currentUser.userHistory++;
+  if (winCountingArray[0] > winCountingArray[1]) {
+    currentUser.winLossHistory[0]++;
+    dialogueString.textContent = 'You shall not be thieving any longer. - Stalwart Knight. \n   USER WINS!';
+
+  } else if (winCountingArray[0] < winCountingArray[1]) {
+    currentUser.winLossHistory[1]++;
+    dialogueString.textContent = 'Ye corpse is ripe for the plundering! - unsavory Bandit. \n   COMPUTER WINS!';
   }
+  scoreBoard();
 }

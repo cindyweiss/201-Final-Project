@@ -2,18 +2,17 @@
 <html lang="en">
 
 <head>
-    <script src="window.js"></script>
-    <!-- <script src="phaser.js"></script> -->
-    <script src="phaser.min.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title>Duel of Fate</title>
+  <script src="window.js"></script>
+  <!-- <script src="phaser.js"></script> -->
+  <script src="phaser.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Duel of Fate</title>
 </head>
 
 <body>
-<<<<<<< HEAD
   <header>
     <h1 id="header-label">Duel of Fate</h1>
     <div>
@@ -28,33 +27,23 @@
         Select either Sword, Spell, or Shield and pray that fate is kind to you!
       </p>
     </div>
-=======
->>>>>>> bdc14e1b15c104ab7a148c6103df6f6fc55f7b07
-
-    <header>
-        <h1 id="header-label">Duel of Fate</h1>
-        <div>
-            <a id="nav-float-left" href="scorePage.html">Score Page</a>
-            <a id="nav-float-right" href="AboutUs.html">About Us</a>
-        </div>
-    </header>
     <main>
-        <div class="openingScroll">
-            <p>
-                You stumble upon an unsavory bandit on your daily patrol through the kingdom<br>
-                Slay this fiend!
-                <br>
-                Select either Sword, Spell, or Shield and pray that fate is kind to you!
-            </p>
+      <div id="continue">
+        <p>Play Again?</p>
+        
+        <input type="button" name="yes" id="yes" onclick="playAgain();" value="Yes!">
+        
+        <input type="button" name="no" onclick="dontPlay();" id="no" value="No...">
+    
+    
+      </div>
+      <div id="outerWrap">
+        <!-- phaser does not require you to make canvas -->
+        <div id="phaser-game">
         </div>
+        <div id="scoreBoard"> </div>
 
-        <div id="outerWrap">
-            <!-- phaser does not require you to make canvas -->
-            <div id="phaser-game">
-            </div>
-            <div id="scoreBoard"> </div>
-
-            <a href="index.html" id="clearData">Clear Local Data</a>
+        <a href="index.html" id="clearData">Clear Local Data</a>
 
     </main>
     <script src="sceneMain.js"></script>

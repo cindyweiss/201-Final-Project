@@ -13,6 +13,17 @@ body {
     padding-top: 250px;
 }
 
+#continue {
+position: absolute;
+top: 805px; left: 46%;
+z-index: 8;
+background-color: bisque;
+padding: 20px;
+visibility: hidden;
+border-bottom: burlywood 4px solid;
+border-left: burlywood 4px solid;
+}
+
 body>* {
     margin: auto;
     width: 95%;
@@ -106,13 +117,15 @@ a:hover {
     text-shadow: 1px 1px 2px black;
     font-weight: bold;
     background: rgba(150, 150, 150, 0.699);
-    border: 1px solid black;
+    border-bottom: 3px solid rgb(80, 95, 95);
     width: 480px;
     height: fit-content;
     z-index: 3;
     margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
+    margin-right: auto; 
+    /* margin-top: 0px;  */
+    position: absolute;
+    top: 612px; left: 31.2%;
 }
 
 #phaser-game {
