@@ -33,7 +33,7 @@ class SceneMain extends Phaser.Scene {
   //   this.load.spritesheet('banditIdle32', 'images/banditIdle32.png', { frameWidth: 32, frameHeight: 32 });
   //   this.load.spritesheet('ggSword', 'images/ggSword.png', { frameWidth: 32, frameHeight: 32 });
   //   this.load.spritesheet('ggSpell', 'images/ggSpell.png', { frameWidth: 32, frameHeight: 45 });
-    
+
 
   // }
   create() {
@@ -41,7 +41,7 @@ class SceneMain extends Phaser.Scene {
 
 
 
-    paladin = this.add.sprite(222, 335, "pallyTotal");
+    paladin = this.add.sprite(226, 335, "pallyTotal");
 
 
     this.anims.create({
@@ -67,7 +67,7 @@ class SceneMain extends Phaser.Scene {
         { key: 'pallyTotal', frame: 16 },
         { key: 'pallyTotal', frame: 17 },
       ],
-      frameRate: 7,
+      frameRate: 5,
       repeat: -1,
     });
     this.anims.create({
@@ -100,9 +100,49 @@ class SceneMain extends Phaser.Scene {
       frameRate: 7,
       repeat: -1,
     });
+    this.anims.create({
+      key: 'ggStabbed',
+      frames: [
+        { key: 'pallyTotal', frame: 25 },
+        { key: 'pallyTotal', frame: 26 },
+        { key: 'pallyTotal', frame: 27 },
+        { key: 'pallyTotal', frame: 28 },
+        { key: 'pallyTotal', frame: 28 },
+        { key: 'pallyTotal', frame: 29 },
+ 
+      ],
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'ggBurned',
+      frames: [
+        { key: 'pallyTotal', frame: 31 },
+        { key: 'pallyTotal', frame: 32 },
+        { key: 'pallyTotal', frame: 33 },
+        { key: 'pallyTotal', frame: 33 },
+        { key: 'pallyTotal', frame: 34 },
+        { key: 'pallyTotal', frame: 35 },
+        { key: 'pallyTotal', frame: 36 },
+      ],
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'ggCounter',
+      frames: [
+        { key: 'pallyTotal', frame: 37 },
+        { key: 'pallyTotal', frame: 38 },
+        { key: 'pallyTotal', frame: 39 },
+        { key: 'pallyTotal', frame: 40 },
+        { key: 'pallyTotal', frame: 41 },
+      ],
+      frameRate: 4,
+      repeat: -1,
+    });
 
 
-    bandit = this.add.sprite(252, 339, 'banditTotal');
+    bandit = this.add.sprite(250, 339, 'banditTotal');
 
     this.anims.create({
       key: 'badIdle',
@@ -126,6 +166,75 @@ class SceneMain extends Phaser.Scene {
         { key: 'banditTotal', frame: 5 },
       ],
       frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'bgSpell',
+      frames: [
+        { key: 'banditTotal', frame: 5 },
+        { key: 'banditTotal', frame: 6 },
+        { key: 'banditTotal', frame: 7 },
+        { key: 'banditTotal', frame: 8 },
+        { key: 'banditTotal', frame: 9 },
+        { key: 'banditTotal', frame: 9 },
+        { key: 'banditTotal', frame: 9 },
+      ],
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'bgShield',
+      frames: [
+        { key: 'banditTotal', frame: 10 },
+        { key: 'banditTotal', frame: 11 },
+        { key: 'banditTotal', frame: 12 },
+        { key: 'banditTotal', frame: 13 },
+        { key: 'banditTotal', frame: 14 },
+      ],
+      frameRate: 4,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'bgStabbed',
+      frames: [
+        { key: 'banditTotal', frame: 15 },
+        { key: 'banditTotal', frame: 15 },
+        { key: 'banditTotal', frame: 16 },
+        { key: 'banditTotal', frame: 17 },
+        { key: 'banditTotal', frame: 18 },
+        { key: 'banditTotal', frame: 18 },
+      ],
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'bgZapped',
+      frames: [
+        { key: 'banditTotal', frame: 23 },
+        { key: 'banditTotal', frame: 23 },
+        { key: 'banditTotal', frame: 24 },
+        { key: 'banditTotal', frame: 24 },
+        { key: 'banditTotal', frame: 25 },
+        { key: 'banditTotal', frame: 26 },
+        { key: 'banditTotal', frame: 27 },
+        { key: 'banditTotal', frame: 28 },
+      ],
+      frameRate: 5,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'bgCounter',
+      frames: [
+        { key: 'banditTotal', frame: 19 },
+        { key: 'banditTotal', frame: 19 },
+        { key: 'banditTotal', frame: 20 },
+        { key: 'banditTotal', frame: 20 },
+        { key: 'banditTotal', frame: 21 },
+        { key: 'banditTotal', frame: 22 },
+        { key: 'banditTotal', frame: 22 },
+        { key: 'banditTotal', frame: 23 },
+      ],
+      frameRate: 7,
       repeat: -1,
     });
 
@@ -158,8 +267,21 @@ class SceneMain extends Phaser.Scene {
     currentUserChoice = 'shield';
     badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
     if (currentUserChoice === badGuyChoice) {
-      // draw condition
-      dialogueString.textContent = 'It was a draw!';
+      if (currentUserChoice === 'sword') {
+        dialogueString.textContent = 'It was a draw!';
+        paladin.play('ggSword');
+        bandit.play('bgSword');
+      } else if (currentUserChoice === 'spell') {
+        dialogueString.textContent = 'Your magics are evenly matched!';
+        paladin.play('ggSpell');
+        bandit.play('bgSpell');
+
+      } else {
+        dialogueString.textContent = 'You both block like fools!';
+        paladin.play('ggShield');
+        bandit.play('bgShield');
+
+      }
     } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
       (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
       (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
@@ -168,12 +290,13 @@ class SceneMain extends Phaser.Scene {
         case 'sword':
           dialogueString.textContent = 'Your sword removes their limbs!';
 
-          this.ggSlash.play('ggSword');
+          paladin.play('ggSword');
           break;
-        case 'shield':
-          dialogueString.textContent = 'Your shield deflects the sword blow!';
-          paladin.play('ggShield');
-          bandit.play('bgSword');
+          case 'shield':
+            dialogueString.textContent = 'Your shield deflects the sword blow!';
+            paladin.play('ggShield');
+            bandit.play('bgCounter');
+
 
           break;
         case 'spell':
@@ -188,14 +311,17 @@ class SceneMain extends Phaser.Scene {
       switch (badGuyChoice) {
         case 'sword':
           dialogueString.textContent = 'Enemy sword disembowels you!';
-           bandit.play('bgSword');
           bandit.play('bgSword');
+
           break;
         case 'shield':
           dialogueString.textContent = 'Enemy shield laughs at your sword!';
+          bandit.play('bgShield');
           break;
         case 'spell':
           dialogueString.textContent = 'Enemy spell really ruins your day!';
+          bandit.play('bgSpell');
+          paladin.play('ggBurned');
           break;
         default:
           break;
@@ -216,8 +342,21 @@ class SceneMain extends Phaser.Scene {
     currentUserChoice = 'spell';
     badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
     if (currentUserChoice === badGuyChoice) {
-      // draw condition
-      dialogueString.textContent = 'It was a draw!';
+      if (currentUserChoice === 'sword') {
+        dialogueString.textContent = 'It was a draw!';
+        paladin.play('ggSword');
+        bandit.play('bgSword');
+      } else if (currentUserChoice === 'spell') {
+        dialogueString.textContent = 'Your magics are evenly matched!';
+        paladin.play('ggSpell');
+        bandit.play('bgSpell');
+
+      } else {
+        dialogueString.textContent = 'You both block like fools!';
+        paladin.play('ggShield');
+        bandit.play('bgShield');
+
+      }
     } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
       (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
       (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
@@ -225,8 +364,7 @@ class SceneMain extends Phaser.Scene {
       switch (currentUserChoice) {
         case 'sword':
           dialogueString.textContent = 'Your sword removes their limbs!';
-          this.ggSlash = this.add.sprite(190, 335, 'ggSword');
-          this.ggSlash.play('ggSword');
+          
           break;
         case 'shield':
           dialogueString.textContent = 'Your shield deflects the sword blow!';
@@ -235,6 +373,7 @@ class SceneMain extends Phaser.Scene {
           dialogueString.textContent = 'Your spell crushes their aspirations!';
 
           paladin.play('ggSpell');
+          bandit.play('bgZapped');
 
           // this.char = this.add.sprite(190, 335, "pallyNewIdle");
           break;
@@ -247,13 +386,16 @@ class SceneMain extends Phaser.Scene {
       switch (badGuyChoice) {
         case 'sword':
           dialogueString.textContent = 'Enemy sword disembowels you!';
-           bandit.play('bgSword');
+          bandit.play('bgSword');
+          paladin.play('ggStabbed');
           break;
         case 'shield':
           dialogueString.textContent = 'Enemy shield laughs at your sword!';
+          bandit.play('bgShield');
           break;
         case 'spell':
           dialogueString.textContent = 'Enemy spell really ruins your day!';
+          bandit.play('bgSpell');
           break;
         default:
           break;
@@ -274,16 +416,30 @@ class SceneMain extends Phaser.Scene {
     currentUserChoice = 'sword';
     badGuyChoice = attackChoices[Math.floor(Math.random() * 3)];
     if (currentUserChoice === badGuyChoice) {
-      // draw condition
-      dialogueString.textContent = 'It was a draw!';
+      if (currentUserChoice === 'sword') {
+        dialogueString.textContent = 'It was a draw!';
+        paladin.play('ggSword');
+        bandit.play('bgSword');
+      } else if (currentUserChoice === 'spell') {
+        dialogueString.textContent = 'Your magics are evenly matched!';
+        paladin.play('ggSpell');
+        bandit.play('bgSpell');
+
+      } else {
+        dialogueString.textContent = 'You both block like fools!';
+        paladin.play('ggShield');
+        bandit.play('bgShield');
+
+      }
     } else if ((currentUserChoice === 'sword' && badGuyChoice === 'spell') ||
       (currentUserChoice === 'spell' && badGuyChoice === 'shield') ||
       (currentUserChoice === 'shield' && badGuyChoice === 'sword')) {
       // user win condition
       switch (currentUserChoice) {
         case 'sword':
-          dialogueString.textContent = 'Your sword removes their limbs!';
+          dialogueString.textContent = 'Your sword evicerates the scoundrel!';
           paladin.play('ggSword');
+          bandit.play('bgStabbed');
           break;
         case 'shield':
           dialogueString.textContent = 'Your shield deflects the sword blow!';
@@ -300,13 +456,16 @@ class SceneMain extends Phaser.Scene {
       switch (badGuyChoice) {
         case 'sword':
           dialogueString.textContent = 'Enemy sword disembowels you!';
-           bandit.play('bgSword');
+          bandit.play('bgSword');
           break;
         case 'shield':
           dialogueString.textContent = 'Enemy shield laughs at your sword!';
+          bandit.play('bgShield');
+          paladin.play('ggCounter');
           break;
         case 'spell':
           dialogueString.textContent = 'Enemy spell really ruins your day!';
+          bandit.play('bgSpell');
           break;
         default:
           break;
